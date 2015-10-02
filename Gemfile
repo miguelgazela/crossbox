@@ -25,6 +25,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'omniauth-facebook'
 gem 'bootstrap-sass'
+gem 'bower-rails'
+gem "font-awesome-rails"
+gem 'momentjs-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

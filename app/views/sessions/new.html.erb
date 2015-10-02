@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag "sessions", :media => "all" %>
+
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand">SLNutrition Crossbox</h3>
+          <nav>
+            <ul class="nav masthead-nav">
+              <li class="active"><a href="#">Início</a></li>
+              <li><a href="#">Sobre</a></li>
+              <li><a href="#">Contactos</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="inner cover">
+
+        <% if flash[:user_not_confirmed] %>
+          <h1 class="cover-heading">Ups...</h1>
+          <p class="lead">Parece que a tua conta ainda não foi confirmada pelo Bruno Sá</p>
+        <% else %>
+          <h1 class="cover-heading">Treinar ou não treinar?</h1>
+          <p class="lead">Treinar, claro! Vens hoje?</p>
+          <a href="/auth/facebook" class="btn btn-lg"><%= fa_stacked_icon "facebook", :base => "check-empty" %>Entrar com Facebook</a>
+        <% end %>
+
+      </div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>Built by <a href="https://www.facebook.com/miguelgazela">@miguelgazela</a></p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

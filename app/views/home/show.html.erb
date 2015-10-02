@@ -1,0 +1,681 @@
+<div>
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-sm-3 col-md-2 sidebar">
+
+        <h1 class="brand">SLNutrition Crossbox</h1>
+
+
+        <div class="row">
+          <div class="col-xs-12 user-profile-panel">
+
+            <div class="user-image">
+              <a href="<%= current_user.url %>"><img src="<%= current_user.image %>" alt="<%= current_user.name %> profile picture" class="img-rounded"></a>
+            </div> 
+
+            <div class="user-info">
+              <h3 class="user-name"><%= current_user.name %></h3>
+            </div>
+            
+            <div class="text-center">
+              <a href="<%= signout_path %>" class="btn btn-sm btn-danger text-center" role="button">Sair</a>
+            </div>
+
+          </div>
+        </div>
+      
+        <div class="sidebar-calendar"></div>
+
+        <!-- <ul class="nav nav-sidebar">
+          <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Reports</a></li>
+          <li><a href="#">Analytics</a></li>
+          <li><a href="#">Export</a></li>
+        </ul> -->
+
+      </div>
+
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h1 class="page-header">
+          Treinos
+
+          <div class="pull-right">
+            <button class="btn btn-default" type="button" id="go-week-before"><%= fa_icon "angle-double-left" %></button>
+            <button class="btn btn-default" type="button" id="go-today">Hoje</button>
+            <button class="btn btn-default" type="button" id="go-week-after"><%= fa_icon "angle-double-right" %></button>
+          </div>
+        </h1>
+
+        <div class="col-xs-10 col-xs-offset-1">
+          
+          <div class="cal-context" style="width: 100%;">
+
+            <div class="cal-row-fluid cal-row-head">
+    
+              <div class="cal-cell1">
+                <div class="row">
+                  <div class="col-xs-12 week-day">Segunda</div>
+                  <div class="col-xs-12 day-month">28/09</div>
+                </div>
+              </div>
+
+              <div class="cal-cell1">
+                <div class="row">
+                  <div class="col-xs-12 week-day">Terça</div>
+                  <div class="col-xs-12 day-month">28/09</div>
+                </div>
+              </div>
+
+              <div class="cal-cell1">
+                <div class="row">
+                  <div class="col-xs-12 week-day">Quarta</div>
+                  <div class="col-xs-12 day-month">28/09</div>
+                </div>
+              </div>
+
+              <div class="cal-cell1">
+                <div class="row">
+                  <div class="col-xs-12 week-day">Quinta</div>
+                  <div class="col-xs-12 day-month">28/09</div>
+                </div>
+              </div>
+
+              <div class="cal-cell1">
+                <div class="row">
+                  <div class="col-xs-12 week-day">Sexta</div>
+                  <div class="col-xs-12 day-month">28/09</div>
+                </div>
+              </div>
+
+              <div class="cal-cell1">
+                <div class="row">
+                  <div class="col-xs-12 week-day">Sábado</div>
+                  <div class="col-xs-12 day-month">28/09</div>
+                </div>
+              </div>
+          
+            </div>
+
+            <div class="cal-hour-box">
+          
+              <!-- 9:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">09:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">09:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">09:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">09:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">09:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">09:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+            
+              <!-- 10:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-left occupancy-rate">12/13</span>
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">10:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">10:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">10:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">10:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">10:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">10:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+            
+              <!-- 11:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">11:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">11:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">11:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">11:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">11:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">11:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+            
+              <!-- 12:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">12:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">12:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">12:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">12:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">12:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">12:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+            
+              <!-- 13:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">13:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">13:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">13:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">13:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">13:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">13:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+            
+              <!-- 14:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">14:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">14:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">14:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">14:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">14:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">14:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 15:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">15:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">15:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">15:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">15:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">15:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">15:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 16:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-left occupancy-rate">12/13</span>
+                    <div class="hour-completion almost-full" data-completion="92"></div>
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">16:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-left occupancy-rate">4/13</span>
+                    <div class="hour-completion available" data-completion="30"></div>
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">16:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <div class="hour-completion full" data-completion="100"></div>
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">16:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">16:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">16:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">16:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 17:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">17:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                  <div class="hour-completion available" data-completion="20"></div>
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">17:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">17:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">17:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">17:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">17:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 18:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">18:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">18:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">18:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">18:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">18:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">18:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 19:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">19:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">19:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">19:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">19:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">19:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">19:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 20:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">20:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">20:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">20:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">20:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">20:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">20:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- 21:00 -->
+
+              <div class="cal-row-fluid cal-before-eventlist">
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day1">
+                  <div class="cal-day-hour cal-day-weekend cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-24" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">21:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day2">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">21:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day3">
+                    <div class="cal-day-hour cal-month-first-row">
+                      <span class="pull-right" data-cal-date="2013-02-25" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">21:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day4">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-27" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">21:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day5">
+                  <div class="cal-day-hour cal-month-first-row">
+                    <span class="pull-right" data-cal-date="2013-02-28" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">21:00</span>
+                  </div>
+                </div>
+
+                <div class="cal-cell1 cal-cell" data-cal-row="-day6">
+                  <div class="cal-day-hour cal-day-inmonth">
+                    <span class="pull-right" data-cal-date="2013-03-01" data-cal-view="day" data-toggle="tooltip" title="" data-original-title="">21:00</span>
+            
+                  </div>
+                </div>
+
+              </div>
+            
+            </div>
+            
+          </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+</div>

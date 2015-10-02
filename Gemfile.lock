@@ -45,6 +45,7 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
+    bower-rails (0.10.0)
     builder (3.2.2)
     byebug (6.0.2)
     coffee-rails (4.1.0)
@@ -59,6 +60,8 @@ GEM
     execjs (2.6.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hashie (3.4.2)
@@ -79,6 +82,8 @@ GEM
     mime-types (2.6.2)
     mini_portile (0.6.2)
     minitest (5.8.1)
+    momentjs-rails (2.10.3)
+      railties (>= 3.1)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -166,10 +171,13 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  bower-rails
   byebug
   coffee-rails (~> 4.1.0)
+  font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
+  momentjs-rails
   omniauth-facebook
   rails (= 4.2.4)
   sass-rails (~> 5.0)

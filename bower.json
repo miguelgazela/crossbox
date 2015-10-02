@@ -1,0 +1,26 @@
+{
+  "name": "crossbox",
+  "version": "0.0.1",
+  "homepage": "https://github.com/miguelgazela/crossbox",
+  "authors": [
+    "Miguel Oliveira <miguel.gazela@gmail.com>"
+  ],
+  "description": "A crossfit workouts planner",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "clndr": "~1.2.16",
+    "underscore": "~1.8.3",
+    "moment": "~2.10.6",
+    "font-awesome": "fontawesome#~4.4.0"
+  }
+}
