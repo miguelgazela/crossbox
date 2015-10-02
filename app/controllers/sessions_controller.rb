@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
       end
 
     else
-
+      
       user = User.new
 
       user.uid = auth_hash['uid']
@@ -33,6 +33,10 @@ class SessionsController < ApplicationController
       user.image = auth_hash['info']['image']
 
       user.save!
+
+      flash[:user_created_account] = "created account"
+      redirect_to action: 'new'
+
     end
     
   end
