@@ -1,0 +1,39 @@
+
+<div class="col-sm-3 col-md-2 sidebar">
+
+  <h1 class="brand">SLNutrition Crossbox</h1>
+
+  <div class="row">
+
+    <div class="col-xs-12 user-profile-panel">
+
+      <div class="user-image">
+        <a href="<%= current_user.url %>"><img src="<%= current_user.image %>" alt="<%= current_user.name %> profile picture" class="img-rounded"></a>
+      </div> 
+
+      <div class="user-info">
+        <h3 class="user-name"><%= current_user.name %></h3>
+      </div>
+      
+      <div class="text-center">
+        <a href="<%= signout_path %>" class="btn btn-sm btn-danger text-center" role="button">Sair</a>
+      </div>
+
+    </div>
+  </div>
+
+  <% if current_user.role == 'admin' || current_user.role == 'coach' %>
+  <ul class="nav nav-sidebar">
+
+    <li><a href="/">Treinos</a></li>
+
+    <% if new_accounts_count > 0 %>
+    <li><a href="/sessions">Pedidos de Inscrição <span class="badge pull-right"><%= new_accounts_count %></span></a></li>
+    <% end %>
+
+  </ul>
+  <% end %>
+
+  <div class="sidebar-calendar"></div>
+
+</div>

@@ -58,12 +58,14 @@ $red-color: #f96f61;
   .sidebar-calendar {
 
     position: absolute;
-    bottom: 10px;
+    bottom: 40px;
     left: 50%;
     transform: translateX(-50%);
+    border: 1px solid #3f4852;
 
     .clndr-controls {
       color: white;
+      border-bottom: 1px solid #3f4852;
 
       .month {
         width: 70%;
@@ -148,7 +150,6 @@ $red-color: #f96f61;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: $sidebar-bg-color;
-    border-right: 1px solid #eee;
   }
 }
 
@@ -172,21 +173,6 @@ $red-color: #f96f61;
   .badge {
     background-color: $red-color;
   }
-}
-
-.main {
-  padding: 20px;
-}
-
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
-}
-
-.main .page-header {
-  margin-top: 0;
 }
 
 [class*="cal-cell"] {
@@ -367,7 +353,6 @@ $red-color: #f96f61;
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: -1;
 
     &[data-completion='0'] {width: 0%;}
     &[data-completion='1'] {width: 1%;}
@@ -492,7 +477,7 @@ $red-color: #f96f61;
 
 span[data-cal-date] {
   font-size: 1em;
-  font-weight: bold;
+  font-weight: 300;
   color: #c6c6c6;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -502,6 +487,7 @@ span[data-cal-date] {
   -o-transition: all 0.1s ease-in-out;
   margin-top: 10px;
   margin-right: 10px;
+  letter-spacing: 1px;
 }
 
 .occupancy-rate {
@@ -521,6 +507,28 @@ span[data-cal-date]:hover {
   cursor: default;
 }
 
+.media-object-small {
+  width: 64px;
+  height: 64px;
+}
+
+.stats {
+  text-align: center;
+
+  .stats-icon {
+    text-align: left;
+  }
+
+  .stats-value {
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 44px;
+  }
+
+  .stats-caption {
+    font-weight: 700;
+  }
+}
 
 
 
