@@ -175,6 +175,15 @@ $red-color: #f96f61;
   }
 }
 
+.not-class {
+  background-color: #efefef;
+
+  span[data-cal-date] {
+    color: #efefef;
+    cursor: default;
+  }  
+}
+
 [class*="cal-cell"] {
   float: left;
   margin-left: 0;

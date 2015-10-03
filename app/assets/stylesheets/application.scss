@@ -31,6 +31,24 @@
 	height: 100px;
 	color: white;
 	margin-bottom: 30px;
+
+	.main-header-title {
+		margin-top: 30px;
+		margin-left: 15px;
+		margin-right: 15px;
+		border-bottom: 1px solid white;
+	}
+
+	.main-header-calendar-btn {
+		margin-bottom: 10px;
+		background-color: white;
+
+		&:hover,
+		&:focus {
+			background-color: #eeeeee;
+			
+		}
+	}
 }
 
  .card {
