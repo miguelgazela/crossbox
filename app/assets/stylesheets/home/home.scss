@@ -16,6 +16,7 @@ $red-color: #f96f61;
 .sidebar {
   display: none;
   color: white;
+  position: relative;
 
   .brand {
     text-align: center;
@@ -56,8 +57,45 @@ $red-color: #f96f61;
 
   .sidebar-calendar {
 
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+
     .clndr-controls {
-      padding-bottom: 5px;
+      color: white;
+
+      .month {
+        width: 70%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        display: inline-block;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      .clndr-control-button.clndr-previous-button,
+      .clndr-control-button.clndr-next-button {
+        width: 15%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+        transition: background-color 0.5s;
+      }
+      .clndr-control-button.clndr-previous-button:hover,
+      .clndr-control-button.clndr-next-button:hover,
+      .clndr-control-button.clndr-previous-button:focus,
+      .clndr-control-button.clndr-next-button:focus {
+        /*background-color: #528b5e;*/
+        background-color: #eeeeee;
+        color: $sidebar-bg-color;
+      }
+
     }
 
     .clndr-table {
@@ -82,7 +120,7 @@ $red-color: #f96f61;
         border-radius: 4px;
       }
 
-      padding: 10px;
+      padding: 5px 8px;
       text-align: center;
 
       &.today {
@@ -115,21 +153,25 @@ $red-color: #f96f61;
 }
 
 .nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
+  // margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
-  margin-left: -20px;
+  // margin-left: -20px;
 }
 
 .nav-sidebar > li > a {
+  color: #fff;
   padding-right: 20px;
   padding-left: 20px;
-}
 
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
+  &:hover,
+  &:focus {
+    color: $sidebar-bg-color;
+    border-radius: 4px;
+  }
+
+  .badge {
+    background-color: $red-color;
+  }
 }
 
 .main {

@@ -18,6 +18,31 @@
 //= require clndr/src/clndr
 //= require_tree .
 
+var cldnrTemplate = "<div class='clndr-controls'>" +
+    "<div class='clndr-control-button clndr-previous-button'>&lsaquo;</div><div class='month'><%= month %> <%= year %></div><div class='clndr-control-button clndr-next-button'>&rsaquo;</div>" +
+    "</div>" +
+    "<table class='clndr-table' border='0' cellspacing='0' cellpadding='0'>" +
+    "<thead>" +
+    "<tr class='header-days'>" +
+    "<% for(var i = 0; i < daysOfTheWeek.length; i++) { %>" +
+      "<td class='header-day'><%= daysOfTheWeek[i] %></td>" +
+    "<% } %>" +
+    "</tr>" +
+    "</thead>" +
+    "<tbody>" +
+    "<% for(var i = 0; i < numberOfRows; i++){ %>" +
+      "<tr>" +
+      "<% for(var j = 0; j < 7; j++){ %>" +
+      "<% var d = j + i * 7; %>" +
+      "<td class='<%= days[d].classes %>'><div class='day-contents'><%= days[d].day %>" +
+      "</div></td>" +
+      "<% } %>" +
+      "</tr>" +
+    "<% } %>" +
+    "</tbody>" +
+  "</table>";
+
+
 var currentFirstDayOfWeek = null;
 
 var main = function () {
@@ -36,6 +61,7 @@ var main = function () {
 function configSidebarCalendar() {
 
 	$('.sidebar-calendar').clndr({
+		template: cldnrTemplate,
 		clickEvents: {
 			click: function(target){
 				setWeekStartingAt(target.date);
