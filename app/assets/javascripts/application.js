@@ -76,31 +76,33 @@ function configAddWorkoutsPage() {
 
 function addWorkouts() {
 
+
+
 	// fetch all data
 	var data = {
 		days: [
 			{
-				date: currentFirstDayOfWeek.format(),
+				date: currentFirstDayOfWeek.format().substring(0, 10),
 				workoutHours: []
 			},
 			{
-				date: currentFirstDayOfWeek.clone().add(1, 'd').format(),
+				date: currentFirstDayOfWeek.clone().add(1, 'd').format().substring(0, 10),
 				workoutHours: []
 			},
 			{
-				date: currentFirstDayOfWeek.clone().add(2, 'd').format(),
+				date: currentFirstDayOfWeek.clone().add(2, 'd').format().substring(0, 10),
 				workoutHours: []
 			},
 			{
-				date: currentFirstDayOfWeek.clone().add(3, 'd').format(),
+				date: currentFirstDayOfWeek.clone().add(3, 'd').format().substring(0, 10),
 				workoutHours: []
 			},
 			{
-				date: currentFirstDayOfWeek.clone().add(4, 'd').format(),
+				date: currentFirstDayOfWeek.clone().add(4, 'd').format().substring(0, 10),
 				workoutHours: []
 			}, 
 			{
-				date: currentFirstDayOfWeek.clone().add(5, 'd').format(),
+				date: currentFirstDayOfWeek.clone().add(5, 'd').format().substring(0, 10),
 				workoutHours: []
 			}
 		]
