@@ -175,7 +175,7 @@ $red-color: #f96f61;
   }
 }
 
-.not-class {
+.no-workout {
   background-color: #efefef;
 
   span[data-cal-date] {
@@ -343,6 +343,12 @@ $red-color: #f96f61;
   border-right: 1px solid #e1e1e1;
   border-left: 1px solid #e1e1e1;
   border-radius: 2px;
+
+  .form-control {
+    padding: 2px 12px;
+    height: 30px;
+    margin-top: 10px;
+  }
 }
 .cal-hour-box .cal-day-today span[data-cal-date] {
   font-size: 1.9em;
@@ -517,8 +523,14 @@ span[data-cal-date]:hover {
 }
 
 .media-object-small {
-  width: 64px;
-  height: 64px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+
+  &:hover {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .stats {

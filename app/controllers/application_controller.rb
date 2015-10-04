@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_account_management_rights
-    redirect_to '/' unless current_user.role == 'admin' || current_user.role == 'coach'
+    redirect_to '/' unless current_user && (current_user.role == 'admin' || current_user.role == 'coach')
   end
 
 end

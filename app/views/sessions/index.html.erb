@@ -16,38 +16,51 @@
 
         </div>
 
-		<% @new_accounts.each do |new_user| %>
-			<div class="col-xs-6 col-md-6 col-lg-4">
-				<div class="card">
 
-					<div class="media">
-					  <div class="media-left">
-					    <a href="#">
-					      <img class="media-object media-object-small" src="http://placehold.it/100x100" alt="...">
-					    </a>
-					  </div>
-					  <div class="media-body">
-					    <h4 class="media-heading"><%= new_user.name %></h4>
-              <p><%= new_user.email %></p>
-					    <p class="pull-right">
+        <div class="col-xs-12">
+          
+        
+          <div class="card">
+            
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th></th>
+                  <th>Nome</th>
+                  <th>Data</th>
+                  <th>Opções</th>
+                </tr>
+              </thead>
+              <tbody>
 
-                <form action="users/yes/<%= new_user.id %>" method="post">
-                <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-					    	<button type="submit" class="btn btn-success btn-sm">Confirmar</button>
-                </form>
+                <% @new_accounts.each do |new_user| %>
+                
+                <tr>
+                  <th scope="row">1</th>
+                  <td><img class="media-object media-object-small" src="<%= new_user.image %>" alt="..."></td>
+                  <td><%= new_user.name %></td>
+                  <td><%= new_user.created_at %></td>
+                  <td>
+                    <form action="users/yes/<%= new_user.id %>" method="post">
+                      <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                      <button type="submit" class="btn btn-success btn-sm">Confirmar</button>
+                    </form>
+                    <form action="users/no/<%= new_user.id %>" method="post">
+                      <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+                      <button type="submit" class="btn btn-danger btn-sm">Recusar</button>
+                    </form>
+                  </td>
+                </tr>
 
-                <form action="users/no/<%= new_user.id %>" method="post">
-                <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-					    	<button type="submit" class="btn btn-danger btn-sm">Recusar</button>
-                </form>
+                <% end %>
 
-					    </p>
-					  </div>
-					</div>
+              </tbody>
+            </table>
 
-				</div>
-			</div>
-          <% end %>
+          </div>
+
+        </div>
  
       </div>
 

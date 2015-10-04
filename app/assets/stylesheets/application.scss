@@ -31,6 +31,7 @@
 	height: 100px;
 	color: white;
 	margin-bottom: 30px;
+	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.15);
 
 	.main-header-title {
 		margin-top: 30px;
@@ -51,6 +52,10 @@
 	}
 }
 
+.cal-context + * {
+	margin-top: 20px;
+}
+
  .card {
  	background-color: #fff;
  	padding: 30px;
@@ -59,3 +64,6 @@
  	border-radius: 2px;
  }
 
+table form {
+	display: inline-block;
+}
