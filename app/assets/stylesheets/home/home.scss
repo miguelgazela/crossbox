@@ -511,6 +511,11 @@ span[data-cal-date] {
   cursor: pointer;
   margin-top: 10px;
   margin-left: 10px;
+
+  a {
+    color: inherit;
+  }
+
 }
 
 span[data-cal-date]:hover {

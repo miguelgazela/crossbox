@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
 //= require moment/moment
@@ -42,23 +43,122 @@ var cldnrTemplate = "<div class='clndr-controls'>" +
     "</tbody>" +
   "</table>";
 
-
 var currentFirstDayOfWeek = null;
 
 var main = function () {
 
-	if (gon.adding_workouts) {
-		configAddWorkoutsPage();
-	} else {
-		setCalendarToToday();
-	}
+  console.log("Running main function");
+
+  configSidebarCalendar();
+
+  if (gon.adding_workouts) {
+    configAddWorkoutsPage()
+    return;
+  }
+
+	if (gon.added_workouts) {
+    console.log("Added workouts!");
+  } 
+
+	setCalendarToToday();
+
+  fetchWeekWorkouts();
 
 	$("#go-week-before").click(function () { backOneWeek(); });
 	$("#go-week-after").click(function () { forwardOneWeek(); });
 	$("#go-today").click(function () { setCalendarToToday(); });
 
-	configSidebarCalendar();
 };
+
+function fetchWeekWorkouts() {
+
+  var lastDay = currentFirstDayOfWeek.clone().add(7, 'd');
+
+  $.ajax({
+    type: "GET",
+    url: "http://localhost:3000/week_workouts?s=" + currentFirstDayOfWeek.format('YYYY-MM-DD') + "&e=" + lastDay.format('YYYY-MM-DD'),
+    success: function (response) {
+
+      if (response.error_code == 200) {
+
+        var workouts = response.payload.workouts;
+
+        $('.cal-day-hour').each(function () {
+
+          var day = $(this).parent();
+
+          switch ($(day).data('cal-row')) {
+            case '-day1':
+              addWorkoutsToDay(workouts, this, 0);
+            break;
+            case  '-day2':
+              addWorkoutsToDay(workouts, this, 1);
+            break;
+            case '-day3':
+              addWorkoutsToDay(workouts, this, 2);
+            break;
+            case  '-day4':
+              addWorkoutsToDay(workouts, this, 3);
+            break;
+            case '-day5':
+              addWorkoutsToDay(workouts, this, 4);
+            break;
+            case  '-day6':
+              addWorkoutsToDay(workouts, this, 5);
+            break;
+          }
+
+        });
+
+        $('.cal-day-hour').each(function () {
+
+          if($(this).find('.occupancy-rate').length == 0) {
+            $(this).addClass('no-workout');
+          }
+
+        });
+
+      }
+
+    }
+  });
+
+}
+
+function addWorkoutsToDay(workouts, day, daysToAdd) {
+
+  for (var i = 0; i < workouts.length; i++) {
+
+    var workout = workouts[i]
+
+    var workoutDate = moment(workout.workout.date, 'YYYY-MM-DDTHH:mm:ss.sss');
+    var currentDay = currentFirstDayOfWeek.clone().add(daysToAdd, 'd');
+
+    if (currentDay.date() == workoutDate.date()) {
+
+      var hour = $(day).children('span').text();
+
+      if (workoutDate.format('HH:mm') == hour) {
+
+        var maxParticipants = parseInt(workout.workout.max_participants);
+        var trainings = workout.trainings;
+        var freeSpots;
+        var percentage;
+
+        if (trainings >= maxParticipants) {
+          freeSpots = 0;
+          percentage = 100;
+        } else {
+          freeSpots = maxParticipants - trainings;
+          percentage = Math.floor((trainings / maxParticipants) * 100);
+        }
+
+        var html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div"
+        $(day).prepend(html);
+      } 
+    }
+  } /* /for */
+}
 
 function configAddWorkoutsPage() {
 
@@ -76,10 +176,10 @@ function configAddWorkoutsPage() {
 
 function addWorkouts() {
 
-
-
 	// fetch all data
 	var data = {
+    startDay: gon.start_day.split(' ')[0],
+    endDay: gon.end_day.split(' ')[0],
 		days: [
 			{
 				date: currentFirstDayOfWeek.format().substring(0, 10),
@@ -146,8 +246,11 @@ function addWorkouts() {
 	  type: "POST",
 	  url: "http://localhost:3000/workouts",
 	  data: data,
-	  success: function () {
-	  	console.log("YES!");
+	  success: function (response) {
+
+      if (response.error_code == 200) {
+        window.location.href = ('/');
+      }
 	  }
 	});
 }
@@ -173,7 +276,6 @@ function configSidebarCalendar() {
 function setCalendarToToday() {
 
 	currentFirstDayOfWeek = moment();
-
 	resetWeek();
 }
 
@@ -182,9 +284,7 @@ function backOneWeek() {
 	var firstDayOfWeek = currentFirstDayOfWeek.clone();
 	firstDayOfWeek.subtract(1, 'w');
 
-	currentFirstDayOfWeek = firstDayOfWeek.clone();
-
-	resetWeek();
+	changeWeek(firstDayOfWeek);
 }
 
 function forwardOneWeek() {
@@ -192,12 +292,26 @@ function forwardOneWeek() {
 	var firstDayOfWeek = currentFirstDayOfWeek.clone();
 	firstDayOfWeek.add(1, 'w');
 
-	currentFirstDayOfWeek = firstDayOfWeek.clone();
+	changeWeek(firstDayOfWeek);
+}
 
-	resetWeek();
+function changeWeek(firstDayOfWeek) {
+
+  currentFirstDayOfWeek = firstDayOfWeek.clone();
+
+  resetWeek();
+
+  fetchWeekWorkouts();
 }
 
 function resetWeek() {
+
+  $('.cal-day-hour').each(function () {
+    $(this).find('.occupancy-rate').remove();
+    $(this).find('.hour-completion').remove();
+    $(this).removeClass('no-workout');
+  });
+
 	setWeekStartingAt(currentFirstDayOfWeek);
 }
 
@@ -245,6 +359,17 @@ function redirectToAddWorkouts() {
 	var lastDay = currentFirstDayOfWeek.clone().add(7, 'd');
 
 	window.location.href = ("/workouts/new?s=" + currentFirstDayOfWeek.format() + "&e=" + lastDay.format());
+}
+
+function getClassForPercentage(percentage) {
+
+  if (percentage <= 50) {
+    return "available";
+  } else if (percentage <= 80) {
+    return "almost-full";
+  } else {
+    return "full";
+  }
 }
 
 $(document).ready(main);
