@@ -17,7 +17,6 @@
 //= require moment/moment
 //= require underscore/underscore
 //= require clndr/src/clndr
-//= require_tree .
 
 var cldnrTemplate = "<div class='clndr-controls'>" +
     "<div class='clndr-control-button clndr-previous-button'>&lsaquo;</div><div class='month'><%= month %> <%= year %></div><div class='clndr-control-button clndr-next-button'>&rsaquo;</div>" +
