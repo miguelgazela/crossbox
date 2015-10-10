@@ -50,9 +50,7 @@ $red-color: #f96f61;
       .user-name {
         text-align: center;
       }
-
     }
-
   }
 
   .sidebar-calendar {
@@ -132,9 +130,7 @@ $red-color: #f96f61;
       &.past {
         color: #878B91;
       }
-
     }
-
   }
 }
 
@@ -179,7 +175,6 @@ $red-color: #f96f61;
   background-color: #efefef;
 
   span[data-cal-date] {
-    color: #efefef;
     cursor: default;
   }  
 }

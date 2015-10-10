@@ -114,14 +114,10 @@ function fetchWeekWorkouts() {
           if($(this).find('.occupancy-rate').length == 0) {
             $(this).addClass('no-workout');
           }
-
         });
-
       }
-
     }
   });
-
 }
 
 function addWorkoutsToDay(workouts, day, daysToAdd) {
@@ -172,12 +168,14 @@ function configAddWorkoutsPage() {
 
 	resetWeek();
 
+  // change the hours that are displayed for the saturdays
+
   var counter = 0;
   while (true) {
 
     var newDay = currentFirstDayOfWeek.clone().add(counter, 'd');
 
-    if (newDay.day() == 6) {
+    if (newDay.day() == 6) { // saturday
       break;
     }
 
@@ -195,7 +193,7 @@ function configAddWorkoutsPage() {
       if (hour == "09:00") {
         $(this).children('.cal-day-hour').prepend('<div class="col-xs-8 col-md-6"><input type="text" class="form-control" placeholder="Vagas" value="13"></div>');
       } else if (hour == "10:00" || hour == "20:00" || hour == "21:00") {
-        
+        $(this).children('.cal-day-hour').children('div').remove();
       }
 
       console.log("Right day: " + hour);
