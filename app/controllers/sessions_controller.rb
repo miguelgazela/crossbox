@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  before_action :require_user, only: [:show]
+  before_action :require_user, only: [:show, :destroy]
   before_action :require_account_management_rights, only: [:index, :authorize, :cancel] 
 
   # TODO: this method is responsible for showing the home page
@@ -67,7 +67,7 @@ class SessionsController < ApplicationController
 
     if user
 
-      user.role = 'verified_user'
+      user.role = 'user'
       user.save!
 
       if User.where(role: 'new_user').count == 0

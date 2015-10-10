@@ -1,10 +1,7 @@
 class WorkoutsController < ApplicationController
 
-	before_action :require_account_management_rights, only: [:new]
-
-	def index
-
-	end
+	before_action :require_user, only: [:week_workouts]
+	before_action :require_account_management_rights, only: [:new, :create, :change_training_state]
 
 	def show
 

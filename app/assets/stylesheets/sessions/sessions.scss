@@ -47,6 +47,7 @@ body {
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .masthead-nav > li {
@@ -95,10 +96,11 @@ body {
   padding: 0 20px;
 }
 
-.cover .btn-lg {
+.cover .btn {
   padding: 10px 20px;
   background-color: #3b5998;
   color: white;
+  margin-top: 20px;
   
   &:hover {
   	background-color: #2D467C;

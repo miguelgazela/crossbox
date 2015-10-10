@@ -1,23 +1,22 @@
 Rails.application.routes.draw do
 
+  root to: "home#show"
+
+
+  resources :sessions, only: [:create, :index]
+
   get 'sessions/create'
   get 'sessions/destroy'
-
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/') # this redirects in case the user denied access for our application
-
   get 'login' => 'sessions#new'
   get 'signout' => 'sessions#destroy', as: 'signout'
-
-  resources :sessions, only: [:create, :destroy, :new, :index]
   post 'users/yes/:id' => 'sessions#authorize'
   post 'users/no/:id' => 'sessions#cancel'
 
-  resource :home, only: [:show]
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/') # this redirects in case the user denied access for our application
+  
 
-  root to: "home#show"
-
-  resources :workouts
+  resources :workouts, only: [:show, :new, :create]
 
   get 'week_workouts' => 'workouts#week_workouts'
   get 'workouts/:id/state' => 'workouts#change_training_state'
