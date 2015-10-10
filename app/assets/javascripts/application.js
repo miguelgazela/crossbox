@@ -172,6 +172,37 @@ function configAddWorkoutsPage() {
 	currentFirstDayOfWeek = startDay;
 
 	resetWeek();
+
+  var counter = 0;
+  while (true) {
+
+    var newDay = currentFirstDayOfWeek.clone().add(counter, 'd');
+
+    if (newDay.day() == 6) {
+      break;
+    }
+
+    counter++;
+  }
+
+  $('.cal-cell').each(function () {
+
+    var shouldMatch = "-day" + (counter + 1);
+
+    if ($(this).data('cal-row') == shouldMatch) {
+
+      var hour = $(this).children('.cal-day-hour').children('span').text();
+
+      if (hour == "09:00") {
+        $(this).children('.cal-day-hour').prepend('<div class="col-xs-8 col-md-6"><input type="text" class="form-control" placeholder="Vagas" value="13"></div>');
+      } else if (hour == "10:00" || hour == "20:00" || hour == "21:00") {
+        
+      }
+
+      console.log("Right day: " + hour);
+    }
+  })
+
 }
 
 function addWorkouts() {

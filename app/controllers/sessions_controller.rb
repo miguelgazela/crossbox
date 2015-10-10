@@ -66,9 +66,9 @@ class SessionsController < ApplicationController
     user = User.find(params[:id])
 
     if user
+
       user.role = 'verified_user'
       user.save!
-      
 
       if User.where(role: 'new_user').count == 0
         redirect_to root_path
@@ -80,12 +80,23 @@ class SessionsController < ApplicationController
       redirect_to :action => 'index'
     end
 
-
     print params[:id]
   end
 
   def cancel
-    print params[:id]
+
+    user = User.find(params[:id])
+
+    if user
+      user.delete
+    end
+
+    if User.where(role: 'new_user').count == 0
+        redirect_to root_path
+    else
+      redirect_to :action => 'index'
+    end
+
   end
 
 end
