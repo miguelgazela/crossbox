@@ -2,6 +2,7 @@ class WorkoutsController < ApplicationController
 
 	before_action :require_user, only: [:week_workouts]
 	before_action :require_account_management_rights, only: [:new, :create, :change_training_state]
+	before_action :clear_gon, only: [:show, :week_workouts, :new, :create]
 
 	def show
 
@@ -55,8 +56,12 @@ class WorkoutsController < ApplicationController
 
 		workouts = Workout.where(date: start_date..end_date)
 		workouts.each do |workout|
+
 			trainings_count = workout.trainings.length
-			result.push({:workout => workout, :trainings => trainings_count})
+
+			training = Training.find_by(user_id: current_user.id, workout_id: workout.id)
+
+			result.push({:workout => workout, :trainings => trainings_count, :in_workout => training})
 		end
 
 		response = {

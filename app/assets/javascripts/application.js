@@ -47,10 +47,11 @@ var currentFirstDayOfWeek = null;
 var main = function () {
 
   console.log("Running main function");
+  console.log(gon);
 
   configSidebarCalendar();
 
-  if (gon.adding_workouts) {
+  if(window.location.href.indexOf("workouts/new?") > -1) {
     configAddWorkoutsPage()
     return;
   }
@@ -69,6 +70,28 @@ var main = function () {
 
 };
 
+function getWeekShiftForToday() {
+
+  var today = moment();
+
+  switch (today.day()) {
+    case 0: // sunday
+    return [1, 2, 3, 4, 5, 6];
+    case 1: // monday
+    return [0, 1, 2, 3, 4, 5];
+    case 2: // tuesday
+    return [0, 1, 2, 3, 4, 6];
+    case 3: // wednesday
+    return [0, 1, 2, 3, 5, 6];
+    case 4: // thursday
+    return [0, 1, 2, 4, 5, 6];
+    case 5: // friday
+    return [0, 1, 3, 4, 5, 6];
+    case 6: // saturday
+    return [0, 2, 3, 4, 5, 6];
+  }
+}
+
 function fetchWeekWorkouts() {
 
   var lastDay = currentFirstDayOfWeek.clone().add(7, 'd');
@@ -82,28 +105,30 @@ function fetchWeekWorkouts() {
 
         var workouts = response.payload.workouts;
 
+        var dayShifts = getWeekShiftForToday();
+
         $('.cal-day-hour').each(function () {
 
           var day = $(this).parent();
 
           switch ($(day).data('cal-row')) {
             case '-day1':
-              addWorkoutsToDay(workouts, this, 0);
+              addWorkoutsToDay(workouts, this, dayShifts[0]);
             break;
             case  '-day2':
-              addWorkoutsToDay(workouts, this, 1);
+              addWorkoutsToDay(workouts, this, dayShifts[1]);
             break;
             case '-day3':
-              addWorkoutsToDay(workouts, this, 2);
+              addWorkoutsToDay(workouts, this, dayShifts[2]);
             break;
             case  '-day4':
-              addWorkoutsToDay(workouts, this, 3);
+              addWorkoutsToDay(workouts, this, dayShifts[3]);
             break;
             case '-day5':
-              addWorkoutsToDay(workouts, this, 4);
+              addWorkoutsToDay(workouts, this, dayShifts[4]);
             break;
             case  '-day6':
-              addWorkoutsToDay(workouts, this, 5);
+              addWorkoutsToDay(workouts, this, dayShifts[5]);
             break;
           }
 
@@ -124,7 +149,7 @@ function addWorkoutsToDay(workouts, day, daysToAdd) {
 
   for (var i = 0; i < workouts.length; i++) {
 
-    var workout = workouts[i]
+    var workout = workouts[i];
 
     var workoutDate = moment(workout.workout.date, 'YYYY-MM-DDTHH:mm:ss.sss');
     var currentDay = currentFirstDayOfWeek.clone().add(daysToAdd, 'd');
@@ -148,7 +173,14 @@ function addWorkoutsToDay(workouts, day, daysToAdd) {
           percentage = Math.floor((trainings / maxParticipants) * 100);
         }
 
-        var html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div"
+        var html;
+
+        if (workout.in_workout) {
+          html = "<span class='pull-left occupancy-rate'><i class='fa fa-check-circle-o'></i> <a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div"
+        } else {
+          html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div"
+        }
+
         $(day).prepend(html);
       } 
     }
