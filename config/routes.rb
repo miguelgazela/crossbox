@@ -2,11 +2,13 @@ Rails.application.routes.draw do
 
   root to: "home#show"
 
+  get '/contacts' => 'home#contacts'
 
   resources :sessions, only: [:create, :index]
 
   get 'sessions/create'
   get 'sessions/destroy'
+
   get 'login' => 'sessions#new'
   get 'signout' => 'sessions#destroy', as: 'signout'
   post 'users/yes/:id' => 'sessions#authorize'
