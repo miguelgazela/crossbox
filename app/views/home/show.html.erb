@@ -1,13 +1,51 @@
 <div>
 
-  <div class="container-fluid">
+  <nav class="navbar navbar-default navbar-fixed-top hidden-sm hidden-md hidden-lg">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">SL Nutrition Crossbox</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="../navbar/">Default</a></li>
+          <li><a href="../navbar-static-top/">Static top</a></li>
+          <li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container-fluid not-padded-xs">
     <div class="row">
 
       <%= render "./sidebar" %>
 
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
 
-        <div class="main-header">
+        <div class="main-header hidden-xs">
 
           <div class="col-xs-12">
             <h1 class="main-header-title">
@@ -27,7 +65,7 @@
 
         </div>
 
-        <div class="col-xs-12">
+        <div class="col-xs-12 not-padded-xs">
           
           <div class="card">
 
@@ -657,7 +695,7 @@
           <h1 class="page-header">Estatísticas</h1>
         </div> -->
 
-        <div class="col-xs-6 col-sm-3">
+        <!-- <div class="col-xs-6 col-sm-3">
           <div class="card stats">
             <p class="stats-icon"><%= fa_icon "user-plus"%></p>
             <h1 class="stats-value">102</h1>
@@ -692,7 +730,7 @@
             <hr>
             <p>Máx: 29</p>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>

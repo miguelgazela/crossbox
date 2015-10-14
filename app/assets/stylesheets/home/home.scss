@@ -509,7 +509,24 @@ span[data-cal-date] {
   a {
     color: inherit;
   }
+}
 
+@media (max-width: 991px) {
+
+  span[data-cal-date] {
+    margin: 0;
+    float: none !important;
+    text-align: center;
+    display: block;
+  }
+
+  .occupancy-rate {
+    float: none !important;
+    text-align: center;
+    display: block;
+    margin: 0;
+    margin-bottom: 5px;
+  }
 }
 
 span[data-cal-date]:hover {

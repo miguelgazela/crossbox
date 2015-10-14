@@ -21,6 +21,8 @@
 
       <div class="inner cover">
 
+        <%= image_tag("slcrossbox", class:"img-responsive") %>
+
         <% if flash[:user_not_confirmed] %>
           <h1 class="cover-heading">Ups...</h1>
           <p class="lead">Parece que a tua conta ainda não foi confirmada pelo Bruno Sá</p>
@@ -28,6 +30,7 @@
         <% elsif flash[:user_created_account] %>
           <h1 class="cover-heading">Boa!</h1>
           <p class="lead">A tua conta foi criada e agora só precisas da confirmação do Bruno Sá</p>
+
         <% else %>
           <h1 class="cover-heading">Treinar ou não treinar?</h1>
           <p class="lead">Treinar, claro! Vens hoje?</p>

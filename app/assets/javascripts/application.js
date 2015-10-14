@@ -18,6 +18,11 @@
 //= require underscore/underscore
 //= require clndr/src/clndr
 
+var local_root_url = "http://localhost:3000";
+var remote_root_url = "http://slcrossbox.herokuapp.com";
+
+var root_url = remote_root_url;
+
 var cldnrTemplate = "<div class='clndr-controls'>" +
     "<div class='clndr-control-button clndr-previous-button'>&lsaquo;</div><div class='month'><%= month %> <%= year %></div><div class='clndr-control-button clndr-next-button'>&rsaquo;</div>" +
     "</div>" +
@@ -70,11 +75,8 @@ var main = function () {
 
 };
 
-function getWeekShiftForToday() {
-
-  var today = moment();
-
-  switch (today.day()) {
+function getWeekShiftForDay(day) {
+  switch (day.day()) {
     case 0: // sunday
     return [1, 2, 3, 4, 5, 6];
     case 1: // monday
@@ -92,20 +94,27 @@ function getWeekShiftForToday() {
   }
 }
 
+function getWeekShiftForToday() {
+
+  var today = moment();
+  return getWeekShiftForDay(today);
+  
+}
+
 function fetchWeekWorkouts() {
 
   var lastDay = currentFirstDayOfWeek.clone().add(7, 'd');
 
   $.ajax({
     type: "GET",
-    url: "http://localhost:3000/week_workouts?s=" + currentFirstDayOfWeek.format('YYYY-MM-DD') + "&e=" + lastDay.format('YYYY-MM-DD'),
+    url: root_url + "/week_workouts?s=" + currentFirstDayOfWeek.format('YYYY-MM-DD') + "&e=" + lastDay.format('YYYY-MM-DD'),
     success: function (response) {
 
       if (response.error_code == 200) {
 
         var workouts = response.payload.workouts;
 
-        var dayShifts = getWeekShiftForToday();
+        var dayShifts = getWeekShiftForDay(currentFirstDayOfWeek);
 
         $('.cal-day-hour').each(function () {
 
@@ -227,8 +236,6 @@ function configAddWorkoutsPage() {
       } else if (hour == "10:00" || hour == "20:00" || hour == "21:00") {
         $(this).children('.cal-day-hour').children('div').remove();
       }
-
-      console.log("Right day: " + hour);
     }
   })
 
@@ -236,33 +243,35 @@ function configAddWorkoutsPage() {
 
 function addWorkouts() {
 
+  var dayShifts = getWeekShiftForDay(currentFirstDayOfWeek);
+
 	// fetch all data
 	var data = {
     startDay: gon.start_day.split(' ')[0],
     endDay: gon.end_day.split(' ')[0],
 		days: [
 			{
-				date: currentFirstDayOfWeek.format().substring(0, 10),
+				date: currentFirstDayOfWeek.clone().add(dayShifts[0], 'd').format().substring(0, 10),
 				workoutHours: []
 			},
 			{
-				date: currentFirstDayOfWeek.clone().add(1, 'd').format().substring(0, 10),
+				date: currentFirstDayOfWeek.clone().add(dayShifts[1], 'd').format().substring(0, 10),
 				workoutHours: []
 			},
 			{
-				date: currentFirstDayOfWeek.clone().add(2, 'd').format().substring(0, 10),
+				date: currentFirstDayOfWeek.clone().add(dayShifts[2], 'd').format().substring(0, 10),
 				workoutHours: []
 			},
 			{
-				date: currentFirstDayOfWeek.clone().add(3, 'd').format().substring(0, 10),
+				date: currentFirstDayOfWeek.clone().add(dayShifts[3], 'd').format().substring(0, 10),
 				workoutHours: []
 			},
 			{
-				date: currentFirstDayOfWeek.clone().add(4, 'd').format().substring(0, 10),
+				date: currentFirstDayOfWeek.clone().add(dayShifts[4], 'd').format().substring(0, 10),
 				workoutHours: []
 			}, 
 			{
-				date: currentFirstDayOfWeek.clone().add(5, 'd').format().substring(0, 10),
+				date: currentFirstDayOfWeek.clone().add(dayShifts[5], 'd').format().substring(0, 10),
 				workoutHours: []
 			}
 		]
@@ -304,7 +313,7 @@ function addWorkouts() {
 
 	$.ajax({
 	  type: "POST",
-	  url: "http://localhost:3000/workouts",
+	  url: root_url + "/workouts",
 	  data: data,
 	  success: function (response) {
 
@@ -325,7 +334,14 @@ function configSidebarCalendar() {
 		template: cldnrTemplate,
 		clickEvents: {
 			click: function(target){
+
 				setWeekStartingAt(target.date);
+        currentFirstDayOfWeek = target.date;
+
+        resetWeek();
+
+        fetchWeekWorkouts();
+
 			},
 		},
 		weekOffset: 1,
@@ -410,7 +426,7 @@ function setWeekStartingAt(firstDay) {
 }
 
 function getLocaleWeekDay(weekDay) {
-	var days = {'Mon': 'Segunda', 'Tue': 'Terça', 'Wed': 'Quarta', 'Thu': 'Quinta', 'Fri': 'Sexta', 'Sat': 'Sábado', 'Sun': 'Domingo'};
+	var days = {'Mon': 'Seg', 'Tue': 'Ter', 'Wed': 'Qua', 'Thu': 'Qui', 'Fri': 'Sex', 'Sat': 'Sáb', 'Sun': 'Dom'};
 	return days[weekDay];
 }
 

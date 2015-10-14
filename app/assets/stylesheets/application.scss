@@ -63,6 +63,17 @@
  	border-radius: 2px;
  }
 
+ @media (max-width: 767px) {
+	
+	.card {
+		padding: 2px;
+	}
+
+	.not-padded-xs {
+		padding: 2px;
+	}
+}
+
 table form {
 	display: inline-block;
 }
