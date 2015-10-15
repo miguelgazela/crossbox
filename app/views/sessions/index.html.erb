@@ -60,7 +60,7 @@
             <td><img class="media-object media-object-small" src="<%= new_user.image %>" alt="..."></td>
             <td><%= new_user.name %></td>
             <td><%= new_user.email %></td>
-            <td><%= new_user.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+            <td><%= new_user.created_at.strftime("%d/%m/%Y") %></td>
             <td>
               <form action="users/yes/<%= new_user.id %>" method="post">
                 <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
