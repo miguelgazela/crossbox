@@ -39,11 +39,11 @@
     <div class="card">
 
       <h1 class="page-header">Horário de Aulas
-        <div class="pull-right">
-          <button class="btn btn-default main-header-calendar-btn" type="button" id="go-week-before"><%= fa_icon "angle-double-left" %></button>
-          <button class="btn btn-default main-header-calendar-btn" type="button" id="go-today"><%= fa_icon "calendar-check-o" %> Ir para hoje</button>
-          <button class="btn btn-default main-header-calendar-btn" type="button" id="go-week-after"><%= fa_icon "angle-double-right" %></button>
+        <div class="pull-right">          
           <% if current_user.role == 'admin' || current_user.role == 'coach' %>
+            <button class="btn btn-default main-header-calendar-btn" type="button" id="go-week-before"><%= fa_icon "angle-double-left" %></button>
+            <button class="btn btn-default main-header-calendar-btn" type="button" id="go-today"><%= fa_icon "calendar-check-o" %> Ir para hoje</button>
+            <button class="btn btn-default main-header-calendar-btn" type="button" id="go-week-after"><%= fa_icon "angle-double-right" %></button>
             <button class="btn btn-default" type="button" onclick="redirectToAddWorkouts()"><%= fa_icon "calendar-plus-o" %> Adicionar Aulas</button>
           <% end %>
         </div>
