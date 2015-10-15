@@ -28,18 +28,20 @@
                   <th>#</th>
                   <th></th>
                   <th>Nome</th>
+                  <th>Email</th>
                   <th>Data</th>
                   <th>Opções</th>
                 </tr>
               </thead>
               <tbody>
 
-                <% @new_accounts.each do |new_user| %>
+                <% @new_accounts.each_with_index do |new_user, index| %>
                 
                 <tr>
-                  <th scope="row">1</th>
+                  <th scope="row"><%= index + 1 %></th>
                   <td><img class="media-object media-object-small" src="<%= new_user.image %>" alt="..."></td>
                   <td><%= new_user.name %></td>
+                  <td><%= new_user.email %></td>
                   <td><%= new_user.created_at %></td>
                   <td>
                     <form action="users/yes/<%= new_user.id %>" method="post">
