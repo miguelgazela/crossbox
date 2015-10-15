@@ -122,16 +122,16 @@
 
           <div>
             <% if @in_workout %>
-              <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-default"><%= fa_icon "minus-circle" %> <%= fa_icon "thumbs-down" %> Retirar Inscrição</a>
+              <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-default"><%= fa_icon "thumbs-down" %> Retirar Inscrição</a>
             <% else %>
 
               <% if @workout.trainings.length >= Integer(@workout.max_participants) %>
 
-                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default"><%= fa_icon "plus-circle" %> <%= fa_icon "users" %> Entrar para Fila de Espera</a>
+                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default"><%= fa_icon "users" %> Entrar para Fila de Espera</a>
 
               <% else %>
 
-                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default"><%= fa_icon "plus-circle" %> <%= fa_icon "thumbs-up" %> Inscrever na Aula</a>
+                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default"><%= fa_icon "thumbs-up" %> Inscrever na Aula</a>
 
               <% end %>
 
@@ -149,6 +149,8 @@
         <div class="card">
   
           <h1 class="page-header">Patrocínios</h1>
+
+          Em breve...
 
         </div> <!-- /card -->
       </div> <!-- /col-xs-12 -->
