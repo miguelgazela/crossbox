@@ -64,11 +64,11 @@
             <td>
               <form action="users/yes/<%= new_user.id %>" method="post">
                 <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                <button type="submit" class="btn btn-default btn-sm">Confirmar</button>
+                <button type="submit" class="btn btn-default btn-sm"> <%= fa_icon "check-circle" %> Confirmar</button>
               </form>
               <form action="users/no/<%= new_user.id %>" method="post">
                 <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                <button type="submit" class="btn btn-default btn-sm">Recusar</button>
+                <button type="submit" class="btn btn-default btn-sm"><%= fa_icon "times-circle" %> Recusar</button>
               </form>
             </td>
           </tr>
