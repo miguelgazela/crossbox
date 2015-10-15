@@ -17,6 +17,7 @@
 //= require moment/moment
 //= require underscore/underscore
 //= require clndr/src/clndr
+//= require bootstrap
 
 var local_root_url = "http://localhost:3000";
 var remote_root_url = "http://slcrossbox.herokuapp.com";
@@ -353,6 +354,8 @@ function setCalendarToToday() {
 
 	currentFirstDayOfWeek = moment();
 	resetWeek();
+
+  fetchWeekWorkouts();
 }
 
 function backOneWeek() {

@@ -1,123 +1,156 @@
-<div>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://www.facebook.com/SLnutrition-CrossBox-Gondomar-1564046143859478/">SLNutrition CrossBox Gondomar</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Aulas</a></li>
 
-  <div class="container-fluid">
+        <% if current_user.role == 'admin' || current_user.role == 'coach' %>
 
-    <div class="row">
+          <% if new_accounts_count > 0 %>
+            <li><a href="/sessions">Pedidos de Inscrição <span class="badge pull-right"><%= new_accounts_count %></span></a></li>
+          <% end %>
 
-      <%= render "./sidebar" %>
+        <% end %>
 
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+      </ul>
 
-        <div class="main-header">
+      <ul class="nav navbar-nav navbar-right">
 
-          <div class="col-xs-12">
-          </div>
+        <li><a href="<%= current_user.url %>"><%= fa_icon "facebook-official" %> <%= current_user.name %></a></li>
+        <li><a href="<%= signout_path %>"><%= fa_icon "sign-out" %>Sair</a></li>
+      </ul>
 
-        </div>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
 
-        <div class="col-xs-12 col-md-8">
-          
-          <div class="card">
-    
-            <h1 class="lead">Pessoas Inscritas 
+<div class="container">
 
-            <% if @workout.trainings.length >= Integer(@workout.max_participants) %>
-            (0 vagas)
-            <% else %>
-            (<%= Integer(@workout.max_participants) - @workout.trainings.length %> vagas)
+  <div class="row">
+
+      <div class="col-xs-12 col-md-8">
+        
+        <div class="card">
+
+          <h1 class="page-header">Aula <%= @workout.date.strftime("%d/%m/%Y %H:%M") %></h1>
+  
+          <h1 class="lead">Pessoas Inscritas
+
+          <% if @workout.trainings.length >= Integer(@workout.max_participants) %>
+          (0 vagas):
+          <% else %>
+          (<%= Integer(@workout.max_participants) - @workout.trainings.length %> vagas):
+          <% end %>
+
+          </h1>
+
+          <% if @workout.trainings.length == 0 %>
+
+          <p>Ainda ninguém se inscreveu nesta aula. Sê o primeiro/a!</p>
+
+          <% else %>
+
+            <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th></th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            <% @workout.trainings[0,Integer(@workout.max_participants)].each_with_index do |training, index| %>
+
+              <tr>
+                <th scope="row"><%= index + 1 %></th>
+                <td><img class="media-object media-object-small" src="<%= training.user.image %>" alt="..."></td>
+                <td><%= training.user.name %></td>
+              </tr>
+
             <% end %>
 
-            </h1>
+            </tbody>
+            </table>
 
-            <% if @workout.trainings.length == 0 %>
+            
 
-            <p>Ainda ninguém se inscreveu nesta aula. Sê o primeiro/a!</p>
+          <% end %>
 
+          <% if @workout.trainings.length > Integer(@workout.max_participants) %>
+
+          <h1 class="lead">Em espera</h1>
+          <p>Nota: Se alguma pessoa com uma das vagas desistir, a vaga será imediatamente ocupada pela primeira pessoa na lista de espera.</p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th></th>
+                <th>Nome</th>
+              </tr>
+            </thead>
+            <tbody>
+
+            <% @workout.trainings[Integer(@workout.max_participants), 100].each_with_index do |training, index| %>
+
+              <tr>
+                <th scope="row"><%= index + 1 + Integer(@workout.max_participants) %> </th>
+                <td><img class="media-object media-object-small" src="<%= training.user.image %>" alt="..."></td>
+                <td><%= training.user.name %></td>
+              </tr>
+
+            <% end %>
+
+            </tbody>
+            </table>
+
+          <% end %>
+
+          <hr>          
+
+          <div>
+            <% if @in_workout %>
+              <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-default"><%= fa_icon "minus-circle" %> Retirar Inscrição</a>
             <% else %>
 
-              <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th></th>
-                  <th>Nome</th>
-                </tr>
-              </thead>
-              <tbody>
+              <% if @workout.trainings.length >= Integer(@workout.max_participants) %>
 
-              <% @workout.trainings[0,Integer(@workout.max_participants)].each_with_index do |training, index| %>
+                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default"><%= fa_icon "plus-circle" %> Entrar para Fila de Espera</a>
 
-                <tr>
-                  <th scope="row"><%= index + 1 %></th>
-                  <td><img class="media-object media-object-small" src="<%= training.user.image %>" alt="..."></td>
-                  <td><%= training.user.name %></td>
-                </tr>
+              <% else %>
+
+                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default"><%= fa_icon "plus-circle" %> Inscrever na Aula</a>
 
               <% end %>
-
-              </tbody>
-              </table>
 
               
 
             <% end %>
+          </div>
 
-            <% if @workout.trainings.length > Integer(@workout.max_participants) %>
+        </div> <!-- /card -->
 
-            <h1 class="lead">Em espera</h1>
-            <p>Nota: Se alguma pessoa com uma das vagas desistir, a vaga será imediatamente ocupada pela primeira pessoa na lista de espera.</p>
+      </div> <!-- /col-xs-12 -->
 
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th></th>
-                  <th>Nome</th>
-                </tr>
-              </thead>
-              <tbody>
-
-              <% @workout.trainings[Integer(@workout.max_participants), 100].each_with_index do |training, index| %>
-
-                <tr>
-                  <th scope="row"><%= index + 1 + Integer(@workout.max_participants) %> </th>
-                  <td><img class="media-object media-object-small" src="<%= training.user.image %>" alt="..."></td>
-                  <td><%= training.user.name %></td>
-                </tr>
-
-              <% end %>
-
-              </tbody>
-              </table>
-
-            <% end %>
-
-            <hr>          
+      <div class="col-xs-12 col-md-4">
+        
+        <div class="card">
   
-            <div>
-              <% if @in_workout %>
-                <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-danger"><%= fa_icon "minus-circle" %> Sair da Aula</a>
-              <% else %>
-                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-success"><%= fa_icon "plus-circle" %> Inscrever na Aula</a>
-              <% end %>
-            </div>
+          <h1 class="page-header">Patrocínios</h1>
 
-          </div> <!-- /card -->
-
-        </div> <!-- /col-xs-12 -->
-
-        <div class="col-xs-12 col-md-4">
-          
-          <div class="card">
-    
-            <h1 class="lead">Patrocínios</h1>
-
-          </div> <!-- /card -->
-        </div> <!-- /col-xs-12 -->
+        </div> <!-- /card -->
+      </div> <!-- /col-xs-12 -->
 
 
-      </div>
     </div>
   </div>
-
-</div>

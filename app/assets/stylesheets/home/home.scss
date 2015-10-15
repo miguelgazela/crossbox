@@ -13,6 +13,14 @@ $green-color: #6ae29d;
 $yellow-color: #f7d961;
 $red-color: #f96f61;
 
+body {
+  padding-top: 80px;
+}
+
+.cal-context {
+  margin-top: 40px;
+}
+
 .sidebar {
   display: none;
   color: white;

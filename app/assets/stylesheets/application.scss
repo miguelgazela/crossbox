@@ -23,6 +23,67 @@
  	color: #5A6779;
  }
 
+ .navbar-default {
+ 	background-color: #393F4A;
+ 	color: white;
+
+ 	.navbar-brand {
+ 		background-color: #01A6E5;
+ 		color: #ddd;
+ 		font-weight: 500;
+ 		transition: all 0.2s linear;
+
+		&:hover,
+ 		&:focus {
+ 			color: #393F4A;
+ 			background-color: #01A6E5;
+ 		}
+ 	}
+
+	.navbar-nav > li {
+
+		transition: all 0.2s linear;
+
+		&:hover,
+		&:focus {
+			background-color: #292C31;
+		}
+
+	}
+
+ 	.navbar-nav > li > a {
+ 		color: white;
+
+ 		&:hover,
+ 		&:focus {
+ 			color: white;
+ 		}
+ 	}
+ }
+
+.page-header {
+	margin-top: 20px;
+}
+
+.btn {
+	border-radius: 0;
+}
+
+.btn-default {
+
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: #01A6E5;
+		color: white;
+		border-color: #01A6E5;
+	}
+}
+
+
+
+
+
 .main-header {
 	background-color: #1EAAF1;
 	margin-left: -15px;
