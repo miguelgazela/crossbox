@@ -363,7 +363,7 @@ body {
   width: 100%;
 }
 .cal-day-hour {
-  height: $calendar-hour-box-height;
+  min-height: $calendar-hour-box-height;
 
   .hour-completion {
     min-height: 1px;
