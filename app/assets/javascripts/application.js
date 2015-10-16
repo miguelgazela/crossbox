@@ -188,17 +188,17 @@ function addWorkoutsToDay(workouts, day, daysToAdd) {
         if (workout.in_workout) {
 
           if (freeSpots == 1) {
-            html = "<span class='pull-left occupancy-rate'><i class='fa fa-check-circle-o'></i> <a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vaga</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
+            html = "<span class='pull-left occupancy-rate'><i class='fa fa-check-circle-o hidden-xs'></i> <a href='/workouts/" + workout.workout.id + "' class='hidden-xs'>" + freeSpots +" vaga</a><a href='/workouts/" + workout.workout.id + "' class='hidden-sm hidden-md hidden-lg'><i class='fa fa-check-circle-o'></i></a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
           } else {
-            html = "<span class='pull-left occupancy-rate'><i class='fa fa-check-circle-o'></i> <a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
+            html = "<span class='pull-left occupancy-rate'><i class='fa fa-check-circle-o hidden-xs'></i> <a href='/workouts/" + workout.workout.id + "' class='hidden-xs'>" + freeSpots +" vagas</a><a href='/workouts/" + workout.workout.id + "' class='hidden-sm hidden-md hidden-lg'><i class='fa fa-check-circle-o'></i></a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
           }
 
         } else {
 
           if (freeSpots == 1) {
-            html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vaga</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
+            html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "' class='hidden-xs'>" + freeSpots +" vaga</a><a href='/workouts/" + workout.workout.id + "' class='hidden-sm hidden-md hidden-lg'>" + freeSpots + "/" + maxParticipants + "</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
           } else {
-            html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
+            html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "' class='hidden-xs'>" + freeSpots +" vagas</a><a href='/workouts/" + workout.workout.id + "' class='hidden-sm hidden-md hidden-lg'>" + freeSpots + "/" + maxParticipants + "</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
           }
         }
 
