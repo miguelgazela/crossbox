@@ -5,7 +5,7 @@
     
     <div class="card">
 
-      <h1 class="page-header">Horário de Aulas
+      <h1 class="page-header hidden-xs">Horário de Aulas
         <div class="pull-right">          
           <% if current_user.role == 'admin' || current_user.role == 'coach' %>
             <button class="btn btn-default main-header-calendar-btn" type="button" id="go-week-before"><%= fa_icon "angle-double-left" %></button>
@@ -15,6 +15,14 @@
           <% end %>
         </div>
       </h1>
+
+      <h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Horário de Aulas</h3>
+      <div class="btn-group hidden-sm hidden-md hidden-lg" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" id="go-week-before"><%= fa_icon "angle-double-left" %></button>
+        <button type="button" class="btn btn-default" id="go-today"><%= fa_icon "calendar-check-o" %> Hoje</button>
+        <button type="button" class="btn btn-default" id="go-week-after"><%= fa_icon "angle-double-right" %></button>
+      </div>
+      <button class="btn btn-default hidden-sm hidden-md hidden-lg" type="button" onclick="redirectToAddWorkouts()"><%= fa_icon "calendar-plus-o" %> Adicionar Aulas</button>
 
       <div class="cal-context" style="width: 100%;">
 

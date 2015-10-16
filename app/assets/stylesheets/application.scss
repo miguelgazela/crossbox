@@ -92,9 +92,15 @@ $brand-red: #DE5555;
  }
 
  @media (max-width: 767px) {
-	
+
 	.card {
 		padding: 2px;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+
+	.cal-context {
+		margin-top: 15px;
 	}
 }
 
