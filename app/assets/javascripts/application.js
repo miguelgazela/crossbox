@@ -186,9 +186,20 @@ function addWorkoutsToDay(workouts, day, daysToAdd) {
         var html;
 
         if (workout.in_workout) {
-          html = "<span class='pull-left occupancy-rate'><i class='fa fa-check-circle-o'></i> <a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div"
+
+          if (freeSpots == 1) {
+            html = "<span class='pull-left occupancy-rate'><i class='fa fa-check-circle-o'></i> <a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vaga</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
+          } else {
+            html = "<span class='pull-left occupancy-rate'><i class='fa fa-check-circle-o'></i> <a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
+          }
+
         } else {
-          html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div"
+
+          if (freeSpots == 1) {
+            html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vaga</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
+          } else {
+            html = "<span class='pull-left occupancy-rate'><a href='/workouts/" + workout.workout.id + "'>" + freeSpots +" vagas</a></span><div class='hour-completion " + getClassForPercentage(percentage) +"' data-completion='" + percentage +"'></div";
+          }
         }
 
         $(day).prepend(html);
@@ -444,7 +455,7 @@ function getClassForPercentage(percentage) {
 
   if (percentage <= 50) {
     return "available";
-  } else if (percentage <= 80) {
+  } else if (percentage <= 99) {
     return "almost-full";
   } else {
     return "full";
