@@ -14,6 +14,8 @@
  *= require_self
  */
 
+$brand-red: #DE5555;
+
  html,
  body {
  	background-color: #eee;
@@ -21,19 +23,19 @@
  }
 
  .navbar-default {
- 	background-color: #393F4A;
+ 	background-color: #303436;
  	color: white;
 
  	.navbar-brand {
- 		background-color: #01A6E5;
+ 		background-color: $brand-red;
  		color: #ddd;
- 		font-weight: 500;
+ 		font-weight: 700;
  		transition: all 0.2s linear;
 
 		&:hover,
  		&:focus {
- 			color: #393F4A;
- 			background-color: #01A6E5;
+ 			color: $brand-red;
+ 			background-color: #2B2D2E;
  		}
  	}
 
@@ -71,41 +73,9 @@
 	&:hover,
 	&:focus,
 	&:active {
-		background-color: #01A6E5;
+		background-color: $brand-red;
 		color: white;
-		border-color: #01A6E5;
-	}
-}
-
-
-
-
-
-.main-header {
-	background-color: #1EAAF1;
-	margin-left: -15px;
-	margin-right: -15px;
-	height: 100px;
-	color: white;
-	margin-bottom: 30px;
-	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.15);
-
-	.main-header-title {
-		margin-top: 30px;
-		margin-left: 15px;
-		margin-right: 15px;
-		border-bottom: 1px solid white;
-	}
-
-	.main-header-calendar-btn {
-		margin-bottom: 10px;
-		background-color: white;
-
-		&:hover,
-		&:focus {
-			background-color: #eeeeee;
-			
-		}
+		border-color: $brand-red;
 	}
 }
 
@@ -124,10 +94,6 @@
  @media (max-width: 767px) {
 	
 	.card {
-		padding: 2px;
-	}
-
-	.not-padded-xs {
 		padding: 2px;
 	}
 }
