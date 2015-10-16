@@ -97,6 +97,10 @@ $brand-red: #DE5555;
 		padding: 2px;
 		margin-left: 5px;
 		margin-right: 5px;
+
+		&.padded-xs-card {
+			padding: 10px;
+		}
 	}
 
 	.cal-context {

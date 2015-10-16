@@ -18,12 +18,14 @@
 
       <h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Horário de Aulas</h3>
       <% if current_user.role == 'admin' || current_user.role == 'coach' %>
+      <div style="text-align: center;">
       <div class="btn-group hidden-sm hidden-md hidden-lg" role="group" aria-label="...">
         <button type="button" class="btn btn-default" id="go-week-before"><%= fa_icon "angle-double-left" %></button>
         <button type="button" class="btn btn-default" id="go-today"><%= fa_icon "calendar-check-o" %> Hoje</button>
         <button type="button" class="btn btn-default" id="go-week-after"><%= fa_icon "angle-double-right" %></button>
       </div>
       <button class="btn btn-default hidden-sm hidden-md hidden-lg" type="button" onclick="redirectToAddWorkouts()"><%= fa_icon "calendar-plus-o" %> Adicionar Aulas</button>
+      </div>
       <% end %>
 
       <div class="cal-context" style="width: 100%;">
