@@ -14,6 +14,12 @@
       <ul class="nav navbar-nav">
         <li><a href="/">Aulas</a></li>
 
+        <% if current_user.role == 'admin'%>
+
+          <li><a href="/users">Inscritos</a></li>
+
+        <% end %>
+
         <% if current_user.role == 'admin' || current_user.role == 'coach' %>
 
           <% if new_accounts_count > 0 %>

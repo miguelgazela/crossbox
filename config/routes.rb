@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'week_workouts' => 'workouts#week_workouts'
   get 'workouts/:id/state' => 'workouts#change_training_state'
 
+  get 'users' => 'users#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

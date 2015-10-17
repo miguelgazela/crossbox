@@ -21,163 +21,86 @@ body {
   margin-top: 40px;
 }
 
-.sidebar {
-  display: none;
-  color: white;
-  position: relative;
 
-  .brand {
-    text-align: center;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #3f4852;
-  }
+  // .sidebar-calendar {
 
-  .user-profile-panel {
+  //   position: absolute;
+  //   bottom: 40px;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   border: 1px solid #3f4852;
 
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #3f4852;
+  //   .clndr-controls {
+  //     color: white;
+  //     border-bottom: 1px solid #3f4852;
 
-    .btn {
-      padding: 5px 20px;
-    }
+  //     .month {
+  //       width: 70%;
+  //       padding-top: 5px;
+  //       padding-bottom: 5px;
+  //       display: inline-block;
+  //       text-align: center;
+  //       text-transform: uppercase;
+  //       font-weight: 700;
+  //       letter-spacing: 1px;
+  //     }
 
-    .user-image {
-      position: relative;
-      width: 100%;
-      text-align: center;
+  //     .clndr-control-button.clndr-previous-button,
+  //     .clndr-control-button.clndr-next-button {
+  //       width: 15%;
+  //       padding-top: 5px;
+  //       padding-bottom: 5px;
+  //       display: inline-block;
+  //       text-align: center;
+  //       cursor: pointer;
+  //       user-select: none;
+  //       transition: background-color 0.5s;
+  //     }
+  //     .clndr-control-button.clndr-previous-button:hover,
+  //     .clndr-control-button.clndr-next-button:hover,
+  //     .clndr-control-button.clndr-previous-button:focus,
+  //     .clndr-control-button.clndr-next-button:focus {
+  //       /*background-color: #528b5e;*/
+  //       background-color: #eeeeee;
+  //       color: $sidebar-bg-color;
+  //     }
 
-      img {
-        border: 2px solid white;
-      }
-    }
+  //   }
 
-    .user-info {
-  
-      .user-name {
-        text-align: center;
-      }
-    }
-  }
+  //   .clndr-table {
+  //     margin: 0 auto;
+  //     font-weight: 700;
+  //     margin-top: 15px;
+  //   }
 
-  .sidebar-calendar {
+  //   .header-days {
+  //     color: #696E76;
+  //   }
 
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 1px solid #3f4852;
+  //   .header-day {
+  //     text-align: center;
+  //   }
 
-    .clndr-controls {
-      color: white;
-      border-bottom: 1px solid #3f4852;
+  //   .day {
 
-      .month {
-        width: 70%;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        display: inline-block;
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: 700;
-        letter-spacing: 1px;
-      }
+  //     &:hover {
+  //       cursor: pointer;
+  //       background-color: #4B515B;
+  //       border-radius: 4px;
+  //     }
 
-      .clndr-control-button.clndr-previous-button,
-      .clndr-control-button.clndr-next-button {
-        width: 15%;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        display: inline-block;
-        text-align: center;
-        cursor: pointer;
-        user-select: none;
-        transition: background-color 0.5s;
-      }
-      .clndr-control-button.clndr-previous-button:hover,
-      .clndr-control-button.clndr-next-button:hover,
-      .clndr-control-button.clndr-previous-button:focus,
-      .clndr-control-button.clndr-next-button:focus {
-        /*background-color: #528b5e;*/
-        background-color: #eeeeee;
-        color: $sidebar-bg-color;
-      }
+  //     padding: 5px 8px;
+  //     text-align: center;
 
-    }
+  //     &.today {
+  //       color: $red-color;
+  //     }
 
-    .clndr-table {
-      margin: 0 auto;
-      font-weight: 700;
-      margin-top: 15px;
-    }
+  //     &.past {
+  //       color: #878B91;
+  //     }
+  //   }
 
-    .header-days {
-      color: #696E76;
-    }
-
-    .header-day {
-      text-align: center;
-    }
-
-    .day {
-
-      &:hover {
-        cursor: pointer;
-        background-color: #4B515B;
-        border-radius: 4px;
-      }
-
-      padding: 5px 8px;
-      text-align: center;
-
-      &.today {
-        color: $red-color;
-      }
-
-      &.past {
-        color: #878B91;
-      }
-    }
-  }
-}
-
-@media (min-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: $sidebar-bg-color;
-  }
-}
-
-.nav-sidebar {
-  // margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  // margin-left: -20px;
-}
-
-.nav-sidebar > li > a {
-  color: #fff;
-  padding-right: 20px;
-  padding-left: 20px;
-
-  &:hover,
-  &:focus {
-    color: $sidebar-bg-color;
-    border-radius: 4px;
-  }
-
-  .badge {
-    background-color: $red-color;
-  }
-}
 
 .no-workout {
   background-color: #efefef;
@@ -568,6 +491,7 @@ span[data-cal-date]:hover {
     font-weight: bold;
     letter-spacing: 2px;
     font-size: 44px;
+    margin-top: 0px;
   }
 
   .stats-caption {
