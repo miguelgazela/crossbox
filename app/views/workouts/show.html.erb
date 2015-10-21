@@ -93,7 +93,7 @@
 
           <% end %>
 
-          <hr>          
+          <hr>
 
           <div style="text-align: center;">
             <% if @in_workout %>
@@ -109,11 +109,17 @@
                 <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default"><%= fa_icon "thumbs-up" %> Inscrever na Aula</a>
 
               <% end %>
-
-              
-
             <% end %>
+
           </div>
+
+          <% if !@in_workout && @workout.trainings.length >= Integer(@workout.max_participants) %>
+
+          <hr>
+
+          <p>Quem estiver na lista de espera pode treinar na mesma, mas faz outro treino com o restante material disponível. Se alguma pessoa com uma das vagas desistir, a vaga será imediatamente ocupada pela primeira pessoa na lista de espera.</p>
+
+          <% end %>
 
         </div> <!-- /card -->
 
@@ -129,21 +135,6 @@
 
         </div> <!-- /card -->
       </div> <!-- /col-xs-12 -->
-
-      <div class="col-xs-12">
-        <div class="card">
-          <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- Responsive Ad -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-4024138248901084"
-                 data-ad-slot="1828282454"
-                 data-ad-format="auto"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-      </div>
 
     </div>
   </div>
