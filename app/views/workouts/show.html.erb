@@ -51,7 +51,7 @@
                 <th scope="row"><%= index + 1 %></th>
                 <td><img class="media-object media-object-small" src="<%= training.user.image %>" alt="..."></td>
                 <td><%= training.user.name %></td>
-                <td class="hidden-xs"><%= training.created_at.strftime("%d/%m/%Y") %> <%= Integer(training.created_at.strftime("%k")) + 1 %>:<%= training.created_at.strftime("%M") %></td>
+                <td class="hidden-xs"><%= training.created_at.strftime("%d/%m/%Y") %></td>
               </tr>
 
             <% end %>
