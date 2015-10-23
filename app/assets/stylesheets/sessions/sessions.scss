@@ -12,7 +12,7 @@ body {
   height: 100%;
   background-color: #393F4A;
   background-image: image_url("crossfit2.png");
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-size: cover;
 }
 
@@ -95,14 +95,21 @@ body {
 
 .cover {
   padding: 0 20px;
+
+  .btn {
+    border-radius: 0px;
+  }
+
+  input {
+    border-radius: 0px;
+  }
 }
 
-.cover .btn {
-  padding: 10px 20px;
+.cover .btn-facebook {
+  padding: 5px 15px;
   background-color: #3b5998;
   color: white;
-  margin-top: 20px;
-  
+
   &:hover {
   	background-color: #2D467C;
   }
