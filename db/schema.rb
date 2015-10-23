@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007100504) do
+ActiveRecord::Schema.define(version: 20151017131258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20151007100504) do
     t.string   "image"
     t.string   "url"
     t.string   "email"
+    t.string   "password_digest"
   end
 
   create_table "workouts", force: :cascade do |t|

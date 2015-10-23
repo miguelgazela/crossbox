@@ -74,6 +74,71 @@ var main = function () {
 	$("#go-week-after").click(function () { forwardOneWeek(); });
 	$("#go-today").click(function () { setCalendarToToday(); });
 
+  // configure the create new account form
+
+  $("#new_user").submit(function(event) {
+    // event.preventDefault();
+
+    var nameRegex = /^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+\s[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+$/;
+    var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    var passwordRegex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{6,}$/g;
+
+    var name = $("#name").val();
+    var email = $("#email").val();
+    var password = $("#password").val();
+    var confirmPassword = $("#password_confirmation").val();
+
+    var okToSubmit = true;
+
+    if (!nameRegex.test(name)) {
+
+      $("#name_help").html("Nome inválido. Obrigatório 2 nomes separados por 1 espaço.");
+      $("#name_help").parent(".form-group").addClass("has-error");
+      okToSubmit = false;
+
+    } else {
+      $("#name_help").html("");
+      $("#name_help").parent(".form-group").removeClass("has-error");
+    }
+
+    if (!emailRegex.test(email)) {
+
+      $("#email_help").html("Email inválido.");
+      $("#email_help").parent(".form-group").addClass("has-error");
+      okToSubmit = false;
+
+    } else {
+      $("#email_help").html("");
+      $("#email_help").parent(".form-group").removeClass("has-error");
+    }
+
+    if (!passwordRegex.test(password)) {
+
+      $("#password_help").html("Password inválida. Mínimo de 6 caracteres!");
+      $("#password_help").parent(".form-group").addClass("has-error");
+      okToSubmit = false;
+
+    } else {
+      $("#password_help").html("No mínimo 6 caracteres.");
+      $("#password_help").parent(".form-group").removeClass("has-error");
+    }
+
+    if (password != confirmPassword) {
+
+      okToSubmit = false;
+      $("#confirm_password_help").html("As passwords não são iguais.");
+      $("#confirm_password_help").parent(".form-group").addClass("has-error");
+
+    } else {
+
+      $("#confirm_password_help").html("");
+      $("#confirm_password_help").parent(".form-group").removeClass("has-error");
+    }
+
+    return okToSubmit;
+
+  });
+
 };
 
 function getWeekShiftForDay(day) {

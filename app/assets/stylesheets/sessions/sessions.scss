@@ -103,6 +103,16 @@ body {
   input {
     border-radius: 0px;
   }
+
+  .help-block {
+    color: white;
+  }
+
+  .has-error {
+    .help-block {
+      color: red;
+    }
+  }
 }
 
 .cover .btn-facebook {

@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
       user.image = auth_hash['info']['image']
       user.url = auth_hash['info']['urls']['Facebook']
       user.name = auth_hash['info']['name']
+      user.password = "facebook"
 
       user.save!
 
