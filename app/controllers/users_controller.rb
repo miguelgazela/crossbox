@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     end
 
     @user.image = "http://placehold.it/200x200"
-    @user.role = "new_role"
+    @user.role = "new_user"
     @user.provider = "crossbox"
 
     if @user.save!
