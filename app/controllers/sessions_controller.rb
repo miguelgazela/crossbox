@@ -12,6 +12,28 @@ class SessionsController < ApplicationController
     @new_accounts = User.where(role: 'new_user')
   end
 
+  def signin
+    
+    user = User.find_by_email(params["email"])
+
+    if user && user.authenticate(params["password"])
+
+      if user.role != 'new_user'
+        session[:user_id] = user.id
+        redirect_to root_path
+      else
+        flash[:user_not_confirmed] = "user not confirmed"
+        redirect_to action: 'new'
+      end
+
+    else
+      flash[:wrong_credentials] = "wrong credentials"
+      redirect_to action: 'new'
+
+    end
+
+  end
+
   def create
 
     auth_hash = request.env['omniauth.auth']

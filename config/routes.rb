@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post 'users/yes/:id' => 'sessions#authorize'
   post 'users/no/:id' => 'sessions#cancel'
 
+  post '/signin' => 'sessions#signin'
+
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/') # this redirects in case the user denied access for our application
   
