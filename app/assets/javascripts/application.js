@@ -522,8 +522,32 @@ function getClassForPercentage(percentage) {
   }
 }
 
+function showChangeGuestsUI(button) {
+
+  $(button).addClass("hidden");
+  $("#changeGuestsUITitle").removeClass("hidden");
+  $("#changeGuestsUIRadios").removeClass("hidden");
+  $("#changeGuestsUIButtons").removeClass("hidden");
+
+}
+
+function hideChangeGuestsUI() {
+
+  $("#showChangeGuestsUIBtn").removeClass("hidden");
+  $("#changeGuestsUITitle").addClass("hidden");
+  $("#changeGuestsUIRadios").addClass("hidden");
+  $("#changeGuestsUIButtons").addClass("hidden");
+}
+
 function changeGuests(numGuests) {
   $("#numGuests").val(numGuests);
+}
+
+function updateNumGuests(workoutId) {
+  
+  var numGuests = $("#numGuests").val();
+
+  window.location.href = ("/workouts/" + workoutId + "/state?a=change_guests&g=" + numGuests);
 }
 
 function enterWorkout(workoutId) {

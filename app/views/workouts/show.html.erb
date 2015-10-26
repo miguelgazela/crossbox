@@ -12,7 +12,7 @@
 
           <h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Aula <%= @workout.date.strftime("%d/%m/%Y %H:%M") %></h3>
   
-          <h1 class="lead">Pessoas Inscritas
+          <h4>Pessoas Inscritas
 
           <% if @workout.trainings.length >= Integer(@workout.max_participants) %>
           (0 vagas):
@@ -26,7 +26,7 @@
 
           <% end %>
 
-          </h1>
+          </h4>
 
           <% if @workout.trainings.length == 0 %>
 
@@ -67,7 +67,7 @@
 
           <% if @workout.trainings.length > Integer(@workout.max_participants) %>
 
-          <h1 class="lead">Em espera:</h1>
+          <h4>Em espera:</h4>
           <p>Quem estiver na lista de espera pode treinar na mesma, mas faz outro treino com o restante material disponível. Se alguma pessoa com uma das vagas desistir, a vaga será imediatamente ocupada pela primeira pessoa na lista de espera.</p>
           
           <div class="table-responsive">
@@ -105,7 +105,42 @@
 
           <div>
             <% if @in_workout %>
-              <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-default"><%= fa_icon "thumbs-down" %> Retirar Inscrição</a>
+
+              <button id="showChangeGuestsUIBtn" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg" onclick="showChangeGuestsUI(this)"><%= fa_icon "users" %> Alterar Número de Convidados</button>
+
+              <h4 class="hidden" id="changeGuestsUITitle">Alterar Número de Convidados</h4>
+
+              <div class="hidden" id="changeGuestsUIRadios" style="margin-bottom: 15px;">
+                <input type="hidden" name="numGuests" value="<%= @in_workout.guests %>" id="numGuests">
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="0" <% if @in_workout.guests == 0 %>checked<% end %> onclick="changeGuests('0')">0
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="1" <% if @in_workout.guests == 1 %>checked<% end %> onclick="changeGuests('1')">1
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="2" <% if @in_workout.guests == 2 %>checked<% end %> onclick="changeGuests('2')">2
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="3" <% if @in_workout.guests == 3 %>checked<% end %> onclick="changeGuests('3')">3
+                </label>
+              </div>
+
+              <div class="hidden" id="changeGuestsUIButtons">
+
+                <button type="button" style="margin-bottom: 10px;" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg" onclick="updateNumGuests(<%= @workout.id %>)"><%= fa_icon "save" %> Alterar</button>
+                <button type="button" style="margin-bottom: 10px;" class="btn btn-default hidden-xs" onclick="updateNumGuests(<%= @in_workout.id %>)"><%= fa_icon "save" %> Alterar</button>
+
+                <button type="button" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg" onclick="hideChangeGuestsUI()"><%= fa_icon "times-circle" %> Cancelar</button>
+                <button type="button" class="btn btn-default hidden-xs" onclick="hideChangeGuestsUI()"><%= fa_icon "times-circle" %> Cancelar</button>
+
+              </div>
+
+              <hr>
+
+              <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg"><%= fa_icon "thumbs-down" %> Retirar Inscrição</a>
+              <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-default hidden-xs"><%= fa_icon "thumbs-down" %> Retirar Inscrição</a>
+
             <% else %>
 
               <h4>Convidados - <small>Pessoas que vais trazer contigo para experimentarem a Box.</small></h4>
@@ -126,13 +161,17 @@
                 </label>
               </div>
 
+              <hr>
+
               <% if @workout.trainings.length >= Integer(@workout.max_participants) %>
 
-                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default"><%= fa_icon "users" %> Entrar para Fila de Espera</a>
+                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default hidden-xs"><%= fa_icon "users" %> Entrar para Fila de Espera</a>
+                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg"><%= fa_icon "users" %> Entrar para Fila de Espera</a>
 
               <% else %>
 
-                <button type="button" class="btn btn-default" onclick="enterWorkout(<%= @workout.id %>)"><%= fa_icon "thumbs-up" %> Inscrever na Aula</button>
+                <button type="button" class="btn btn-default hidden-xs" onclick="enterWorkout(<%= @workout.id %>)"><%= fa_icon "thumbs-up" %> Inscrever na Aula</button>
+                <button type="button" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg" onclick="enterWorkout(<%= @workout.id %>)"><%= fa_icon "thumbs-up" %> Inscrever na Aula</button>
 
               <% end %>
             <% end %>

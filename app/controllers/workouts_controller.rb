@@ -43,6 +43,16 @@ class WorkoutsController < ApplicationController
 			end
 
 			redirect_to "/workouts/" + params[:id]
+
+		elsif action == "change_guests"
+
+			guests = Integer(params[:g])
+
+			training.guests = guests
+			training.save!
+
+			redirect_to "/workouts/" + params[:id]
+
 		end
 
 	end
