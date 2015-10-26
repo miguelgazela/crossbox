@@ -19,6 +19,8 @@ class WorkoutsController < ApplicationController
 
 		if action == "enter"
 
+			guests = Integer(params[:g])
+
 			if training
 				redirect_to "/workouts/" + params[:id]
 				return			
@@ -28,6 +30,7 @@ class WorkoutsController < ApplicationController
 
 			training.user_id = current_user.id
 			training.workout_id = params[:id]
+			training.guests = guests
 
 			training.save!
 

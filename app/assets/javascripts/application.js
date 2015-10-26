@@ -52,11 +52,6 @@ var currentFirstDayOfWeek = null;
 
 var main = function () {
 
-  console.log("Running main function");
-  console.log(gon);
-
-  configSidebarCalendar();
-
   if(window.location.href.indexOf("workouts/new?") > -1) {
     configAddWorkoutsPage()
     return;
@@ -525,6 +520,17 @@ function getClassForPercentage(percentage) {
   } else {
     return "full";
   }
+}
+
+function changeGuests(numGuests) {
+  $("#numGuests").val(numGuests);
+}
+
+function enterWorkout(workoutId) {
+
+  var numGuests = $("#numGuests").val();
+
+  window.location.href = ("/workouts/" + workoutId + "/state?a=enter&g=" + numGuests);
 }
 
 $(document).ready(main);

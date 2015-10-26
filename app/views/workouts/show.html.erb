@@ -33,31 +33,35 @@
           <p>Ainda ninguém se inscreveu nesta aula. Sê o primeiro/a!</p>
 
           <% else %>
+            
+            <div class="table-responsive">
+              <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th></th>
+                  <th>Nome</th>
+                  <th>Convidados</th>
+                  <th class="hidden-xs">Inscrição</th>
+                </tr>
+              </thead>
+              <tbody>
 
-            <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th></th>
-                <th>Nome</th>
-                <th class="hidden-xs">Inscrição</th>
-              </tr>
-            </thead>
-            <tbody>
+              <% @workout.trainings.order(:id)[0,Integer(@workout.max_participants)].each_with_index do |training, index| %>
 
-            <% @workout.trainings.order(:id)[0,Integer(@workout.max_participants)].each_with_index do |training, index| %>
+                <tr>
+                  <th scope="row"><%= index + 1 %></th>
+                  <td><img class="media-object media-object-small" src="<%= training.user.image %>" alt="..."></td>
+                  <td><%= training.user.name %></td>
+                  <td><%= training.guests || '0' %></td>
+                  <td class="hidden-xs"><%= training.created_at.strftime("%d/%m/%Y") %></td>
+                </tr>
 
-              <tr>
-                <th scope="row"><%= index + 1 %></th>
-                <td><img class="media-object media-object-small" src="<%= training.user.image %>" alt="..."></td>
-                <td><%= training.user.name %></td>
-                <td class="hidden-xs"><%= training.created_at.strftime("%d/%m/%Y") %></td>
-              </tr>
+              <% end %>
 
-            <% end %>
-
-            </tbody>
-            </table>
+              </tbody>
+              </table>
+            </div>
 
           <% end %>
 
@@ -66,39 +70,61 @@
           <h1 class="lead">Em espera:</h1>
           <p>Quem estiver na lista de espera pode treinar na mesma, mas faz outro treino com o restante material disponível. Se alguma pessoa com uma das vagas desistir, a vaga será imediatamente ocupada pela primeira pessoa na lista de espera.</p>
           
-          <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th></th>
-                <th>Nome</th>
-                <th>Inscrição</th>
-              </tr>
-            </thead>
-            <tbody>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th></th>
+                  <th>Nome</th>
+                  <th>Convidados</th>
+                  <th class="hidden-xs">Inscrição</th>
+                </tr>
+              </thead>
+              <tbody>
 
-            <% @workout.trainings.order(:id)[Integer(@workout.max_participants), 100].each_with_index do |training, index| %>
+              <% @workout.trainings.order(:id)[Integer(@workout.max_participants), 100].each_with_index do |training, index| %>
 
-              <tr>
-                <th scope="row"><%= index + 1 + Integer(@workout.max_participants) %> </th>
-                <td><img class="media-object media-object-small" src="<%= training.user.image %>" alt="..."></td>
-                <td><%= training.user.name %></td>
-                <td><%= training.created_at.strftime("%d/%m/%Y") %></td>
-              </tr>
+                <tr>
+                  <th scope="row"><%= index + 1 + Integer(@workout.max_participants) %> </th>
+                  <td><img class="media-object media-object-small" src="<%= training.user.image %>" alt="..."></td>
+                  <td><%= training.user.name %></td>
+                  <td><%= training.guests || '0' %></td>
+                  <td class="hidden-xs"><%= training.created_at.strftime("%d/%m/%Y") %></td>
+                </tr>
 
-            <% end %>
+              <% end %>
 
-            </tbody>
-            </table>
+              </tbody>
+              </table>
+            </div>
 
           <% end %>
 
           <hr>
 
-          <div style="text-align: center;">
+          <div>
             <% if @in_workout %>
               <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-default"><%= fa_icon "thumbs-down" %> Retirar Inscrição</a>
             <% else %>
+
+              <h4>Convidados - <small>Pessoas que vais trazer contigo para experimentarem a Box.</small></h4>
+
+              <div style="margin-bottom: 15px;">
+                <input type="hidden" name="numGuests" value="" id="numGuests">
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="0" checked onclick="changeGuests('0')">0
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="1" onclick="changeGuests('1')">1
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="2" onclick="changeGuests('2')">2
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" value="3" onclick="changeGuests('3')">3
+                </label>
+              </div>
 
               <% if @workout.trainings.length >= Integer(@workout.max_participants) %>
 
@@ -106,7 +132,7 @@
 
               <% else %>
 
-                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default"><%= fa_icon "thumbs-up" %> Inscrever na Aula</a>
+                <button type="button" class="btn btn-default" onclick="enterWorkout(<%= @workout.id %>)"><%= fa_icon "thumbs-up" %> Inscrever na Aula</button>
 
               <% end %>
             <% end %>
