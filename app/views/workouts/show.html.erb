@@ -164,9 +164,9 @@
               <hr>
 
               <% if @workout.trainings.length >= Integer(@workout.max_participants) %>
-
-                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default hidden-xs"><%= fa_icon "users" %> Entrar para Fila de Espera</a>
-                <a href="/workouts/<%= @workout.id %>/state?a=enter" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg"><%= fa_icon "users" %> Entrar para Fila de Espera</a>
+              
+                <button type="button" class="btn btn-default hidden-xs" onclick="enterWorkout(<%= @workout.id %>)"><%= fa_icon "users" %> Entrar para Fila de Espera</button>
+                <button type="button" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg" onclick="enterWorkout(<%= @workout.id %>)"><%= fa_icon "users" %> Entrar para Fila de Espera</button>
 
               <% else %>
 
