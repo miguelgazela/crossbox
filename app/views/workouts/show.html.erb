@@ -107,6 +107,7 @@
             <% if @in_workout %>
 
               <button id="showChangeGuestsUIBtn" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg" onclick="showChangeGuestsUI(this)"><%= fa_icon "users" %> Alterar Número de Convidados</button>
+              <button id="showChangeGuestsUIBtnBgScreens" class="btn btn-default hidden-xs" onclick="showChangeGuestsUI(this)"><%= fa_icon "users" %> Alterar Número de Convidados</button>
 
               <h4 class="hidden" id="changeGuestsUITitle">Alterar Número de Convidados</h4>
 
@@ -129,7 +130,7 @@
               <div class="hidden" id="changeGuestsUIButtons">
 
                 <button type="button" style="margin-bottom: 10px;" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg" onclick="updateNumGuests(<%= @workout.id %>)"><%= fa_icon "save" %> Alterar</button>
-                <button type="button" style="margin-bottom: 10px;" class="btn btn-default hidden-xs" onclick="updateNumGuests(<%= @in_workout.id %>)"><%= fa_icon "save" %> Alterar</button>
+                <button type="button" class="btn btn-default hidden-xs" onclick="updateNumGuests(<%= @workout.id %>)"><%= fa_icon "save" %> Alterar</button>
 
                 <button type="button" class="btn btn-default btn-block hidden-sm hidden-md hidden-lg" onclick="hideChangeGuestsUI()"><%= fa_icon "times-circle" %> Cancelar</button>
                 <button type="button" class="btn btn-default hidden-xs" onclick="hideChangeGuestsUI()"><%= fa_icon "times-circle" %> Cancelar</button>

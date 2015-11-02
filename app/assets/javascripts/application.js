@@ -534,6 +534,7 @@ function showChangeGuestsUI(button) {
 function hideChangeGuestsUI() {
 
   $("#showChangeGuestsUIBtn").removeClass("hidden");
+  $("#showChangeGuestsUIBtnBgScreens").removeClass("hidden");
   $("#changeGuestsUITitle").addClass("hidden");
   $("#changeGuestsUIRadios").addClass("hidden");
   $("#changeGuestsUIButtons").addClass("hidden");
