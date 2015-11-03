@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
       if training.workout.date >= Date.today
 
-        workout_trainings = training.workout.trainings
+        workout_trainings = training.workout.trainings.order(:id)
 
         puts "Future!"
         puts workout_trainings
