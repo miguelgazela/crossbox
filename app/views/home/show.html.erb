@@ -2,6 +2,47 @@
 
 <div class="container">
   <div class="row">
+
+  <% if @user_trainings.length > 0 %>
+
+
+    <% if current_user.role == 'admin' || current_user.role == 'coach' %>
+    <div class="card">
+
+      <h1 class="page-header hidden-xs">Meus Treinos</h1>
+      <h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Meus Treinos</h3>
+
+      <table class="table">
+          
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Data</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            
+            <% @trainings.each_with_index do |dict, index| %>
+
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= dict[:training].workout.date.strftime("%d/%m %H:%M") %></td>
+                <td><%= dict[:state] %></td>
+              </tr>
+
+            <% end %>
+
+          </tbody>
+
+      </table>
+      
+    </div>
+
+    <% end %>
+
+  <% end %>
     
     <div class="card">
 
