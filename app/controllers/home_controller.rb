@@ -14,17 +14,11 @@ class HomeController < ApplicationController
 
         workout_trainings = training.workout.trainings.order(:id)
 
-        puts "Future!"
-        puts workout_trainings
-
         index = 0
 
         while index < workout_trainings.length do
 
           if workout_trainings[index].id == training.id
-
-            puts "the same"
-            puts index
 
             if index < Integer(training.workout.max_participants)
               @trainings.push({:training => training, :state => "Inscrito/a"})
@@ -39,8 +33,6 @@ class HomeController < ApplicationController
         end
 
       end
-
-      puts @trainings
 
     end
 
