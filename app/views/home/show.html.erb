@@ -5,8 +5,6 @@
 
   <% if @user_trainings.length > 0 %>
 
-
-    <% if current_user.role == 'admin' %>
     <div class="card">
 
       <h1 class="page-header hidden-xs">Meus Treinos</h1>
@@ -28,7 +26,7 @@
 
               <tr>
                 <td><%= index + 1 %></td>
-                <td><%= dict[:training].workout.date.strftime("%d/%m %H:%M") %></td>
+                <td><a href="/workouts/<%= dict[:training].workout.id %>"><%= dict[:training].workout.date.strftime("%d/%m %H:%M") %></a></td>
                 <td><%= dict[:state] %></td>
               </tr>
 
@@ -39,8 +37,6 @@
       </table>
       
     </div>
-
-    <% end %>
 
   <% end %>
     
