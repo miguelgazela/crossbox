@@ -14,7 +14,7 @@
       <ul class="nav navbar-nav">
         <li><a href="/">Aulas</a></li>
 
-        <% if current_user.role == 'admin'%>
+        <% if current_user.role == 'admin' || current_user.role == 'coach' %>
 
           <li><a href="/users">Inscritos</a></li>
 
