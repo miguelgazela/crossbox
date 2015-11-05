@@ -38,9 +38,6 @@ class SessionsController < ApplicationController
 
     auth_hash = request.env['omniauth.auth']
 
-    puts "Creating user"
-    puts auth_hash
-
     user = User.find_by(uid: auth_hash['uid'])
 
     if user
@@ -65,8 +62,6 @@ class SessionsController < ApplicationController
 
       user = User.new
 
-      puts "Created New User"
-
       user.uid = auth_hash['uid']
       user.provider = auth_hash['provider']
       user.role = 'new_user'
@@ -74,6 +69,7 @@ class SessionsController < ApplicationController
       user.name = auth_hash['info']['name']
       user.url = auth_hash['info']['urls']['Facebook']
       user.image = auth_hash['info']['image']
+      user.password = "facebook"
 
       user.save!
 
