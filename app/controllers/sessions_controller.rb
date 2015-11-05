@@ -38,6 +38,9 @@ class SessionsController < ApplicationController
 
     auth_hash = request.env['omniauth.auth']
 
+    puts "Creating user"
+    puts auth_hash
+
     user = User.find_by(uid: auth_hash['uid'])
 
     if user
@@ -61,6 +64,8 @@ class SessionsController < ApplicationController
     else
 
       user = User.new
+
+      puts "Created New User"
 
       user.uid = auth_hash['uid']
       user.provider = auth_hash['provider']
