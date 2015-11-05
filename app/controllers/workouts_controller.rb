@@ -9,6 +9,10 @@ class WorkoutsController < ApplicationController
 		@workout = Workout.find(params[:id])
 		@in_workout = Training.find_by(user_id: current_user.id, workout_id: params[:id])
 
+		if current_user.role == 'admin'
+			UserMailer.out_of_waiting_queue(current_user).deliver
+		end
+
 	end
 
 	def change_training_state
