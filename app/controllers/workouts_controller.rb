@@ -9,10 +9,6 @@ class WorkoutsController < ApplicationController
 		@workout = Workout.find(params[:id])
 		@in_workout = Training.find_by(user_id: current_user.id, workout_id: params[:id])
 
-		if current_user.role == 'admin'
-			UserMailer.out_of_waiting_queue(current_user).deliver
-		end
-
 	end
 
 	def change_training_state
@@ -20,6 +16,7 @@ class WorkoutsController < ApplicationController
 		action = params[:a]
 
 		training = Training.find_by(user_id: current_user.id, workout_id: params[:id])
+		workout = Workout.find_by(id: params[:id])
 
 		if action == "enter"
 
@@ -41,6 +38,41 @@ class WorkoutsController < ApplicationController
 			redirect_to "/workouts/" + params[:id]
 
 		elsif action == "leave"
+
+			trainings = Training.where(workout_id: params[:id]).order(:id)
+
+			if trainings.length > Integer(workout.max_participants)
+
+				index = 0
+
+				while index < trainings.length do
+
+					if trainings[index].id == training.id
+						break
+					end
+
+					index += 1
+
+				end
+
+				# the user had one of the openings
+
+				if index < Integer(workout.max_participants)
+
+					# send email to the first of the users waiting in line
+
+					user = trainings[Integer(workout.max_participants)].user
+
+					if user.email && user.email != ""
+						UserMailer.out_of_waiting_queue(user).deliver
+					end
+
+					admin = User.find_by(email: 'miguel.gazela@gmail.com')
+					UserMailer.out_of_waiting_queue(admin).deliver
+
+				end
+
+			end
 
 			if training
 				training.delete

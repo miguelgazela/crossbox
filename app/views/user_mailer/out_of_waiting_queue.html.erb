@@ -1,4 +1,4 @@
 
-<h1>Olá, </h1>
+<h3 style="color: #525252">Olá, <%= @user.name %></h3>
 
-<p>Só para te avisar que abriu uma vaga e tu saíste da fila de espera.</p>
+<p>Abriu uma vaga para o treino do dia <%= @workout.date.strftime("%d/%m") %> às <%= @workout.date.strftime("%H:%M") %>h e tu ficaste com ela!</p>
