@@ -63,9 +63,12 @@ class WorkoutsController < ApplicationController
 
 					user = trainings[Integer(workout.max_participants)].user
 
-					if user.email && user.email != ""
-						UserMailer.out_of_waiting_queue(user).deliver
-					end
+					puts "EMAIL"
+					puts user.email
+
+					# if user.email && user.email != ""
+					# 	UserMailer.out_of_waiting_queue(user).deliver
+					# end
 
 					admin = User.find_by(email: 'miguel.gazela@gmail.com')
 					UserMailer.out_of_waiting_queue(admin).deliver
