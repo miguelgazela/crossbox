@@ -7,8 +7,9 @@ class UsersController < ApplicationController
 		@users = User.all
 
 		@users.each do |user|
-			trainings_count = user.trainings.length
-			@total_trainings += trainings_count
+
+			@total_trainings += user.trainings_count
+
 		end
 
 	end

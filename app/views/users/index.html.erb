@@ -33,7 +33,7 @@
             </thead>
             <tbody>
 
-            <% @users.order(:id).each_with_index do |user, index| %>
+            <% @users.order(trainings_count: :desc).each_with_index do |user, index| %>
 
               <tr>
                 <th scope="row"><%= index + 1 %></th>
@@ -41,7 +41,7 @@
                 <td><a href="<%= user.url %>"><%= user.name %></a></td>
                 <td><%= user.email %></td>
                 <td class="hidden-xs"><%= user.created_at.strftime("%d/%m/%Y") %></td>
-                <td><%= user.trainings.length %></td>
+                <td><%= user.trainings_count %></td>
               </tr>
 
             <% end %>
