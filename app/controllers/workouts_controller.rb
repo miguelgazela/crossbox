@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
 
-	before_action :require_user, only: [:week_workouts, :change_training_state]
+	before_action :require_user, only: [:show, :week_workouts, :change_training_state]
 	before_action :require_account_management_rights, only: [:new, :create]
 	before_action :clear_gon, only: [:show, :week_workouts, :new, :create]
 
