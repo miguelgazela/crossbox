@@ -59,7 +59,11 @@ class UsersController < ApplicationController
 
     end
 
-    puts top_hash.sort_by { |id, trainings| trainings }
+    puts "Sorted"
+
+    frequencies = top_hash.sort_by {|a, b| b }
+    frequencies.reverse!
+    frequencies[0,3].each { |userid, frequency| puts userid.to_s + " " + frequency.to_s }
 
   end
 
