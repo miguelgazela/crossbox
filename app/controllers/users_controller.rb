@@ -51,7 +51,13 @@ class UsersController < ApplicationController
 
     week_workouts.each do |workout|
 
+      puts "Workout"
+      puts workout.date
+
       workout.trainings.each do |training|
+
+        puts "Training"
+        puts "Training user " + training.user.name
 
         top_hash[training.user.id] = top_hash[training.user.id] + 1
 
