@@ -77,7 +77,7 @@ class UsersController < ApplicationController
         user = User.find_by(id: userid)
 
         if user.role != "coach"
-          @top.push(user)
+          @top.push({:user => user, :frequency => frequency})
         end
 
       end
