@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     week_workouts = Workout.week_workouts
 
     week_workouts.each do |workout|
-      
+
       workout.trainings.each do |training|
 
         top_hash[training.user.id] = top_hash[training.user.id] + 1
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 
     end
 
-    puts top_hash
+    puts top_hash.sort_by { |id, trainings| trainings }
 
   end
 
