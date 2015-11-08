@@ -65,6 +65,8 @@ var main = function () {
 
   fetchWeekWorkouts();
 
+  loadTopThree();
+
 	$("#go-week-before").click(function () { backOneWeek(); });
 	$("#go-week-after").click(function () { forwardOneWeek(); });
 	$("#go-today").click(function () { setCalendarToToday(); });
@@ -135,6 +137,54 @@ var main = function () {
   });
 
 };
+
+function loadTopThree() {
+
+  $.ajax({
+    type: "GET",
+    url: root_url + "/users/top_week",
+    success: function (response) {
+
+      if (response.error_code == 200) {
+
+        var top = response.payload.top;
+
+
+        var container = '<div class="card">' +
+
+          '<h1 class="page-header hidden-xs">Top Semanal</h1>' +
+          '<h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Top Semanal</h3>' +
+
+          '<table class="table">' +
+            
+            '<thead>' +
+              '<tr>' +
+                '<th>#</th>' +
+                '<th></th>' +
+                '<th>Nome</th>' +
+                '<th>Treinos</th>' +
+              '</tr>' +
+            '</thead>' +
+
+            '<tbody>';
+              
+              for (var i = 0; i < top.length; i++) {
+                container += '<tr><td>' + (i + 1) + '</td><td><img class="media-object media-object-small" src="' + top[i].user.image + '" alt="..."></td><td>' + top[i].user.name + '</td><td>' + top[i].frequency + '</td></tr>';
+              }
+
+        container += '</tbody>' +
+          '</table>' +
+          '</div>';
+
+        console.log(container);
+
+        $("#timetable").after($(container));
+
+      }
+    }
+  });
+
+}
 
 function getWeekShiftForDay(day) {
   switch (day.day()) {
