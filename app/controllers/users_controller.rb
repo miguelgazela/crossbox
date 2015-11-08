@@ -84,7 +84,16 @@ class UsersController < ApplicationController
 
     end
 
-    puts @top
+    response = {
+      error_code: 200,
+      payload: {
+        week_start: week_start,
+        week_end: week_end,
+        top: @top
+      }
+    }
+
+    render json: response
 
   end
 
