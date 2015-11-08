@@ -45,19 +45,19 @@ class UsersController < ApplicationController
 
   def top_3_of_week
 
+    week_start = DateTime.now.beginning_of_week
+    week_end = DateTime.now.end_of_week
+
     top_hash = Hash.new(0)
 
-    week_workouts = Workout.week_workouts
+    week_workouts = Workout.where("date > ? and date < ?", week_start, week_end)
 
     week_workouts.each do |workout|
 
-      puts "Workout"
-      puts workout.date
-
       workout.trainings.each do |training|
 
-        puts "Training"
-        puts "Training user " + training.user.name
+    #     puts "Training"
+    #     puts "Training user " + training.user.name
 
         top_hash[training.user.id] = top_hash[training.user.id] + 1
 
@@ -65,11 +65,26 @@ class UsersController < ApplicationController
 
     end
 
-    puts "Sorted"
+    @top = []
 
     frequencies = top_hash.sort_by {|a, b| b }
     frequencies.reverse!
-    frequencies[0,3].each { |userid, frequency| puts userid.to_s + " " + frequency.to_s }
+
+    frequencies.each do |userid, frequency|
+
+      if @top.length < 3
+
+        user = User.find_by(id: userid)
+
+        if user.role != "coach"
+          @top.push(user)
+        end
+
+      end
+
+    end
+
+    puts @top
 
   end
 
