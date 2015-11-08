@@ -43,6 +43,26 @@ class UsersController < ApplicationController
 
   end
 
+  def top_3_of_week
+
+    top_hash = Hash.new(0)
+
+    week_workouts = Workout.week_workouts
+
+    week_workouts.each do |workout|
+      
+      workout.trainings.each do |training|
+
+        top_hash[training.user.id] = top_hash[training.user.id] + 1
+
+      end
+
+    end
+
+    puts top_hash
+
+  end
+
 	private
 	  def user_params
 	    params.permit(:name, :email, :password, :password_confirmation)

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post 'users/yes/:id' => 'sessions#authorize'
   post 'users/no/:id' => 'sessions#cancel'
 
+  get 'users/top_week' => 'users#top_3_of_week'
+
   post '/signin' => 'sessions#signin'
 
   get 'auth/:provider/callback', to: 'sessions#create'
