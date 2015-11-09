@@ -72,15 +72,15 @@ class UsersController < ApplicationController
 
     frequencies.each do |userid, frequency|
 
-      if @top.length < 3
+      # if @top.length < 3
 
-        user = User.find_by(id: userid)
+      user = User.find_by(id: userid)
 
-        if user.role != "coach"
-          @top.push({:user => user, :frequency => frequency})
-        end
-
+      if user.role != "coach"
+        @top.push({:user => user, :frequency => frequency})
       end
+
+      # end
 
     end
 
