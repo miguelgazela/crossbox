@@ -142,19 +142,19 @@ function loadTopThree() {
 
   $.ajax({
     type: "GET",
-    url: root_url + "/users/top_week",
+    url: root_url + "/users/top_month",
     success: function (response) {
 
       if (response.error_code == 200) {
 
         var top = response.payload.top;
-        var weekStart = moment(response.payload.week_start);
-        var weekEnd = moment(response.payload.week_end);
+        var monthStart = moment(response.payload.month_start);
+        var monthEnd = moment(response.payload.month_end);
 
         var container = '<div class="card">' +
 
-          '<h1 class="page-header hidden-xs">Top Semanal ' + weekStart.format('DD/MM') +' a ' + weekEnd.format('DD/MM') +'</h1>' +
-          '<h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Top Semanal ' + weekStart.format('DD/MM') +' a ' + weekEnd.format('DD/MM') +'</h3>' +
+          '<h1 class="page-header hidden-xs">Top Mensal</h1>' +
+          '<h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Top Mensal</h3>' +
 
           '<table class="table">' +
             
@@ -176,8 +176,6 @@ function loadTopThree() {
         container += '</tbody>' +
           '</table>' +
           '</div>';
-
-        console.log(container);
 
         $("#timetable").after($(container));
 

@@ -43,16 +43,16 @@ class UsersController < ApplicationController
 
   end
 
-  def top_3_of_week
+  def top_3_of_month
 
-    week_start = DateTime.now.beginning_of_week
-    week_end = DateTime.now.end_of_week
+    month_start = DateTime.now.beginning_of_month
+    month_end = DateTime.now.end_of_month
 
     top_hash = Hash.new(0)
 
-    week_workouts = Workout.where("date > ? and date < ?", week_start, week_end)
+    month_workouts = Workout.where("date > ? and date < ?", month_start, month_end)
 
-    week_workouts.each do |workout|
+    month_workouts.each do |workout|
 
       workout.trainings.each do |training|
 
@@ -87,8 +87,8 @@ class UsersController < ApplicationController
     response = {
       error_code: 200,
       payload: {
-        week_start: week_start,
-        week_end: week_end,
+        month_start: month_start,
+        month_end: month_end,
         top: @top
       }
     }
