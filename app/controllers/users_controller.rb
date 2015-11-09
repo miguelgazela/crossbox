@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
     frequencies.each do |userid, frequency|
 
-      if @top.length < 3 || @top.last.frequency == frequency
+      if @top.length < 3 || @top.last[:frequency] == frequency
 
         user = User.find_by(id: userid)
 
