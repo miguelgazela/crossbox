@@ -23,8 +23,10 @@ body {
 
 .kids-icon {
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
 }
 
 
