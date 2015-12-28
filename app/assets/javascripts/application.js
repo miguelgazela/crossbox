@@ -354,7 +354,7 @@ function configAddWorkoutsPage() {
 
       if (hour == "09:00") {
         $(this).children('.cal-day-hour').prepend('<div class="col-xs-8 col-md-6"><input type="text" class="form-control" placeholder="Vagas" value="13"></div>');
-      } else if (hour == "10:00" || hour == "20:00" || hour == "21:00") {
+      } else if (hour == "10:00" || hour == "20:00" || hour == "21:00" || hour == "19:00") {
         $(this).children('.cal-day-hour').children('div').remove();
       }
     }
