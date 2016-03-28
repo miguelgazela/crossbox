@@ -16,6 +16,11 @@
 
 $brand-red: #DE5555;
 
+$primary-color: #36A0D5;
+$app-red: #DE5555;
+$app-green: #9bd777;
+$app-yellow: #F7D961;
+
  html,
  body {
  	background-color: #eee;
@@ -23,20 +28,10 @@ $brand-red: #DE5555;
  }
 
  .navbar-default {
- 	background-color: #303436;
- 	color: white;
 
  	.navbar-brand {
- 		background-color: $brand-red;
- 		color: #ddd;
  		font-weight: 700;
  		transition: all 0.2s linear;
-
-		&:hover,
- 		&:focus {
- 			color: $brand-red;
- 			background-color: #2B2D2E;
- 		}
  	}
 
 	.navbar-nav > li {
@@ -64,48 +59,35 @@ $brand-red: #DE5555;
 	margin-top: 20px;
 }
 
-.btn {
-	border-radius: 0;
-}
-
 .btn-default {
 
-	&:hover,
-	&:focus,
-	&:active {
-		background-color: $brand-red;
-		color: white;
-		border-color: $brand-red;
-	}
+  background-color: #f0eff4;
+  color: #787878;
 }
 
-.cal-context + * {
-	margin-top: 20px;
+.card {
+ background-color: #fff;
+ padding: 30px;
+ margin-bottom: 20px;
+ box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.15);
+ border-radius: 2px;
 }
+
+@media (max-width: 767px) {
 
  .card {
- 	background-color: #fff;
- 	padding: 30px;
- 	margin-bottom: 20px;
- 	box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.15);
- 	border-radius: 2px;
+   padding: 2px;
+   margin-left: 5px;
+   margin-right: 5px;
+
+   &.padded-xs-card {
+     padding: 10px;
+   }
  }
 
- @media (max-width: 767px) {
-
-	.card {
-		padding: 2px;
-		margin-left: 5px;
-		margin-right: 5px;
-
-		&.padded-xs-card {
-			padding: 10px;
-		}
-	}
-
-	.cal-context {
-		margin-top: 15px;
-	}
+ .cal-context {
+   margin-top: 15px;
+ }
 }
 
 table form {

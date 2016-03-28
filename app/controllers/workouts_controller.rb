@@ -24,7 +24,7 @@ class WorkoutsController < ApplicationController
 
 			if training
 				redirect_to "/workouts/" + params[:id]
-				return			
+				return
 			end
 
 			training = Training.new
@@ -108,9 +108,17 @@ class WorkoutsController < ApplicationController
 
 			trainings_count = workout.trainings.length
 
+			# get thumbnails from users of the workout
+
+			users_thumbnails = Array.new
+
+			workout.trainings.each do |training|
+				users_thumbnails.push(training.user.image);
+			end
+
 			training = Training.find_by(user_id: current_user.id, workout_id: workout.id)
 
-			result.push({:workout => workout, :trainings => trainings_count, :in_workout => training})
+			result.push({:workout => workout, :trainings => trainings_count, :in_workout => training, :thumbnails => users_thumbnails})
 		end
 
 		response = {
@@ -139,7 +147,7 @@ class WorkoutsController < ApplicationController
 	end
 
 	def create
-		
+
 		start_day = params[:startDay]
 		end_day = params[:endDay]
 

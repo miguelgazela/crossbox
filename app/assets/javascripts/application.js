@@ -17,36 +17,13 @@
 //= require moment/moment
 //= require underscore/underscore
 //= require clndr/src/clndr
+//= require jsrender/jsrender
 //= require bootstrap
 
 var local_root_url = "http://localhost:3000";
 var remote_root_url = "http://slcrossbox.herokuapp.com";
 
-var root_url = remote_root_url;
-
-var cldnrTemplate = "<div class='clndr-controls'>" +
-    "<div class='clndr-control-button clndr-previous-button'>&lsaquo;</div><div class='month'><%= month %> <%= year %></div><div class='clndr-control-button clndr-next-button'>&rsaquo;</div>" +
-    "</div>" +
-    "<table class='clndr-table' border='0' cellspacing='0' cellpadding='0'>" +
-    "<thead>" +
-    "<tr class='header-days'>" +
-    "<% for(var i = 0; i < daysOfTheWeek.length; i++) { %>" +
-      "<td class='header-day'><%= daysOfTheWeek[i] %></td>" +
-    "<% } %>" +
-    "</tr>" +
-    "</thead>" +
-    "<tbody>" +
-    "<% for(var i = 0; i < numberOfRows; i++){ %>" +
-      "<tr>" +
-      "<% for(var j = 0; j < 7; j++){ %>" +
-      "<% var d = j + i * 7; %>" +
-      "<td class='<%= days[d].classes %>'><div class='day-contents'><%= days[d].day %>" +
-      "</div></td>" +
-      "<% } %>" +
-      "</tr>" +
-    "<% } %>" +
-    "</tbody>" +
-  "</table>";
+var root_url = local_root_url;
 
 var currentFirstDayOfWeek = null;
 
@@ -57,133 +34,133 @@ var main = function () {
     return;
   }
 
-	if (gon.added_workouts) {
-    console.log("Added workouts!");
-  } 
+	// if (gon.added_workouts) {
+  //   console.log("Added workouts!");
+  // }
 
 	setCalendarToToday();
 
   fetchWeekWorkouts();
 
-  loadTopThree();
+  // loadTopThree();
 
-	$("#go-week-before").click(function () { backOneWeek(); });
-	$("#go-week-after").click(function () { forwardOneWeek(); });
-	$("#go-today").click(function () { setCalendarToToday(); });
+	// $("#go-week-before").click(function () { backOneWeek(); });
+	// $("#go-week-after").click(function () { forwardOneWeek(); });
+	// $("#go-today").click(function () { setCalendarToToday(); });
 
   // configure the create new account form
 
-  $("#new_user").submit(function(event) {
-    // event.preventDefault();
-
-    var nameRegex = /^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+\s[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+$/;
-    var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    var passwordRegex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{6,}$/g;
-
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var password = $("#password").val();
-    var confirmPassword = $("#password_confirmation").val();
-
-    var okToSubmit = true;
-
-    if (!nameRegex.test(name)) {
-
-      $("#name_help").html("Nome inválido. Obrigatório 2 nomes separados por 1 espaço.");
-      $("#name_help").parent(".form-group").addClass("has-error");
-      okToSubmit = false;
-
-    } else {
-      $("#name_help").html("");
-      $("#name_help").parent(".form-group").removeClass("has-error");
-    }
-
-    if (!emailRegex.test(email)) {
-
-      $("#email_help").html("Email inválido.");
-      $("#email_help").parent(".form-group").addClass("has-error");
-      okToSubmit = false;
-
-    } else {
-      $("#email_help").html("");
-      $("#email_help").parent(".form-group").removeClass("has-error");
-    }
-
-    if (!passwordRegex.test(password)) {
-
-      $("#password_help").html("Password inválida. Mínimo de 6 caracteres!");
-      $("#password_help").parent(".form-group").addClass("has-error");
-      okToSubmit = false;
-
-    } else {
-      $("#password_help").html("No mínimo 6 caracteres.");
-      $("#password_help").parent(".form-group").removeClass("has-error");
-    }
-
-    if (password != confirmPassword) {
-
-      okToSubmit = false;
-      $("#confirm_password_help").html("As passwords não são iguais.");
-      $("#confirm_password_help").parent(".form-group").addClass("has-error");
-
-    } else {
-
-      $("#confirm_password_help").html("");
-      $("#confirm_password_help").parent(".form-group").removeClass("has-error");
-    }
-
-    return okToSubmit;
-
-  });
+  // $("#new_user").submit(function(event) {
+  //   // event.preventDefault();
+  //
+  //   var nameRegex = /^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+\s[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+$/;
+  //   var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+  //   var passwordRegex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{6,}$/g;
+  //
+  //   var name = $("#name").val();
+  //   var email = $("#email").val();
+  //   var password = $("#password").val();
+  //   var confirmPassword = $("#password_confirmation").val();
+  //
+  //   var okToSubmit = true;
+  //
+  //   if (!nameRegex.test(name)) {
+  //
+  //     $("#name_help").html("Nome inválido. Obrigatório 2 nomes separados por 1 espaço.");
+  //     $("#name_help").parent(".form-group").addClass("has-error");
+  //     okToSubmit = false;
+  //
+  //   } else {
+  //     $("#name_help").html("");
+  //     $("#name_help").parent(".form-group").removeClass("has-error");
+  //   }
+  //
+  //   if (!emailRegex.test(email)) {
+  //
+  //     $("#email_help").html("Email inválido.");
+  //     $("#email_help").parent(".form-group").addClass("has-error");
+  //     okToSubmit = false;
+  //
+  //   } else {
+  //     $("#email_help").html("");
+  //     $("#email_help").parent(".form-group").removeClass("has-error");
+  //   }
+  //
+  //   if (!passwordRegex.test(password)) {
+  //
+  //     $("#password_help").html("Password inválida. Mínimo de 6 caracteres!");
+  //     $("#password_help").parent(".form-group").addClass("has-error");
+  //     okToSubmit = false;
+  //
+  //   } else {
+  //     $("#password_help").html("No mínimo 6 caracteres.");
+  //     $("#password_help").parent(".form-group").removeClass("has-error");
+  //   }
+  //
+  //   if (password != confirmPassword) {
+  //
+  //     okToSubmit = false;
+  //     $("#confirm_password_help").html("As passwords não são iguais.");
+  //     $("#confirm_password_help").parent(".form-group").addClass("has-error");
+  //
+  //   } else {
+  //
+  //     $("#confirm_password_help").html("");
+  //     $("#confirm_password_help").parent(".form-group").removeClass("has-error");
+  //   }
+  //
+  //   return okToSubmit;
+  //
+  // });
 
 };
 
-function loadTopThree() {
-
-  $.ajax({
-    type: "GET",
-    url: root_url + "/users/top_month",
-    success: function (response) {
-
-      if (response.error_code == 200) {
-
-        var top = response.payload.top;
-        var monthStart = moment(response.payload.month_start);
-        var monthEnd = moment(response.payload.month_end);
-
-        var container = '<div class="card">' +
-
-          '<h1 class="page-header hidden-xs">Top Mensal</h1>' +
-          '<h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Top Mensal</h3>' +
-
-          '<table class="table">' +
-            
-            '<thead>' +
-              '<tr>' +
-                '<th>#</th>' +
-                '<th></th>' +
-                '<th>Nome</th>' +
-                '<th>Treinos</th>' +
-              '</tr>' +
-            '</thead>' +
-
-            '<tbody>';
-              
-              for (var i = 0; i < top.length; i++) {
-                container += '<tr><td>' + (i + 1) + '</td><td><img class="media-object media-object-small" src="' + top[i].user.image + '" alt="..."></td><td>' + top[i].user.name + '</td><td>' + top[i].frequency + '</td></tr>';
-              }
-
-        container += '</tbody>' +
-          '</table>' +
-          '</div>';
-
-        $("#timetable").after($(container));
-
-      }
-    }
-  });
-
-}
+// function loadTopThree() {
+//
+//   $.ajax({
+//     type: "GET",
+//     url: root_url + "/users/top_month",
+//     success: function (response) {
+//
+//       if (response.error_code == 200) {
+//
+//         var top = response.payload.top;
+//         var monthStart = moment(response.payload.month_start);
+//         var monthEnd = moment(response.payload.month_end);
+//
+//         var container = '<div class="card">' +
+//
+//           '<h1 class="page-header hidden-xs">Top Mensal</h1>' +
+//           '<h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Top Mensal</h3>' +
+//
+//           '<table class="table">' +
+//
+//             '<thead>' +
+//               '<tr>' +
+//                 '<th>#</th>' +
+//                 '<th></th>' +
+//                 '<th>Nome</th>' +
+//                 '<th>Treinos</th>' +
+//               '</tr>' +
+//             '</thead>' +
+//
+//             '<tbody>';
+//
+//               for (var i = 0; i < top.length; i++) {
+//                 container += '<tr><td>' + (i + 1) + '</td><td><img class="media-object media-object-small" src="' + top[i].user.image + '" alt="..."></td><td>' + top[i].user.name + '</td><td>' + top[i].frequency + '</td></tr>';
+//               }
+//
+//         container += '</tbody>' +
+//           '</table>' +
+//           '</div>';
+//
+//         $("#timetable").after($(container));
+//
+//       }
+//     }
+//   });
+//
+// }
 
 function getWeekShiftForDay(day) {
   switch (day.day()) {
@@ -208,7 +185,7 @@ function getWeekShiftForToday() {
 
   var today = moment();
   return getWeekShiftForDay(today);
-  
+
 }
 
 function fetchWeekWorkouts() {
@@ -224,40 +201,129 @@ function fetchWeekWorkouts() {
 
         var workouts = response.payload.workouts;
 
-        var dayShifts = getWeekShiftForDay(currentFirstDayOfWeek);
+        console.log(workouts);
 
-        $('.cal-day-hour').each(function () {
+        var classDayTmpl = $.templates("#class-day-template");
+        var classHourTmpl = $.templates("#class-hour-template");
 
-          var day = $(this).parent();
+        $(workouts).each(function() {
 
-          switch ($(day).data('cal-row')) {
-            case '-day1':
-              addWorkoutsToDay(workouts, this, dayShifts[0]);
-            break;
-            case  '-day2':
-              addWorkoutsToDay(workouts, this, dayShifts[1]);
-            break;
-            case '-day3':
-              addWorkoutsToDay(workouts, this, dayShifts[2]);
-            break;
-            case  '-day4':
-              addWorkoutsToDay(workouts, this, dayShifts[3]);
-            break;
-            case '-day5':
-              addWorkoutsToDay(workouts, this, dayShifts[4]);
-            break;
-            case  '-day6':
-              addWorkoutsToDay(workouts, this, dayShifts[5]);
-            break;
+          var workoutDate = moment(this.workout.date, 'YYYY-MM-DDTHH:mm:ss.sss');
+          var $workoutDay = $('[data-class-day="' + workoutDate.format('YYYY-MM-DD') + '"]');
+
+          if ($workoutDay.length == 0) {
+
+            // add the day for this workout
+
+            var html = classDayTmpl.render({
+              workoutDate: workoutDate.format('YYYY-MM-DD'),
+              workoutDay: workoutDate.format('DD'),
+              workoutMonth: workoutDate.format('MM'),
+              workoutWeekDay: getLocaleWeekDay(workoutDate.format('ddd')),
+              workoutsAvailableDescription: "Aulas Disponíveis"
+            });
+
+            $('.class-list').append(html);
+
+            var $day = $('[data-class-day="' + workoutDate.format('YYYY-MM-DD') + '"]');
+
+            $day.click(function() {
+
+              var $classHourList = $($day.next('.class-hour-list')[0]);
+              var numberWorkouts = $classHourList.find('.class-hour-list-item').length;
+
+              if (numberWorkouts > 0) {
+
+                var $glyphicon = $($day.find('.glyphicon')[0]);
+
+                if ($glyphicon.hasClass('glyphicon-chevron-down')) {
+
+                  $glyphicon.removeClass('glyphicon-chevron-down');
+                  $glyphicon.addClass('glyphicon-chevron-up');
+
+                  $classHourList.find('.class-hour-list-item').each(function() {
+                    $(this).removeClass('hidden');
+                  });
+
+                } else {
+
+                  $glyphicon.removeClass('glyphicon-chevron-up');
+                  $glyphicon.addClass('glyphicon-chevron-down');
+
+                  $classHourList.find('.class-hour-list-item').each(function() {
+                    $(this).addClass('hidden');
+                  });
+                }
+
+              }
+
+            });
           }
 
-        });
+          // add this workout to the correct day
 
-        $('.cal-day-hour').each(function () {
+          var $day = $('[data-class-day="' + workoutDate.format('YYYY-MM-DD') + '"]');
+          var $hoursList = $($day.next('.class-hour-list')[0]);
 
-          if($(this).find('.occupancy-rate').length == 0) {
-            $(this).addClass('no-workout');
+          var templateData = {
+            workoutDateHour: workoutDate.format("YYYY-MM-DD HH:mm"),
+            workoutHour: workoutDate.format("HH:mm"),
+            workoutID: this.workout.id
+          };
+
+          //    calculate number of free spots and percentage
+
+          var maxParticipants = parseInt(this.workout.max_participants);
+          var trainings = this.trainings;
+          var freeSpots;
+          var percentage;
+
+          if (trainings >= maxParticipants) {
+            freeSpots = 0;
+            percentage = 100;
+          } else {
+            freeSpots = maxParticipants - trainings;
+            percentage = Math.floor((trainings / maxParticipants) * 100);
           }
+
+          templateData.availableSpots = freeSpots;
+          templateData.completion = percentage;
+          templateData.availabilityClass = getClassForPercentage(percentage);
+
+          if (trainings > 6) {
+            templateData.excessUsers = trainings - 6;
+          }
+
+          //    build array with users thumbnails
+
+          var thumbnails = [];
+          for (var i = 0; i < this.thumbnails.length; i++) {
+
+            if (i > 5) {
+              break;
+            }
+
+            thumbnails.push({src: this.thumbnails[i]});
+          }
+
+          templateData.thumbnails = thumbnails;
+
+          //    see if workout is from today
+
+          var hiddenClass = "hidden";
+
+          var today = moment();
+          if (workoutDate.isSame(today, 'day')) {
+            hiddenClass = "";
+          }
+
+          templateData.hiddenClass = hiddenClass;
+
+          //    fetch html from template for workout
+
+          var html = classHourTmpl.render(templateData);
+          $hoursList.append(html);
+
         });
       }
     }
@@ -312,7 +378,7 @@ function addWorkoutsToDay(workouts, day, daysToAdd) {
         }
 
         $(day).prepend(html);
-      } 
+      }
     }
   } /* /for */
 }
@@ -390,7 +456,7 @@ function addWorkouts() {
 			{
 				date: currentFirstDayOfWeek.clone().add(dayShifts[4], 'd').format().substring(0, 10),
 				workoutHours: []
-			}, 
+			},
 			{
 				date: currentFirstDayOfWeek.clone().add(dayShifts[5], 'd').format().substring(0, 10),
 				workoutHours: []
@@ -473,46 +539,46 @@ function configSidebarCalendar() {
 function setCalendarToToday() {
 
 	currentFirstDayOfWeek = moment();
-	resetWeek();
+	// resetWeek();
 
-  fetchWeekWorkouts();
+  // fetchWeekWorkouts();
 }
 
-function backOneWeek() {
+// function backOneWeek() {
+//
+// 	var firstDayOfWeek = currentFirstDayOfWeek.clone();
+// 	firstDayOfWeek.subtract(1, 'w');
+//
+// 	changeWeek(firstDayOfWeek);
+// }
 
-	var firstDayOfWeek = currentFirstDayOfWeek.clone();
-	firstDayOfWeek.subtract(1, 'w');
+// function forwardOneWeek() {
+//
+// 	var firstDayOfWeek = currentFirstDayOfWeek.clone();
+// 	firstDayOfWeek.add(1, 'w');
+//
+// 	changeWeek(firstDayOfWeek);
+// }
 
-	changeWeek(firstDayOfWeek);
-}
+// function changeWeek(firstDayOfWeek) {
+//
+//   currentFirstDayOfWeek = firstDayOfWeek.clone();
+//
+//   resetWeek();
+//
+//   fetchWeekWorkouts();
+// }
 
-function forwardOneWeek() {
-
-	var firstDayOfWeek = currentFirstDayOfWeek.clone();
-	firstDayOfWeek.add(1, 'w');
-
-	changeWeek(firstDayOfWeek);
-}
-
-function changeWeek(firstDayOfWeek) {
-
-  currentFirstDayOfWeek = firstDayOfWeek.clone();
-
-  resetWeek();
-
-  fetchWeekWorkouts();
-}
-
-function resetWeek() {
-
-  $('.cal-day-hour').each(function () {
-    $(this).find('.occupancy-rate').remove();
-    $(this).find('.hour-completion').remove();
-    $(this).removeClass('no-workout');
-  });
-
-	setWeekStartingAt(currentFirstDayOfWeek);
-}
+// function resetWeek() {
+//
+//   $('.cal-day-hour').each(function () {
+//     $(this).find('.occupancy-rate').remove();
+//     $(this).find('.hour-completion').remove();
+//     $(this).removeClass('no-workout');
+//   });
+//
+// 	setWeekStartingAt(currentFirstDayOfWeek);
+// }
 
 function setWeekStartingAt(firstDay) {
 
@@ -528,7 +594,7 @@ function setWeekStartingAt(firstDay) {
 
 		if (date.day() == 0) {
 			count++;
-			continue; 
+			continue;
 		}
 
 		$(weekDays[numSetDays]).text("" + getLocaleWeekDay(date.format('ddd')));
@@ -549,7 +615,7 @@ function setWeekStartingAt(firstDay) {
 }
 
 function getLocaleWeekDay(weekDay) {
-	var days = {'Mon': 'Seg', 'Tue': 'Ter', 'Wed': 'Qua', 'Thu': 'Qui', 'Fri': 'Sex', 'Sat': 'Sáb', 'Sun': 'Dom'};
+	var days = {'Mon': 'Segunda', 'Tue': 'Terça', 'Wed': 'Quarta', 'Thu': 'Quinta', 'Fri': 'Sexta', 'Sat': 'Sábado', 'Sun': 'Domingo'};
 	return days[weekDay];
 }
 
@@ -594,7 +660,7 @@ function changeGuests(numGuests) {
 }
 
 function updateNumGuests(workoutId) {
-  
+
   var numGuests = $("#numGuests").val();
 
   window.location.href = ("/workouts/" + workoutId + "/state?a=change_guests&g=" + numGuests);
