@@ -28,6 +28,5 @@
   },
   "_source": "git://github.com/kylestetz/CLNDR.git",
   "_target": "~1.2.16",
-  "_originalSource": "clndr",
-  "_direct": true
+  "_originalSource": "clndr"
 }
