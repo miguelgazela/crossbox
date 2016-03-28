@@ -23,7 +23,7 @@
 var local_root_url = "http://localhost:3000";
 var remote_root_url = "http://slcrossbox.herokuapp.com";
 
-var root_url = local_root_url;
+var root_url = remote_root_url;
 
 var currentFirstDayOfWeek = null;
 
