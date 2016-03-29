@@ -314,7 +314,13 @@ function fetchWeekWorkouts() {
 
           var today = moment();
           if (workoutDate.isSame(today, 'day')) {
+
             hiddenClass = "";
+
+            var $glyphicon = $($day.find('.glyphicon')[0]);
+
+            $glyphicon.removeClass('glyphicon-chevron-down');
+            $glyphicon.addClass('glyphicon-chevron-up');
           }
 
           templateData.hiddenClass = hiddenClass;
