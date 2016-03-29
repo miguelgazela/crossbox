@@ -14,6 +14,7 @@ class WorkoutsController < ApplicationController
 	def change_training_state
 
 		action = params[:a]
+		return_home = params[:rh]
 
 		training = Training.find_by(user_id: current_user.id, workout_id: params[:id])
 		workout = Workout.find_by(id: params[:id])
@@ -35,7 +36,11 @@ class WorkoutsController < ApplicationController
 
 			training.save!
 
-			redirect_to "/workouts/" + params[:id]
+			if return_home
+				redirect_to root_path
+			else
+				redirect_to "/workouts/" + params[:id]
+			end
 
 		elsif action == "leave"
 
@@ -78,7 +83,11 @@ class WorkoutsController < ApplicationController
 				training.delete
 			end
 
-			redirect_to "/workouts/" + params[:id]
+			if return_home
+				redirect_to root_path
+			else
+				redirect_to "/workouts/" + params[:id]
+			end
 
 		elsif action == "change_guests"
 

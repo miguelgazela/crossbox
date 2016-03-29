@@ -81,7 +81,7 @@
 <li class="list-group-item class-day" data-class-day="{{:workoutDate}}">
 
   <div class="class-day-column class-day-column-date">
-    <p class="class-day-column-date-today">{{:workoutDay}}</p>
+    <p {{if workoutWeekDay == 'Hoje'}}class="class-day-column-date-today"{{/if}}>{{:workoutDay}}</p>
     <p>{{:workoutMonth}}</p>
   </div>
 
@@ -104,12 +104,12 @@
 <li class="list-group-item class-hour-list-item {{:hiddenClass}}" data-class-hour="{{:workoutDateHour}}">
 
   <div class="class-hour-column">
-    <p class="class-hour-time">{{:workoutHour}}</p>
+    <p class="class-hour-time {{if inWorkout}}class-hour-time-active{{/if}}">{{:workoutHour}}</p>
   </div>
 
   <div class="class-hour-column class-hour-column-info">
 
-    <p class="class-hour-title">WOD</p>
+    <p class="class-hour-title {{if inWorkout}}class-hour-title-active{{/if}}">Treino das {{:workoutHour}}</p>
 
     <div class="class-hour-elements">
       <span>{{:availableSpots}} vagas</span>
@@ -123,7 +123,12 @@
 
     <div class="class-hour-controls">
       <a class="btn btn-sm btn-default" href="/workouts/{{:workoutID}}" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver</a>
-      <!-- <a class="btn btn-sm btn-default" href="#" role="button"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inscrever</a> -->
+
+      {{if !inWorkout}}
+      <button type="button" class="btn btn-sm btn-default" onclick="enterWorkout({{:workoutID}})"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inscrever</a>
+      {{else}}
+      <a class="btn btn-sm btn-default btn-forfeit" href="/workouts/{{:workoutID}}/state?a=leave&rh=1" role="button"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Desistir</a>
+      {{/if}}
 
     </div>
 

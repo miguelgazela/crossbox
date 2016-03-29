@@ -78,6 +78,10 @@ section h2 {
             color: $text-dark-grey;
             font-weight: bold;
             margin-bottom: 0;
+
+            &.class-day-column-date-today {
+              color: $app-red;
+            }
           }
         }
 
@@ -120,6 +124,11 @@ section h2 {
     .class-hour-column {
       display: block;
       float: left;
+
+      .class-hour-time-active {
+        color: $primary-color;
+      }
+
     }
 
     .class-hour-column-info {
@@ -130,6 +139,10 @@ section h2 {
         font-size: 13px;
         font-weight: bold;
         margin-bottom: 3px;
+
+        &.class-hour-title-active {
+          color: $primary-color;
+        }
       }
 
       .class-hour-elements {
@@ -162,6 +175,12 @@ section h2 {
           &:not(:first-child) {
             margin-left: 6px;
           }
+        }
+
+        .btn-forfeit {
+          background-color: $app-red;
+          border-color: $app-red;
+          color: white;
         }
 
       }

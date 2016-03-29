@@ -215,13 +215,20 @@ function fetchWeekWorkouts() {
 
             // add the day for this workout
 
-            var html = classDayTmpl.render({
+            var templateData = {
               workoutDate: workoutDate.format('YYYY-MM-DD'),
               workoutDay: workoutDate.format('DD'),
               workoutMonth: workoutDate.format('MM'),
               workoutWeekDay: getLocaleWeekDay(workoutDate.format('ddd')),
               workoutsAvailableDescription: "Aulas Disponíveis"
-            });
+            }
+
+            var today = moment();
+            if (workoutDate.isSame(today, 'day')) {
+              templateData.workoutWeekDay = "Hoje";
+            }
+
+            var html = classDayTmpl.render(templateData);
 
             $('.class-list').append(html);
 
@@ -268,7 +275,8 @@ function fetchWeekWorkouts() {
           var templateData = {
             workoutDateHour: workoutDate.format("YYYY-MM-DD HH:mm"),
             workoutHour: workoutDate.format("HH:mm"),
-            workoutID: this.workout.id
+            workoutID: this.workout.id,
+            inWorkout: this.in_workout
           };
 
           //    calculate number of free spots and percentage
@@ -675,6 +683,10 @@ function updateNumGuests(workoutId) {
 function enterWorkout(workoutId) {
 
   var numGuests = $("#numGuests").val();
+
+  if (!numGuests) {
+    numGuests = 0;
+  }
 
   window.location.href = ("/workouts/" + workoutId + "/state?a=enter&g=" + numGuests);
 }
