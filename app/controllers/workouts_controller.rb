@@ -1,7 +1,7 @@
 class WorkoutsController < ApplicationController
 
 	before_action :require_user, only: [:show, :week_workouts, :change_training_state]
-	before_action :require_account_management_rights, only: [:new, :create]
+	before_action :require_account_management_rights, only: [:new, :create, :delete_workout]
 	before_action :clear_gon, only: [:show, :week_workouts, :new, :create]
 
 	def show
@@ -140,6 +140,24 @@ class WorkoutsController < ApplicationController
 		}
 
 		render json: response
+
+	end
+
+	def delete_workout
+
+		workout = Workout.find(params[:id])
+
+		if workout
+
+			workout.trainings.each do |training|
+				training.delete
+			end
+
+			workout.delete
+
+		end
+
+		redirect_to root_path
 
 	end
 

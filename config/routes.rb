@@ -20,12 +20,14 @@ Rails.application.routes.draw do
 
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/') # this redirects in case the user denied access for our application
-  
+
 
   resources :workouts, only: [:show, :new, :create]
 
   get 'week_workouts' => 'workouts#week_workouts'
   get 'workouts/:id/state' => 'workouts#change_training_state'
+
+  get 'workouts/:id/delete' => 'workouts#delete_workout'
 
   resources :users
 

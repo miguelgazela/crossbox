@@ -183,33 +183,17 @@
 
       </div> <!-- /col-xs-12 -->
 
-      <!-- <div class="col-xs-12 col-md-4">
+      <% if current_user.role == 'admin' || current_user.role == 'coach' %>
+
+      <div class="col-xs-12">
+
         <div class="card padded-xs-card">
-
-          <h1 class="page-header">Patrocínios</h1>
-
-          <a href="http://www.medilast-sport.com/es/bienvenidos.aspx">
-          <%= image_tag("medilast", class:"img-responsive") %>
-          </a>
-
-          <hr>
-
-          <a href="http://elitetacticalboots.net">
-          <%= image_tag("tactical", class:"img-responsive") %>
-          </a>
-
-          <hr>
-
-          <a href="https://www.facebook.com/Healthy-food-at-home-1014633131891876/">
-          <%= image_tag("footathome", class:"img-responsive") %></a>
-
-          <hr>
-
-          <a href="https://www.facebook.com/littleheavenphotoandscrap">
-          <%= image_tag("littleheaven", class:"img-responsive") %></a>
-
+          <a role="button" class="btn btn-block btn-default" href="/workouts/<%= @workout.id %>/delete">Apagar Aula</a>
         </div>
-      </div> -->
+
+      </div>
+
+      <% end %>
 
     </div>
   </div>

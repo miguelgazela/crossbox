@@ -21,11 +21,21 @@ $text-medium-grey: $ui-dark-grey;
 body {
   background-color: $ui-light-grey;
   padding-top: 50px;
+  padding-bottom: 15px;
 }
 
 .navbar-default {
   background-color: $primary-color;
   color: white;
+
+  .navbar-toggle {
+
+    border-color: white;
+
+    .icon-bar {
+      background-color: white;
+    }
+  }
 }
 
 .navbar-default .navbar-brand {
