@@ -50,68 +50,68 @@ var main = function () {
 
   // configure the create new account form
 
-  // $("#new_user").submit(function(event) {
-  //   // event.preventDefault();
-  //
-  //   var nameRegex = /^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+\s[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+$/;
-  //   var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-  //   var passwordRegex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{6,}$/g;
-  //
-  //   var name = $("#name").val();
-  //   var email = $("#email").val();
-  //   var password = $("#password").val();
-  //   var confirmPassword = $("#password_confirmation").val();
-  //
-  //   var okToSubmit = true;
-  //
-  //   if (!nameRegex.test(name)) {
-  //
-  //     $("#name_help").html("Nome inválido. Obrigatório 2 nomes separados por 1 espaço.");
-  //     $("#name_help").parent(".form-group").addClass("has-error");
-  //     okToSubmit = false;
-  //
-  //   } else {
-  //     $("#name_help").html("");
-  //     $("#name_help").parent(".form-group").removeClass("has-error");
-  //   }
-  //
-  //   if (!emailRegex.test(email)) {
-  //
-  //     $("#email_help").html("Email inválido.");
-  //     $("#email_help").parent(".form-group").addClass("has-error");
-  //     okToSubmit = false;
-  //
-  //   } else {
-  //     $("#email_help").html("");
-  //     $("#email_help").parent(".form-group").removeClass("has-error");
-  //   }
-  //
-  //   if (!passwordRegex.test(password)) {
-  //
-  //     $("#password_help").html("Password inválida. Mínimo de 6 caracteres!");
-  //     $("#password_help").parent(".form-group").addClass("has-error");
-  //     okToSubmit = false;
-  //
-  //   } else {
-  //     $("#password_help").html("No mínimo 6 caracteres.");
-  //     $("#password_help").parent(".form-group").removeClass("has-error");
-  //   }
-  //
-  //   if (password != confirmPassword) {
-  //
-  //     okToSubmit = false;
-  //     $("#confirm_password_help").html("As passwords não são iguais.");
-  //     $("#confirm_password_help").parent(".form-group").addClass("has-error");
-  //
-  //   } else {
-  //
-  //     $("#confirm_password_help").html("");
-  //     $("#confirm_password_help").parent(".form-group").removeClass("has-error");
-  //   }
-  //
-  //   return okToSubmit;
-  //
-  // });
+  $("#new_user").submit(function(event) {
+    // event.preventDefault();
+
+    var nameRegex = /^[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+\s[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]+$/;
+    var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    var passwordRegex = /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{6,}$/g;
+
+    var name = $("#name").val();
+    var email = $("#email").val();
+    var password = $("#password").val();
+    var confirmPassword = $("#password_confirmation").val();
+
+    var okToSubmit = true;
+
+    if (!nameRegex.test(name)) {
+
+      $("#name_help").html("Nome inválido. Obrigatório 2 nomes separados por 1 espaço.");
+      $("#name_help").parent(".form-group").addClass("has-error");
+      okToSubmit = false;
+
+    } else {
+      $("#name_help").html("");
+      $("#name_help").parent(".form-group").removeClass("has-error");
+    }
+
+    if (!emailRegex.test(email)) {
+
+      $("#email_help").html("Email inválido.");
+      $("#email_help").parent(".form-group").addClass("has-error");
+      okToSubmit = false;
+
+    } else {
+      $("#email_help").html("");
+      $("#email_help").parent(".form-group").removeClass("has-error");
+    }
+
+    if (!passwordRegex.test(password)) {
+
+      $("#password_help").html("Password inválida. Mínimo de 6 caracteres!");
+      $("#password_help").parent(".form-group").addClass("has-error");
+      okToSubmit = false;
+
+    } else {
+      $("#password_help").html("No mínimo 6 caracteres.");
+      $("#password_help").parent(".form-group").removeClass("has-error");
+    }
+
+    if (password != confirmPassword) {
+
+      okToSubmit = false;
+      $("#confirm_password_help").html("As passwords não são iguais.");
+      $("#confirm_password_help").parent(".form-group").addClass("has-error");
+
+    } else {
+
+      $("#confirm_password_help").html("");
+      $("#confirm_password_help").parent(".form-group").removeClass("has-error");
+    }
+
+    return okToSubmit;
+
+  });
 
 };
 
@@ -298,6 +298,17 @@ function fetchWeekWorkouts() {
           templateData.completion = percentage;
           templateData.availabilityClass = getClassForPercentage(percentage);
 
+          // calculate new number of available workouts for the day
+
+          if (freeSpots > 0) {
+
+            var numberAvailableWorkouts = parseInt($day.attr('data-workouts-available'));
+            $day.attr('data-workouts-available', numberAvailableWorkouts + 1);
+
+            var $workoutsDescription = $($day.find(".class-day-workouts-description")[0]);
+            $workoutsDescription.html("" + (numberAvailableWorkouts + 1) + " aulas disponíveis");
+          }
+
           if (trainings > 6) {
             templateData.excessUsers = trainings - 6;
           }
@@ -332,6 +343,8 @@ function fetchWeekWorkouts() {
           }
 
           templateData.hiddenClass = hiddenClass;
+
+          // calculate new number of available workouts for the day
 
           //    fetch html from template for workout
 

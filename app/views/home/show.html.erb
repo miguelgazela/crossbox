@@ -11,7 +11,7 @@
 
 <script id="class-day-template" type="text/x-jsrender">
 
-<li class="list-group-item class-day" data-class-day="{{:workoutDate}}">
+<li class="list-group-item class-day" data-class-day="{{:workoutDate}}" data-workouts-available="0">
 
   <div class="class-day-column class-day-column-date">
     <p {{if workoutWeekDay == 'Hoje'}}class="class-day-column-date-today"{{/if}}>{{:workoutDay}}</p>
@@ -20,7 +20,7 @@
 
   <div class="class-day-column class-day-column-description">
     <p>{{:workoutWeekDay}}</p>
-    <p>{{:workoutsAvailableDescription}}</p>
+    <p class="class-day-workouts-description">{{:workoutsAvailableDescription}}</p>
   </div>
 
   <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
