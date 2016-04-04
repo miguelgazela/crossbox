@@ -23,11 +23,19 @@
 var local_root_url = "http://localhost:3000";
 var remote_root_url = "http://slcrossbox.herokuapp.com";
 
-var root_url = remote_root_url;
+var root_url;
 
 var currentFirstDayOfWeek = null;
 
 var main = function () {
+
+  var railsEnv = $('body').data('env');
+
+  if (railsEnv == "development") {
+    root_url = local_root_url;
+  } else {
+    root_url = remote_root_url;
+  }
 
   if(window.location.href.indexOf("workouts/new?") > -1) {
     configAddWorkoutsPage()
