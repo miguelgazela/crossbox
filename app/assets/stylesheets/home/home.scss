@@ -53,9 +53,6 @@ section h2 {
 
 .list-group {
   margin-bottom: 0;
-}
-
-.class-list {
 
   .list-group-item {
 
@@ -63,6 +60,13 @@ section h2 {
     &:last-child {
       border-radius: 0;
     }
+
+  }
+}
+
+.class-list {
+
+  .list-group-item {
 
     &.class-day {
       padding-top: 11px;
@@ -75,6 +79,12 @@ section h2 {
         display: block;
         float: left;
         height: 36px;
+
+        .btn-forfeit {
+          background-color: $app-red;
+          border-color: $app-red;
+          color: white;
+        }
 
         &.class-day-column-date {
           text-align: center;
@@ -112,7 +122,7 @@ section h2 {
         }
       }
 
-      .glyphicon {
+      .glyphicon.expander {
         position: absolute;
         right: 15px;
         top: 50%;
@@ -206,157 +216,158 @@ section h2 {
     &:last-child {
       border-bottom: 0;
     }
-
-    .class-hour-graphical-availability {
-      width: 20px;
-      height: 20px;
-      background-color: #d8d8d8;
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      text-align: center;
-      font-size: 11px;
-      line-height: 13px;
-      color: white;
-      border-radius: 2px;
-      padding-top: 3px;
-
-      &::after {
-        content: "";
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        border-radius: 2px;
-      }
-
-      &[data-completion='0']::after {height: 0%;}
-      &[data-completion='1']::after {height: 1%;}
-      &[data-completion='2']::after {height: 2%;}
-      &[data-completion='3']::after {height: 3%;}
-      &[data-completion='4']::after {height: 4%;}
-      &[data-completion='5']::after {height: 5%;}
-      &[data-completion='6']::after {height: 6%;}
-      &[data-completion='7']::after {height: 7%;}
-      &[data-completion='8']::after {height: 8%;}
-      &[data-completion='9']::after {height: 9%;}
-      &[data-completion='10']::after {height: 10%;}
-      &[data-completion='11']::after {height: 11%;}
-      &[data-completion='12']::after {height: 12%;}
-      &[data-completion='13']::after {height: 13%;}
-      &[data-completion='14']::after {height: 14%;}
-      &[data-completion='15']::after {height: 15%;}
-      &[data-completion='16']::after {height: 16%;}
-      &[data-completion='17']::after {height: 17%;}
-      &[data-completion='18']::after {height: 18%;}
-      &[data-completion='19']::after {height: 19%;}
-      &[data-completion='20']::after {height: 20%;}
-      &[data-completion='21']::after {height: 21%;}
-      &[data-completion='22']::after {height: 22%;}
-      &[data-completion='23']::after {height: 23%;}
-      &[data-completion='24']::after {height: 24%;}
-      &[data-completion='25']::after {height: 25%;}
-      &[data-completion='26']::after {height: 26%;}
-      &[data-completion='27']::after {height: 27%;}
-      &[data-completion='28']::after {height: 28%;}
-      &[data-completion='29']::after {height: 29%;}
-      &[data-completion='30']::after {height: 30%;}
-      &[data-completion='31']::after {height: 31%;}
-      &[data-completion='32']::after {height: 32%;}
-      &[data-completion='33']::after {height: 33%;}
-      &[data-completion='34']::after {height: 34%;}
-      &[data-completion='35']::after {height: 35%;}
-      &[data-completion='36']::after {height: 36%;}
-      &[data-completion='37']::after {height: 37%;}
-      &[data-completion='38']::after {height: 38%;}
-      &[data-completion='39']::after {height: 39%;}
-      &[data-completion='40']::after {height: 40%;}
-      &[data-completion='41']::after {height: 41%;}
-      &[data-completion='42']::after {height: 42%;}
-      &[data-completion='43']::after {height: 43%;}
-      &[data-completion='44']::after {height: 44%;}
-      &[data-completion='45']::after {height: 45%;}
-      &[data-completion='46']::after {height: 46%;}
-      &[data-completion='47']::after {height: 47%;}
-      &[data-completion='48']::after {height: 48%;}
-      &[data-completion='49']::after {height: 49%;}
-      &[data-completion='50']::after {height: 50%;}
-      &[data-completion='51']::after {height: 51%;}
-      &[data-completion='52']::after {height: 52%;}
-      &[data-completion='53']::after {height: 53%;}
-      &[data-completion='54']::after {height: 54%;}
-      &[data-completion='55']::after {height: 55%;}
-      &[data-completion='56']::after {height: 56%;}
-      &[data-completion='57']::after {height: 57%;}
-      &[data-completion='58']::after {height: 58%;}
-      &[data-completion='59']::after {height: 59%;}
-      &[data-completion='60']::after {height: 60%;}
-      &[data-completion='61']::after {height: 61%;}
-      &[data-completion='62']::after {height: 62%;}
-      &[data-completion='63']::after {height: 63%;}
-      &[data-completion='64']::after {height: 64%;}
-      &[data-completion='65']::after {height: 65%;}
-      &[data-completion='66']::after {height: 66%;}
-      &[data-completion='67']::after {height: 67%;}
-      &[data-completion='68']::after {height: 68%;}
-      &[data-completion='69']::after {height: 69%;}
-      &[data-completion='70']::after {height: 70%;}
-      &[data-completion='71']::after {height: 71%;}
-      &[data-completion='72']::after {height: 72%;}
-      &[data-completion='73']::after {height: 73%;}
-      &[data-completion='74']::after {height: 74%;}
-      &[data-completion='75']::after {height: 75%;}
-      &[data-completion='76']::after {height: 76%;}
-      &[data-completion='77']::after {height: 77%;}
-      &[data-completion='78']::after {height: 78%;}
-      &[data-completion='79']::after {height: 79%;}
-      &[data-completion='80']::after {height: 80%;}
-      &[data-completion='81']::after {height: 81%;}
-      &[data-completion='82']::after {height: 82%;}
-      &[data-completion='83']::after {height: 83%;}
-      &[data-completion='84']::after {height: 84%;}
-      &[data-completion='85']::after {height: 85%;}
-      &[data-completion='86']::after {height: 86%;}
-      &[data-completion='87']::after {height: 87%;}
-      &[data-completion='88']::after {height: 88%;}
-      &[data-completion='89']::after {height: 89%;}
-      &[data-completion='90']::after {height: 90%;}
-      &[data-completion='91']::after {height: 91%;}
-      &[data-completion='92']::after {height: 92%;}
-      &[data-completion='93']::after {height: 93%;}
-      &[data-completion='94']::after {height: 94%;}
-      &[data-completion='95']::after {height: 95%;}
-      &[data-completion='96']::after {height: 96%;}
-      &[data-completion='97']::after {height: 97%;}
-      &[data-completion='98']::after {height: 98%;}
-      &[data-completion='99']::after {height: 99%;}
-      &[data-completion='100']::after {height: 100%;}
-
-      &.available {
-        &::after {
-          background-color: $app-green;
-        }
-      }
-
-      &.full {
-        &::after {
-          background-color: $app-red;
-        }
-      }
-
-      &.almost-full {
-        &::after {
-          background-color: $app-yellow;
-        }
-      }
-
-      div {
-        position: relative;
-        z-index: 2;
-      }
-    }
   }
 }
+
+.class-hour-graphical-availability {
+  width: 20px;
+  height: 20px;
+  background-color: #d8d8d8;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 13px;
+  color: white;
+  border-radius: 2px;
+  padding-top: 3px;
+
+  &::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 2px;
+  }
+
+  &[data-completion='0']::after {height: 0%;}
+  &[data-completion='1']::after {height: 1%;}
+  &[data-completion='2']::after {height: 2%;}
+  &[data-completion='3']::after {height: 3%;}
+  &[data-completion='4']::after {height: 4%;}
+  &[data-completion='5']::after {height: 5%;}
+  &[data-completion='6']::after {height: 6%;}
+  &[data-completion='7']::after {height: 7%;}
+  &[data-completion='8']::after {height: 8%;}
+  &[data-completion='9']::after {height: 9%;}
+  &[data-completion='10']::after {height: 10%;}
+  &[data-completion='11']::after {height: 11%;}
+  &[data-completion='12']::after {height: 12%;}
+  &[data-completion='13']::after {height: 13%;}
+  &[data-completion='14']::after {height: 14%;}
+  &[data-completion='15']::after {height: 15%;}
+  &[data-completion='16']::after {height: 16%;}
+  &[data-completion='17']::after {height: 17%;}
+  &[data-completion='18']::after {height: 18%;}
+  &[data-completion='19']::after {height: 19%;}
+  &[data-completion='20']::after {height: 20%;}
+  &[data-completion='21']::after {height: 21%;}
+  &[data-completion='22']::after {height: 22%;}
+  &[data-completion='23']::after {height: 23%;}
+  &[data-completion='24']::after {height: 24%;}
+  &[data-completion='25']::after {height: 25%;}
+  &[data-completion='26']::after {height: 26%;}
+  &[data-completion='27']::after {height: 27%;}
+  &[data-completion='28']::after {height: 28%;}
+  &[data-completion='29']::after {height: 29%;}
+  &[data-completion='30']::after {height: 30%;}
+  &[data-completion='31']::after {height: 31%;}
+  &[data-completion='32']::after {height: 32%;}
+  &[data-completion='33']::after {height: 33%;}
+  &[data-completion='34']::after {height: 34%;}
+  &[data-completion='35']::after {height: 35%;}
+  &[data-completion='36']::after {height: 36%;}
+  &[data-completion='37']::after {height: 37%;}
+  &[data-completion='38']::after {height: 38%;}
+  &[data-completion='39']::after {height: 39%;}
+  &[data-completion='40']::after {height: 40%;}
+  &[data-completion='41']::after {height: 41%;}
+  &[data-completion='42']::after {height: 42%;}
+  &[data-completion='43']::after {height: 43%;}
+  &[data-completion='44']::after {height: 44%;}
+  &[data-completion='45']::after {height: 45%;}
+  &[data-completion='46']::after {height: 46%;}
+  &[data-completion='47']::after {height: 47%;}
+  &[data-completion='48']::after {height: 48%;}
+  &[data-completion='49']::after {height: 49%;}
+  &[data-completion='50']::after {height: 50%;}
+  &[data-completion='51']::after {height: 51%;}
+  &[data-completion='52']::after {height: 52%;}
+  &[data-completion='53']::after {height: 53%;}
+  &[data-completion='54']::after {height: 54%;}
+  &[data-completion='55']::after {height: 55%;}
+  &[data-completion='56']::after {height: 56%;}
+  &[data-completion='57']::after {height: 57%;}
+  &[data-completion='58']::after {height: 58%;}
+  &[data-completion='59']::after {height: 59%;}
+  &[data-completion='60']::after {height: 60%;}
+  &[data-completion='61']::after {height: 61%;}
+  &[data-completion='62']::after {height: 62%;}
+  &[data-completion='63']::after {height: 63%;}
+  &[data-completion='64']::after {height: 64%;}
+  &[data-completion='65']::after {height: 65%;}
+  &[data-completion='66']::after {height: 66%;}
+  &[data-completion='67']::after {height: 67%;}
+  &[data-completion='68']::after {height: 68%;}
+  &[data-completion='69']::after {height: 69%;}
+  &[data-completion='70']::after {height: 70%;}
+  &[data-completion='71']::after {height: 71%;}
+  &[data-completion='72']::after {height: 72%;}
+  &[data-completion='73']::after {height: 73%;}
+  &[data-completion='74']::after {height: 74%;}
+  &[data-completion='75']::after {height: 75%;}
+  &[data-completion='76']::after {height: 76%;}
+  &[data-completion='77']::after {height: 77%;}
+  &[data-completion='78']::after {height: 78%;}
+  &[data-completion='79']::after {height: 79%;}
+  &[data-completion='80']::after {height: 80%;}
+  &[data-completion='81']::after {height: 81%;}
+  &[data-completion='82']::after {height: 82%;}
+  &[data-completion='83']::after {height: 83%;}
+  &[data-completion='84']::after {height: 84%;}
+  &[data-completion='85']::after {height: 85%;}
+  &[data-completion='86']::after {height: 86%;}
+  &[data-completion='87']::after {height: 87%;}
+  &[data-completion='88']::after {height: 88%;}
+  &[data-completion='89']::after {height: 89%;}
+  &[data-completion='90']::after {height: 90%;}
+  &[data-completion='91']::after {height: 91%;}
+  &[data-completion='92']::after {height: 92%;}
+  &[data-completion='93']::after {height: 93%;}
+  &[data-completion='94']::after {height: 94%;}
+  &[data-completion='95']::after {height: 95%;}
+  &[data-completion='96']::after {height: 96%;}
+  &[data-completion='97']::after {height: 97%;}
+  &[data-completion='98']::after {height: 98%;}
+  &[data-completion='99']::after {height: 99%;}
+  &[data-completion='100']::after {height: 100%;}
+
+  &.available {
+    &::after {
+      background-color: $app-green;
+    }
+  }
+
+  &.full {
+    &::after {
+      background-color: $app-red;
+    }
+  }
+
+  &.almost-full {
+    &::after {
+      background-color: $app-yellow;
+    }
+  }
+
+  div {
+    position: relative;
+    z-index: 2;
+  }
+}
+
 
 .media-object-small {
   width: 24px;

@@ -1,6 +1,142 @@
 <%= render "./navbar" %>
 
-<div class="container">
+<section>
+
+  <h2>INFO</h2>
+
+  <ul class="list-group class-list">
+
+    <li class="list-group-item class-day workout-show-header" data-class-day="" data-workouts-available="0">
+
+      <div class="class-day-column class-day-column-date">
+        <p class="class-day-column-date-today"><%= @workout.date.strftime("%d") %></p>
+        <p><%= @workout.date.strftime("%m") %></p>
+      </div>
+
+      <div class="class-day-column class-day-column-description">
+
+        <p>Treino das <%= @workout.date.strftime("%H:%M") %></p>
+        <p class="class-day-workouts-description">
+
+          <% if @workout.trainings.length >= Integer(@workout.max_participants) %>
+          Sem vagas, apenas lista de espera.
+          <% else %>
+
+            <% if Integer(@workout.max_participants) - @workout.trainings.length == 1 %>
+              <%= Integer(@workout.max_participants) - @workout.trainings.length %> vaga
+            <% else %>
+              <%= Integer(@workout.max_participants) - @workout.trainings.length %> vagas
+            <% end %>
+
+          <% end %>
+        </p>
+
+        <div>
+
+          <% if @in_workout %>
+
+          <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-sm btn-default btn-forfeit"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Desistir</a>
+
+          <% else %>
+
+          <button type="button" class="btn btn-sm btn-default" onclick="enterWorkout(<%= @workout.id %>)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inscrever</button>
+
+          <% end %>
+
+          <!-- <a class="btn btn-sm btn-default" href="" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver</a>
+          <button type="button" class="btn btn-sm btn-default"> Inscrever</a> -->
+          <!-- <a class="btn btn-sm btn-default btn-forfeit" href="/workouts/{{:workoutID}}/state?a=leave&rh=1" role="button"> Desistir</a> -->
+
+        </div>
+
+      </div>
+
+
+
+      <div class="class-hour-graphical-availability" data-completion="30">
+        <div><%= Integer(@workout.max_participants) - @workout.trainings.length %></div>
+      </div>
+
+
+    </li>
+
+  </ul>
+
+</section>
+
+<section>
+
+  <h2>INSCRITOS (<%= @workout.trainings.length %>)</h2>
+
+  <ul class="list-group">
+
+    <% if @workout.trainings.length == 0 %>
+
+    <li class="list-group-item workout-show-hour">
+      Ainda não há inscritos. Sê o primeiro!
+    </li>
+
+    <% else %>
+
+      <% @workout.trainings.order(:id)[0,Integer(@workout.max_participants)].each_with_index do |training, index| %>
+
+      <li class="list-group-item workout-show-hour">
+        <div class="list-group-item-column workout-show-hour-index"><%= index + 1 %></div>
+        <div class="list-group-item-column workout-show-hour-description">
+          <img src="<%= training.user.image %>" alt="" class="img-circle" width="26px" height="26px"/>
+          <span class="workout-show-username"><%= training.user.name %></span>
+
+          <% if @in_workout.guests > 0 %>
+          <span class="label label-primary">+<%= @in_workout.guests %></span>
+          <% end %>
+
+          <!-- <span class="training-time"><%= distance_of_time_in_words(Time.now, @workout.date, false, :locale => :en) %></span> -->
+
+        </div>
+      </li>
+
+      <% end %>
+
+    <% end %>
+
+  </ul>
+
+</section>
+
+<% if @workout.trainings.length > Integer(@workout.max_participants) %>
+
+<section>
+
+  <h2>FILA DE ESPERA (<%= @workout.trainings.length - Integer(@workout.max_participants) %>)</h2>
+
+  <ul class="list-group">
+
+  <% @workout.trainings.order(:id)[Integer(@workout.max_participants), 100].each_with_index do |training, index| %>
+
+  <li class="list-group-item workout-show-hour">
+    <div class="list-group-item-column workout-show-hour-index"><%= index + 1 %></div>
+    <div class="list-group-item-column workout-show-hour-description">
+      <img src="<%= training.user.image %>" alt="" class="img-circle" width="26px" height="26px"/>
+      <span class="workout-show-username"><%= training.user.name %></span>
+
+      <% if @in_workout.guests > 0 %>
+      <span class="label label-primary">+<%= @in_workout.guests %></span>
+      <% end %>
+
+      <!-- <span class="training-time"><%= distance_of_time_in_words(Time.now, @workout.date, false, :locale => :en) %></span> -->
+
+    </div>
+  </li>
+
+  <% end %>
+
+  </ul>
+
+</section>
+
+<% end %>
+
+<!-- <div class="container">
 
   <div class="row">
 
@@ -179,9 +315,9 @@
 
           </div>
 
-        </div> <!-- /card -->
+        </div>
 
-      </div> <!-- /col-xs-12 -->
+      </div>
 
       <% if current_user.role == 'admin' || current_user.role == 'coach' %>
 
@@ -196,4 +332,4 @@
       <% end %>
 
     </div>
-  </div>
+  </div> -->

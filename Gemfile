@@ -36,6 +36,7 @@ gem 'jquery-turbolinks'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'figaro'
+gem 'dotiw'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -63,4 +64,3 @@ group :production do
 end
 
 ruby "2.2.3"
-

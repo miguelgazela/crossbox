@@ -238,7 +238,7 @@ function fetchWeekWorkouts() {
 
             var html = classDayTmpl.render(templateData);
 
-            $('.class-list').append(html);
+            $('#home-list-days').append(html);
 
             var $day = $('[data-class-day="' + workoutDate.format('YYYY-MM-DD') + '"]');
 
