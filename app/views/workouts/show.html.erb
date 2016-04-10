@@ -6,7 +6,7 @@
 
   <ul class="list-group class-list">
 
-    <li class="list-group-item class-day workout-show-header" data-class-day="" data-workouts-available="0">
+    <li class="list-group-item class-day workout-show-header">
 
       <div class="class-day-column class-day-column-date">
         <p class="class-day-column-date-today"><%= @workout.date.strftime("%d") %></p>
@@ -51,9 +51,7 @@
 
       </div>
 
-
-
-      <div class="class-hour-graphical-availability" data-completion="30">
+      <div class="class-hour-graphical-availability <% if @percentage <= 50 %>available<% elsif @percentage < 99 %>almost-full<% else %>full<% end %>" data-completion="<%= @percentage %>">
         <div><%= Integer(@workout.max_participants) - @workout.trainings.length %></div>
       </div>
 
