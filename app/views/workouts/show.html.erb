@@ -60,9 +60,11 @@
 
     </li>
 
+    <% if current_user.role == 'admin' || current_user.role == 'coach' %>
     <li class="list-group-item">
       <a role="button" class="btn btn-block btn-danger" href="/workouts/<%= @workout.id %>/delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Apagar Aula</a>
     </li>
+    <% end %>
 
   </ul>
 
