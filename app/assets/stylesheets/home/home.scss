@@ -17,11 +17,16 @@ $ui-dark-grey: #909090;
 $text-dark-grey: #787878;
 $text-medium-grey: $ui-dark-grey;
 
+html {
+  position: relative;
+  min-height: 100%;
+}
 
 body {
+  position: relative;
   background-color: $ui-light-grey;
   padding-top: 50px;
-  padding-bottom: 15px;
+  margin-bottom: 50px;
 }
 
 .navbar-default {
@@ -40,6 +45,45 @@ body {
 
 .navbar-default .navbar-brand {
   color: white;
+}
+
+.navfooter {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #F9F9F9;
+  border-top: 1px solid #ddd;
+}
+
+.navfooter-nav {
+
+  list-style: none;
+  height: 50px;
+  margin: 0px;
+  padding: 0px;
+
+  li {
+    display: inline-block;
+    width: 25%;
+    float: left;
+    text-align: center;
+    color: #909090;
+    padding-top: 8px;
+
+    .glyphicon {
+      display: block;
+      font-size: 16px;
+    }
+
+    .navfooter-item {
+      font-size: 12px;
+
+    }
+
+  }
+
 }
 
 section h2 {
