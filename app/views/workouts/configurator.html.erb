@@ -1,0 +1,130 @@
+<%= render "./navbar" %>
+
+<section>
+
+  <h2>ADICIONAR AULAS</h2>
+
+  <ul class="list-group">
+
+    <li class="list-group-item">
+
+      <p>Dias da Semana</p>
+
+      <div id="btn-group-days" class="btn-group" data-toggle="buttons">
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>Seg</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>Ter</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>Qua</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>Qui</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>Sex</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>Sáb</span>
+        </label>
+      </div>
+
+      <!-- <p class="help-block">É preciso escolher pelo menos um dia!</p> -->
+
+    </li>
+
+    <li class="list-group-item">
+
+      <p>Horas</p>
+
+      <div class="btn-group btn-group-hours" style="margin-bottom: 5px;" data-toggle="buttons">
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>09:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>10:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>11:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>12:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>12:45</span>
+        </label>
+      </div>
+
+      <div class="btn-group btn-group-hours" style="margin-bottom: 5px;" data-toggle="buttons">
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>13:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>14:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>15:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>16:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>17:00</span>
+        </label>
+      </div>
+
+      <div class="btn-group btn-group-hours" data-toggle="buttons">
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>18:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>19:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>20:00</span>
+        </label>
+        <label class="btn btn-primary">
+          <input type="checkbox" autocomplete="off"><span>21:00</span>
+        </label>
+
+      </div>
+
+      <p class="help-block">É preciso escolher pelo menos uma hora!</p>
+
+    </li>
+
+    <li class="list-group-item">
+
+      <p>Período</p>
+
+      <div id="datepicker-container">
+
+        <div class="input-daterange input-group" id="datepicker">
+            <input type="text" class="input-sm form-control" name="start" />
+            <span class="input-group-addon">até</span>
+            <input type="text" class="input-sm form-control" name="end" />
+        </div>
+
+      </div>
+
+      <p class="help-block">É preciso escolher pelo menos uma data!</p>
+
+    </li>
+
+    <li class="list-group-item">
+      <button type="button" class="btn btn-block btn-success" onclick="createWorkouts()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Criar Aulas</button>
+    </li>
+
+    <li class="list-group-item">
+      <a href="/" class="btn btn-block btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Cancelar</a>
+    </li>
+
+
+
+  </ul>
+
+</section>
+
+<%= render "./navfooter" %>

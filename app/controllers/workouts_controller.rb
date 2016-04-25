@@ -114,7 +114,7 @@ class WorkoutsController < ApplicationController
 
 		result = Array.new
 
-		workouts = Workout.where(date: start_date..end_date)
+		workouts = Workout.where(date: start_date..end_date).order(:date)
 		workouts.each do |workout|
 
 			trainings_count = workout.trainings.length
@@ -212,6 +212,44 @@ class WorkoutsController < ApplicationController
 				counter: counter,
 				start_day: start_day,
 				end_day: end_day
+			}
+		}
+
+		render json: response
+
+	end
+
+	def configurator
+
+	end
+
+	def configurator_create
+
+		workoutDates = params[:dates]
+
+		workoutDates.each do |workout|
+
+			workout_date = DateTime.parse(workout[1]['date'] + " " + workout[1]['hour'])
+			print workout_date
+
+			workouts = Workout.where(:date => workout_date)
+
+			if workouts.length == 0
+
+				workout = Workout.new
+
+				workout.date = workout_date
+				workout.max_participants = 13
+				workout.save!
+
+			end
+
+		end
+
+		response = {
+			error_code: 200,
+			payload: {
+
 			}
 		}
 

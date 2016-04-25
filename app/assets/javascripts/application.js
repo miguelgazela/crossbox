@@ -19,6 +19,7 @@
 //= require clndr/src/clndr
 //= require jsrender/jsrender
 //= require bootstrap
+//= require bootstrap-datepicker
 
 var local_root_url = "http://localhost:3000";
 var remote_root_url = "http://slcrossbox.herokuapp.com";
@@ -55,6 +56,18 @@ var main = function () {
 	// $("#go-week-before").click(function () { backOneWeek(); });
 	// $("#go-week-after").click(function () { forwardOneWeek(); });
 	// $("#go-today").click(function () { setCalendarToToday(); });
+
+  // setup the configuration page
+
+  $('#datepicker-container .input-daterange').datepicker({
+    format: 'dd/mm/yyyy',
+    todayBtn: "linked",
+    language: "pt",
+    daysOfWeekDisabled: "0",
+    todayHighlight: true,
+    startDate: "today"
+  });
+
 
   // configure the create new account form
 
@@ -365,6 +378,104 @@ function fetchWeekWorkouts() {
   });
 }
 
+function createWorkouts() {
+
+  var pickedDays = [];
+  var pickedHours = [];
+  var workoutDates = [];
+
+  var dayMappingToMomentsWeekDay = {'Seg': 1, 'Ter': 2, 'Qua': 3, 'Qui': 4, 'Sex': 5, 'Sáb': 6, 'Dom': 0};
+
+  // check if there's any date selected
+
+  var $start = $('#datepicker input[name="start"]');
+  var $end = $('#datepicker input[name="end"]');
+
+  var startDate = moment($start.datepicker("getDate"));
+  var endDate = moment($end.datepicker("getDate"));
+
+  if (!startDate.isValid() && !endDate.isValid()) {
+
+    console.log("NEEDS AT LEAST ONE DATE!");
+
+    // TODO: add code to warn user here!
+
+    return;
+  }
+
+  // check the hours for the workouts
+
+  $('.btn-group-hours').find('label.active').each(function() {
+
+    var $hour = $($(this).find('span'));
+    pickedHours.push($hour.html());
+  });
+
+  if (pickedHours.length == 0) {
+    console.log("NEEDS AT LEAST ONE HOUR!");
+  }
+
+  var currentDate = startDate.clone();
+
+  if (currentDate.isSame(endDate, 'day')) {
+
+    console.log("Only one day! Doesn't need week days to be selected");
+
+    _.each(pickedHours, function(hour) {
+      workoutDates.push({date: currentDate.format('YYYY-MM-DD'), hour:hour});
+    });
+
+  } else {
+
+    // needs to figure out which days of the week it must add the workouts
+
+    $('#btn-group-days').find('label.active').each(function() {
+
+      var $day = $($(this).find('span'));
+      pickedDays.push(dayMappingToMomentsWeekDay[$day.html()]);
+    });
+
+    if (pickedDays.length == 0) {
+      console.log("NEEDS AT LEAST ONE DAY!");
+      return;
+    }
+
+    console.log(pickedDays);
+
+    do {
+
+      console.log(currentDate);
+
+      if (_.contains(pickedDays, currentDate.day())) {
+
+        _.each(pickedHours, function(hour) {
+          workoutDates.push({date: currentDate.format('YYYY-MM-DD'), hour:hour});
+        });
+      }
+
+      currentDate.add(1, 'd');
+
+    } while (!currentDate.isSame(endDate, 'day'));
+
+  }
+
+  $.ajax({
+	  type: "POST",
+	  url: root_url + "/workouts_configurator",
+	  data: {dates: workoutDates},
+	  success: function (response) {
+
+      if (response.error_code == 200) {
+        window.location.href = ('/');
+      }
+
+	  }
+	});
+}
+
+
+
+
 function addWorkoutsToDay(workouts, day, daysToAdd) {
 
   for (var i = 0; i < workouts.length; i++) {
@@ -416,51 +527,6 @@ function addWorkoutsToDay(workouts, day, daysToAdd) {
       }
     }
   } /* /for */
-}
-
-function configAddWorkoutsPage() {
-
-	var startDay = moment(gon.start_day.split(' ')[0]);
-	var endDay = moment(gon.end_day.split(' ')[0]);
-
-	if (startDay.day() == 0) {
-		startDay.add(1, 'd');
-	}
-
-	currentFirstDayOfWeek = startDay;
-
-	resetWeek();
-
-  // change the hours that are displayed for the saturdays
-
-  var counter = 0;
-  while (true) {
-
-    var newDay = currentFirstDayOfWeek.clone().add(counter, 'd');
-
-    if (newDay.day() == 6) { // saturday
-      break;
-    }
-
-    counter++;
-  }
-
-  $('.cal-cell').each(function () {
-
-    var shouldMatch = "-day" + (counter + 1);
-
-    if ($(this).data('cal-row') == shouldMatch) {
-
-      var hour = $(this).children('.cal-day-hour').children('span').text();
-
-      if (hour == "09:00") {
-        $(this).children('.cal-day-hour').prepend('<div class="col-xs-8 col-md-6"><input type="text" class="form-control" placeholder="Vagas" value="13"></div>');
-      } else if (hour == "10:00" || hour == "20:00" || hour == "21:00" || hour == "19:00") {
-        $(this).children('.cal-day-hour').children('div').remove();
-      }
-    }
-  })
-
 }
 
 function addWorkouts() {

@@ -23,6 +23,7 @@
     "moment": "~2.10.6",
     "font-awesome": "fontawesome#~4.4.0",
     "jsrender": "^0.9.74",
-    "jquery": "^2.2.2"
+    "jquery": "^2.2.2",
+    "bootstrap-datepicker": "^1.6.0"
   }
 }
