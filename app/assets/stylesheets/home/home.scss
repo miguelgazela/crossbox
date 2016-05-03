@@ -64,13 +64,16 @@ body {
   margin: 0px;
   padding: 0px;
 
-  li {
+  a {
     display: inline-block;
     width: 25%;
     float: left;
     text-align: center;
     color: #909090;
     padding-top: 8px;
+    position: relative;
+    text-decoration: none;
+    height: 50px;
 
     .glyphicon {
       display: block;
@@ -81,9 +84,7 @@ body {
       font-size: 12px;
 
     }
-
   }
-
 }
 
 section h2 {

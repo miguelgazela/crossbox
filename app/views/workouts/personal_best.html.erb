@@ -1,0 +1,73 @@
+<%= render "./navbar" %>
+
+<section>
+
+  <h2>RECORDES PESSOAIS</h2>
+
+  <ul class="list-group personal-best-list">
+
+    <li class="list-group-item">
+
+      <div class="list-group-item-column">
+        <%= fa_icon "facebook-official" %>
+      </div>
+
+      <div class="list-group-item-column">
+        Exercícios de Força
+      </div>
+
+      <span class="glyphicon glyphicon-chevron-down expander" aria-hidden="true"></span>
+
+    </li>
+
+    <ul class="list-group">
+
+      <li class="list-group-item">
+        <div class="list-group-item-column">
+          Front Squat
+        </div>
+      </li>
+
+      <li class="list-group-item">
+        Back Squat
+      </li>
+
+      <li class="list-group-item">
+        Overhead Squat
+      </li>
+
+    </ul>
+
+    <li class="list-group-item">
+
+      <div>
+        <%= fa_icon "facebook-official" %>
+      </div>
+
+      <div>
+        WODs
+      </div>
+
+      <span class="glyphicon glyphicon-chevron-down expander" aria-hidden="true"></span>
+
+    </li>
+
+    <li class="list-group-item">
+
+      <div>
+        <%= fa_icon "facebook-official" %>
+      </div>
+
+      <div>
+        Repetições
+      </div>
+
+      <span class="glyphicon glyphicon-chevron-down expander" aria-hidden="true"></span>
+
+    </li>
+
+  </ul>
+
+</section>
+
+<%= render "./navfooter" %>

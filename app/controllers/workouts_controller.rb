@@ -257,4 +257,8 @@ class WorkoutsController < ApplicationController
 
 	end
 
+	def personal_best
+
+	end
+
 end

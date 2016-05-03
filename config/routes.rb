@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   post 'users/yes/:id' => 'sessions#authorize'
   post 'users/no/:id' => 'sessions#cancel'
 
+  get 'users/:id/delete' => 'users#delete'
+
   get 'users/top_month' => 'users#top_3_of_month'
 
   post '/signin' => 'sessions#signin'
@@ -28,8 +30,11 @@ Rails.application.routes.draw do
 
   get 'week_workouts' => 'workouts#week_workouts'
   get 'workouts/:id/state' => 'workouts#change_training_state'
+  get 'personal_best' => 'workouts#personal_best'
 
   get 'workouts/:id/delete' => 'workouts#delete_workout'
+
+  get 'profile' => 'users#profile'
 
   resources :users
 

@@ -11,7 +11,7 @@
           <p class="stats-caption">PESSOAS INSCRITAS</p>
         </div>
       </div>
-  
+
       <div class="col-xs-12">
         <div class="card padded-xs-card">
 
@@ -29,6 +29,14 @@
                 <th>Email</th>
                 <th class="hidden-xs">Inscrição</th>
                 <th>Aulas Frequentadas</th>
+
+                <% if current_user.role == 'admin' || current_user.role == 'coacha' %>
+
+                  <th>Opções</th>
+
+                <% end %>
+
+
               </tr>
             </thead>
             <tbody>
@@ -42,6 +50,15 @@
                 <td><%= user.email %></td>
                 <td class="hidden-xs"><%= user.created_at.strftime("%d/%m/%Y") %></td>
                 <td><%= user.trainings_count %></td>
+
+                <% if current_user.role == 'admin' || current_user.role == 'coacha' %>
+
+                  <td>
+                    <a href="users/<%= user.id %>/delete" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Apagar</a>
+                  </td>
+
+                <% end %>
+
               </tr>
 
             <% end %>
@@ -61,7 +78,7 @@
           <p class="stats-caption">INSCRIÇÕES EM AULAS</p>
         </div>
       </div>
-    
+
 
     </div>
   </div>

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+	before_action :require_account_management_rights, only: [:index, :delete]
+
 	def index
 
 		@total_trainings = 0
@@ -96,6 +98,24 @@ class UsersController < ApplicationController
     render json: response
 
   end
+
+	def delete
+
+		user = User.find(params[:id])
+
+		if user
+			user.delete
+		end
+
+		redirect_to '/users'
+
+	end
+
+	def profile
+
+
+
+	end
 
 	private
 	  def user_params
