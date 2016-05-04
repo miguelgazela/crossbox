@@ -21,6 +21,8 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require fastclick
+//= require TheaterJS
+//= require spin
 
 var local_root_url = "http://localhost:3000";
 var remote_root_url = "http://slcrossbox.herokuapp.com";
@@ -39,6 +41,21 @@ var main = function () {
     root_url = local_root_url;
   } else {
     root_url = remote_root_url;
+  }
+
+  try {
+    var theater = theaterJS();
+
+    theater.addActor("Jarvis", { accuracy: 1.0, speed: 0.2 }, "#workout-loader span");
+
+    setInterval(function() {
+      theater
+        .addScene("Jarvis:treinos", 600)
+        .addScene("Jarvis:barras", 600)
+        .addScene("Jarvis:pesos", 600);
+    }, 1000);
+  } catch(err) {
+    // do nothing
   }
 
   if(window.location.href.indexOf("workouts/new?") > -1) {
@@ -222,6 +239,9 @@ function fetchWeekWorkouts() {
     success: function (response) {
 
       if (response.error_code == 200) {
+
+        $("#workout-section").removeClass("hidden");
+        $("#workout-loader").hide();
 
         var workouts = response.payload.workouts;
 

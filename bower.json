@@ -25,5 +25,8 @@
     "jsrender": "^0.9.74",
     "jquery": "^2.2.2",
     "bootstrap-datepicker": "^1.6.0"
+  },
+  "devDependencies": {
+    "TheaterJS": "theaterjs#^3.0.0"
   }
 }
