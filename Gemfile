@@ -33,6 +33,7 @@ gem 'gon'
 gem 'jquery-turbolinks'
 
 gem 'bootstrap-datepicker-rails'
+gem 'fastclick-rails'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

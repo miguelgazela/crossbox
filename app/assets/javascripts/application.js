@@ -20,6 +20,7 @@
 //= require jsrender/jsrender
 //= require bootstrap
 //= require bootstrap-datepicker
+//= require fastclick
 
 var local_root_url = "http://localhost:3000";
 var remote_root_url = "http://slcrossbox.herokuapp.com";
@@ -29,6 +30,8 @@ var root_url;
 var currentFirstDayOfWeek = null;
 
 var main = function () {
+
+  FastClick.attach(document.body);
 
   var railsEnv = $('body').data('env');
 
