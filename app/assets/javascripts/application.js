@@ -778,4 +778,32 @@ function enterWorkout(workoutId) {
   window.location.href = ("/workouts/" + workoutId + "/state?a=enter&g=" + numGuests);
 }
 
+function showConfirmationBox(button, username, userid) {
+
+  var boxTmpl = $.templates("#remove-user-confirmation-box-template");
+
+  $(button).hide();
+
+  var templateData = {
+    userName: username,
+    userId: userid
+  };
+
+  var html = boxTmpl.render(templateData);
+
+  var $listItem = $($(button).closest(".list-group-item-user"));
+  $listItem.after(html);
+}
+
+function hideConfirmationBox(button) {
+
+  var $confirmationBox = $($(button).closest(".list-group-item-confirmation-box"));
+
+  var $itemBox = $confirmationBox.prev(".list-group-item-user");
+  var $button = $($itemBox.find("button"));
+
+  $button.show();
+  $confirmationBox.remove();
+}
+
 $(document).ready(main);

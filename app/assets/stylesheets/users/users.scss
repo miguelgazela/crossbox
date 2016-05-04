@@ -1,0 +1,58 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.list-group-item {
+
+  overflow: auto;
+
+  .list-group-item-column {
+    display: block;
+    float: left;
+  }
+}
+
+.list-group-item-user {
+
+  position: relative;
+  padding: 10px 10px;
+
+  .list-group-item-column-thumbnail {
+
+    .media-object-small {
+      height: 32px;
+      width: 32px;
+    }
+
+    margin-right: 16px;
+  }
+
+  .list-group-item-column-info {
+
+    width: calc(100% - 48px);
+
+    .user-info-primary {
+
+      font-size: 14px;
+      color: #787878;
+      margin-bottom: 6px;
+    }
+
+    .user-info-secondary {
+      font-size: 12px;
+      color: #909090;
+      margin-bottom: 2px;
+    }
+
+    .user-options {
+      margin-top: 10px;
+    }
+
+  }
+
+}
+
+.list-group-item-confirmation-box {
+  padding-left: 58px;
+  color: #787878;
+}

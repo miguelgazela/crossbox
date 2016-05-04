@@ -1,75 +1,57 @@
 <%= render "./navbar" %>
 
-<div class="container">
+<section>
 
-  <div class="row">
+  <h2>PESSOAS INSCRITAS (<span><%= @users.length %></span>)</h2>
 
-      <div class="col-xs-12">
-        <div class="card stats padded-xs-card">
-          <p class="stats-icon"><%= fa_icon "users"%></p>
-          <h1 class="stats-value"><%= @users.length %></h1>
-          <p class="stats-caption">PESSOAS INSCRITAS</p>
-        </div>
+  <ul class="list-group">
+
+  <% @users.order(trainings_count: :desc).each_with_index do |user, index| %>
+
+  <li class="list-group-item list-group-item-user">
+
+    <div class="list-group-item-column list-group-item-column-thumbnail">
+      <img src="<%= user.image %>" class="media-object media-object-small" alt="">
+    </div>
+
+    <div class="list-group-item-column list-group-item-column-info">
+      <p class="user-info-primary"><span>#<%= index + 1 %></span> <%= user.name %> <span class="badge"><%= user.trainings_count %></span></p>
+      <p class="user-info-secondary"><%= user.email %></p>
+      <p class="user-info-secondary"><%= user.created_at.strftime("%d/%m/%Y")%></p>
+
+      <div class="user-options">
+        <button type="button" class="btn btn-sm btn-danger" onclick="showConfirmationBox(this, '<%= user.name %>', <%= user.id %>)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Apagar</button>
       </div>
 
-      <div class="col-xs-12">
-        <div class="card padded-xs-card">
+    </div>
 
-          <h1 class="page-header hidden-xs">Inscritos</h1>
-
-          <h3 class="page-header hidden-sm hidden-md hidden-lg text-center">Inscritos</h3>
-
-            <div class="table-responsive">
-            <table class="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th></th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th class="hidden-xs">Inscrição</th>
-                <th>Aulas Frequentadas</th>
-
-                <% if current_user.role == 'admin' || current_user.role == 'coacha' %>
-
-                  <th>Opções</th>
-
-                <% end %>
+  </li>
 
 
-              </tr>
-            </thead>
-            <tbody>
 
-            <% @users.order(trainings_count: :desc).each_with_index do |user, index| %>
+  <% end %>
 
-              <tr>
-                <th scope="row"><%= index + 1 %></th>
-                <td><img class="media-object media-object-small" src="<%= user.image %>" alt="..."></td>
-                <td><a href="<%= user.url %>"><%= user.name %></a></td>
-                <td><%= user.email %></td>
-                <td class="hidden-xs"><%= user.created_at.strftime("%d/%m/%Y") %></td>
-                <td><%= user.trainings_count %></td>
+  </ul>
 
-                <% if current_user.role == 'admin' || current_user.role == 'coacha' %>
+  <script id="remove-user-confirmation-box-template" type="text/x-jsrender">
 
-                  <td>
-                    <a href="users/<%= user.id %>/delete" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Apagar</a>
-                  </td>
+    <li class="list-group-item list-group-item-confirmation-box">
+      <p>Tens a certeza que queres apagar o utilizador {{:userName}} da aplicação?</p>
+      <div class="controls">
+        <button type="button" class="btn btn-sm btn-default" onclick="hideConfirmationBox(this)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Cancelar</button>
+        <a href="users/{{:userId}}/delete" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Apagar</a>
+      </div>
+    </li>
 
-                <% end %>
+  </script>
 
-              </tr>
+</section>
 
-            <% end %>
+<%= render "./navfooter" %>
 
-            </tbody>
-            </table>
-            </div>
+<!-- <div class="container">
 
-        </div> <!-- /card -->
-
-      </div> <!-- /col-xs-12 -->
+  <div class="row">
 
       <div class="col-xs-12">
         <div class="card stats padded-xs-card">
@@ -81,4 +63,4 @@
 
 
     </div>
-  </div>
+  </div> -->
