@@ -413,7 +413,6 @@ section h2 {
   }
 }
 
-
 .media-object-small {
   width: 24px;
   height: 24px;
@@ -423,4 +422,9 @@ section h2 {
     width: 100px;
     height: 100px;
   }
+}
+
+#workout-loader {
+  min-height: 300px;
+  padding-top: 220px;
 }
