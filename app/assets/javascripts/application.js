@@ -256,8 +256,6 @@ function fetchWeekWorkouts() {
 
         var workouts = response.payload.workouts;
 
-        console.log(workouts);
-
         var classDayTmpl = $.templates("#class-day-template");
         var classHourTmpl = $.templates("#class-hour-template");
 
@@ -331,7 +329,8 @@ function fetchWeekWorkouts() {
             workoutDateHour: workoutDate.format("YYYY-MM-DD HH:mm"),
             workoutHour: workoutDate.format("HH:mm"),
             workoutID: this.workout.id,
-            inWorkout: this.in_workout
+            inWorkout: this.in_workout,
+            inPast: workoutDate.isBefore(moment())
           };
 
           //    calculate number of free spots and percentage
