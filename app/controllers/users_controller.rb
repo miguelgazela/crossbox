@@ -104,6 +104,11 @@ class UsersController < ApplicationController
 		user = User.find(params[:id])
 
 		if user
+
+			user.trainings.each do |training|
+				training.delete
+			end
+
 			user.delete
 		end
 
