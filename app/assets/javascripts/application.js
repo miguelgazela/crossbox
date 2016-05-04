@@ -840,4 +840,22 @@ function hideConfirmationBox(button) {
   $confirmationBox.remove();
 }
 
+function showWorkoutDeleteConfirmationBox(button) {
+
+  $listItem = $($(button).closest(".list-group-item"));
+
+  $listItem.hide();
+  $($listItem.next('.list-group-item')).removeClass("hidden");
+}
+
+function hideWorkoutDeleteConfirmationBox(button) {
+
+  var $confirmationBox = $($(button).closest(".list-group-item-workout-delete-box"));
+
+  var $itemBox = $confirmationBox.prev(".list-group-item");
+
+  $itemBox.show();
+  $confirmationBox.addClass("hidden");
+}
+
 $(document).ready(main);

@@ -61,9 +61,19 @@
     </li>
 
     <% if current_user.role == 'admin' || current_user.role == 'coach' %>
+
     <li class="list-group-item">
-      <a role="button" class="btn btn-block btn-danger" href="/workouts/<%= @workout.id %>/delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Apagar Aula</a>
+      <button type="button" class="btn btn-block btn-danger" onclick="showWorkoutDeleteConfirmationBox(this)"><span class="glyphicon glyphicon-trash"></span> Apagar Aula</button>
     </li>
+
+    <li class="list-group-item list-group-item-workout-delete-box hidden">
+      <p>Tens a certeza que queres apagar esta aula?</p>
+      <div class="controls">
+        <button type="button" class="btn btn-sm btn-default" onclick="hideWorkoutDeleteConfirmationBox(this)"><span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar</button>
+        <a role="button" class="btn btn-sm btn-danger" href="/workouts/<%= @workout.id %>/delete"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Apagar</a>
+      </div>
+    </li>
+
     <% end %>
 
   </ul>
