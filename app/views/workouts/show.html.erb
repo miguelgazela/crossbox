@@ -33,6 +33,8 @@
 
         <div>
 
+          <% if @workout.date < Time.now %>
+
             <% if @in_workout %>
 
             <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-sm btn-default btn-forfeit"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Desistir</a>
@@ -42,6 +44,8 @@
             <button type="button" class="btn btn-sm btn-default" onclick="enterWorkout(<%= @workout.id %>)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inscrever</button>
 
             <% end %>
+
+          <% end %>
 
 
 
