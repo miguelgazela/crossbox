@@ -20,8 +20,7 @@
   }
 
   &.workout-show-hour {
-    min-height: 40px;
-    max-height: 40px;
+    overflow: auto;
     padding-top: 9px;
     padding-left: 0px;
 
