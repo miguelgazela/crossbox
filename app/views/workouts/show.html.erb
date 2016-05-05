@@ -33,7 +33,7 @@
 
         <div>
 
-          <% if @workout.date < Time.now %>
+          <% if @workout.date > Time.now %>
 
             <% if @in_workout %>
 
