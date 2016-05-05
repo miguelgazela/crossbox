@@ -6,7 +6,7 @@
 .list-group-item {
 
   &.workout-show-header {
-    height: 100px;
+    overflow: auto;
 
     .btn {
       padding-top: 2px;
