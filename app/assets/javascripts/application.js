@@ -774,19 +774,13 @@ function getClassForPercentage(percentage) {
 function showChangeGuestsUI(button) {
 
   $(button).addClass("hidden");
-  $("#changeGuestsUITitle").removeClass("hidden");
-  $("#changeGuestsUIRadios").removeClass("hidden");
-  $("#changeGuestsUIButtons").removeClass("hidden");
-
+  $("#guestsUI").removeClass("hidden");
 }
 
 function hideChangeGuestsUI() {
 
   $("#showChangeGuestsUIBtn").removeClass("hidden");
-  $("#showChangeGuestsUIBtnBgScreens").removeClass("hidden");
-  $("#changeGuestsUITitle").addClass("hidden");
-  $("#changeGuestsUIRadios").addClass("hidden");
-  $("#changeGuestsUIButtons").addClass("hidden");
+  $("#guestsUI").addClass("hidden");
 }
 
 function changeGuests(numGuests) {
@@ -802,13 +796,13 @@ function updateNumGuests(workoutId) {
 
 function enterWorkout(workoutId) {
 
-  var numGuests = $("#numGuests").val();
+  // var numGuests = $("#numGuests").val();
+  //
+  // if (!numGuests) {
+  //   numGuests = 0;
+  // }
 
-  if (!numGuests) {
-    numGuests = 0;
-  }
-
-  window.location.href = ("/workouts/" + workoutId + "/state?a=enter&g=" + numGuests);
+  window.location.href = ("/workouts/" + workoutId + "/state?a=enter&g=" + 0);
 }
 
 function showConfirmationBox(button, username, userid) {

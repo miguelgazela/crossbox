@@ -38,6 +38,7 @@
             <% if @in_workout %>
 
             <a href="/workouts/<%= @workout.id %>/state?a=leave" class="btn btn-sm btn-default btn-forfeit"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Desistir</a>
+            <button id="showChangeGuestsUIBtn" class="btn btn-default btn-sm" onclick="showChangeGuestsUI(this)"><%= fa_icon "users" %> Convidados</button>
 
             <% else %>
 
@@ -63,6 +64,38 @@
 
 
     </li>
+
+    <% if @in_workout %>
+    <li class="list-group-item hidden" id="guestsUI">
+
+      <p>Alterar Número de Convidados</p>
+
+      <input type="hidden" name="numGuests" value="<%= @in_workout.guests %>" id="numGuests">
+
+      <div class="btn-group" data-toggle="buttons">
+
+        <label class="btn btn-primary <% if @in_workout.guests == 0 %>active<% end %>" onclick="changeGuests('0')">
+          <input type="radio" name="options" id="option1" autocomplete="off" <% if @in_workout.guests == 0 %>checked<% end %>>0
+        </label>
+        <label class="btn btn-primary <% if @in_workout.guests == 1 %>active<% end %>" onclick="changeGuests('1')">
+          <input type="radio" name="options" id="option2" autocomplete="off" <% if @in_workout.guests == 1 %>checked<% end %>> 1
+        </label>
+        <label class="btn btn-primary <% if @in_workout.guests == 2 %>active<% end %>" onclick="changeGuests('2')">
+          <input type="radio" name="options" id="option3" autocomplete="off" <% if @in_workout.guests == 2 %>checked<% end %>> 2
+        </label>
+        <label class="btn btn-primary <% if @in_workout.guests == 3 %>active<% end %>" onclick="changeGuests('3')">
+          <input type="radio" name="options" id="option3" autocomplete="off" <% if @in_workout.guests == 3 %>checked<% end %>> 3
+        </label>
+      </div>
+
+      <div style="margin-top: 15px;">
+        <button type="button" class="btn btn-sm btn-default" onclick="updateNumGuests(<%= @workout.id %>)"><%= fa_icon "save" %> Alterar</button>
+        <button type="button" class="btn btn-sm btn-default" onclick="hideChangeGuestsUI()"><%= fa_icon "times-circle" %> Cancelar</button>
+      </div>
+
+
+    </li>
+    <% end %>
 
     <% if current_user.role == 'admin' || current_user.role == 'coach' %>
 
@@ -104,7 +137,7 @@
         <div class="list-group-item-column workout-show-hour-index"><%= index + 1 %></div>
         <div class="list-group-item-column workout-show-hour-description">
           <img src="<%= training.user.image %>" alt="" class="img-circle" width="26px" height="26px"/>
-          <span class="workout-show-username"><%= training.user.name %></span>
+          <span class="workout-show-username"><%= training.user.name %> <% if training.guests > 0%><span class="label label-default">+<%= training.guests %><% end%></span></span>
 
           <!-- <span class="training-time"><%= distance_of_time_in_words(Time.now, @workout.date, false, :locale => :en) %></span> -->
 
