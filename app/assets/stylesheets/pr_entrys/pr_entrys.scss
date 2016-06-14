@@ -1,0 +1,88 @@
+// Place all the styles related to the PrEntrys controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.exercise-list {
+
+  .exercise-list-item {
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    .exercise-item-title {
+
+      color: #787878;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    hr {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .exercise-header {
+
+      .pr-info-primary {
+        color: #787878;
+        margin-bottom: 0;
+        text-align: center;
+      }
+
+      .pr-info-secondary {
+        color: #bebebe;
+        text-align: center;
+        font-size: 13px;
+      }
+
+    }
+
+    .exercise-pr-form {
+
+      .exercise-form-header {
+        color: #787878;
+        margin-bottom: 5px;
+        font-size: 13px;
+      }
+
+      .help-block {
+        color: #bebebe;
+        font-size: 12px;
+      }
+
+    }
+
+    .exercise-controls {
+      margin-top: 15px;
+    }
+
+    .last-exercise-prs {
+
+      .last-exercise-pr {
+        text-align: center;
+        border: 2px solid rgba(151, 151, 151, 0.21);;
+        border-radius: 4px;
+        padding: 5px;
+        margin-right: 5px;
+
+        p {
+          margin: 0;
+
+          &.pr-info-secondary {
+            font-size: 9px;
+            color: #BEBEBE;
+          }
+
+          &.pr-info-primary {
+            color: #787878;
+            font-size: 12px;
+          }
+        }
+
+      }
+    }
+
+
+  }
+}

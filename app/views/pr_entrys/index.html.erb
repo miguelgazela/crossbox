@@ -1,0 +1,242 @@
+<%= render "./navbar" %>
+
+<section>
+
+  <h2>RECORDES PESSOAIS</h2>
+
+  <ul class="list-group">
+
+    <li class="list-group-item foobar">
+      Exercícios de Força
+      <span class="glyphicon glyphicon-chevron-down expander pull-right hidden" aria-hidden="true"></span>
+    </li>
+
+  </ul>
+
+  <ul class="list-group exercise-list">
+
+    <li class="list-group-item exercise-list-item">
+
+      <h4 class="text-center exercise-item-title">Front Squat</h4>
+
+      <%= image_tag("front_squat", class:"img-responsive") %>
+
+      <div class="exercise-header">
+        <% if @best_fs_pr %>
+        <p class="pr-info-primary">Melhor PR</p>
+        <p class="pr-info-secondary"><%= @best_fs_pr.value %>kg - <%= @best_fs_pr.repetitions %>x <%= @best_fs_pr.load_percentage %>% - <%= @best_fs_pr.created_at.strftime("%d/%m") %></p>
+        <% end %>
+        <p class="pr-info-primary hidden">PR de Junho</p>
+        <p class="pr-info-secondary hidden">60kg - 1x 100% - 11/06</p>
+      </div>
+
+      <hr>
+
+      <div>
+
+        <p class="text-center">Últimos resultados</p>
+
+        <div class="last-exercise-prs clearfix">
+
+          <% if @fs.length > 0 %>
+
+            <% @fs.first(5).each_with_index do |fs_pr, index| %>
+
+            <div class="last-exercise-pr pull-left">
+
+              <p class="pr-info-secondary"><%= fs_pr.repetitions %>x <%= fs_pr.load_percentage %>%</p>
+              <p class="pr-info-primary"><%= fs_pr.value %>kg</p>
+              <p class="pr-info-secondary"><%= fs_pr.created_at.strftime("%d/%m") %></p>
+
+            </div>
+
+            <% end %>
+
+          <% else %>
+            <small>Ainda não tens nenhum PR, estás à espera de quê para agachar esse cu?</small>
+          <% end %>
+
+        </div>
+
+        <div id="fs-form" class="exercise-pr-form hidden">
+
+          <hr>
+
+          <div>
+
+            <p class="text-center">Adicionar Novo PR</p>
+
+            <p class="exercise-form-header">Carga Total:</p>
+            <div class="input-group">
+              <span class="input-group-addon">Kg</span>
+              <input type="number" id="fs-value" class="form-control" placeholder="carga total..." min=1 max=400>
+            </div>
+            <span class="help-block">É obrigatório colocares um valor aqui...</span>
+          </div>
+
+          <div id="fs-reps">
+            <p class="exercise-form-header">Número de Repetições:</p>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="1" checked> 1x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="2"> 2x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="3"> 3x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="4"> 4x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="5"> 5x
+            </label>
+            <span class="help-block">É obrigatório colocares um valor aqui...</span>
+          </div>
+
+          <div class="form-group">
+            <p class="exercise-form-header">Percentagem RM:</p>
+            <div class="input-group">
+              <span class="input-group-addon">%</span>
+              <input id="fs-percentage" type="number" class="form-control" placeholder="percentagem de RM" min=10 max=100 step=10 value=100>
+            </div>
+            <span class="help-block">É obrigatório colocares um valor aqui...</span>
+          </div>
+
+        </div>
+
+        <div id="fs-controls" class="exercise-controls">
+
+          <div class="secondary-action-controls hidden">
+            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('fs')"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Guardar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('fs')"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Cancelar</button>
+          </div>
+
+          <div class="primary-action-controls">
+            <button type="button" onclick="addNewStrengthPRFor('fs')" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Novo</button>
+            <% if @best_fs_pr %>
+            <button type="button" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Ver Registo (<%= @fs.length %>)</button>
+            <% end %>
+          </div>
+
+        </div>
+
+      </div>
+
+    </li>
+
+    <li class="list-group-item exercise-list-item">
+
+      <h4 class="text-center exercise-item-title">Back Squat</h4>
+
+      <%= image_tag("back_squat", class:"img-responsive") %>
+
+      <div class="exercise-header">
+        <% if @best_bs_pr %>
+        <p class="pr-info-primary">Melhor PR</p>
+        <p class="pr-info-secondary"><%= @best_bs_pr.value %>kg - <%= @best_bs_pr.repetitions %>x <%= @best_bs_pr.load_percentage %>% - <%= @best_bs_pr.created_at.strftime("%d/%m") %></p>
+        <% end %>
+        <p class="pr-info-primary hidden">PR de Junho</p>
+        <p class="pr-info-secondary hidden">60kg - 1x 100% - 11/06</p>
+      </div>
+
+      <hr>
+
+      <div>
+
+        <p class="text-center">Últimos resultados</p>
+
+        <div class="last-exercise-prs clearfix">
+
+          <% if @bs.length > 0 %>
+
+            <% @bs.first(5).each_with_index do |bs_pr, index| %>
+
+            <div class="last-exercise-pr pull-left">
+
+              <p class="pr-info-secondary"><%= bs_pr.repetitions %>x <%= bs_pr.load_percentage %>%</p>
+              <p class="pr-info-primary"><%= bs_pr.value %>kg</p>
+              <p class="pr-info-secondary"><%= bs_pr.created_at.strftime("%d/%m") %></p>
+
+            </div>
+
+            <% end %>
+
+          <% else %>
+            <small>Ainda não tens nenhum PR, estás à espera de quê para pegar numa barra?</small>
+          <% end %>
+
+        </div>
+
+        <div id="bs-form" class="exercise-pr-form hidden">
+
+          <hr>
+
+          <div>
+
+            <p class="text-center">Adicionar Novo PR</p>
+
+            <p class="exercise-form-header">Carga Total:</p>
+            <div class="input-group">
+              <span class="input-group-addon">Kg</span>
+              <input type="number" id="bs-value" class="form-control" placeholder="carga total..." min=1 max=400>
+            </div>
+            <span class="help-block">É obrigatório colocares um valor aqui...</span>
+          </div>
+
+          <div id="bs-reps">
+            <p class="exercise-form-header">Número de Repetições:</p>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="1" checked> 1x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="2"> 2x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="3"> 3x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="4"> 4x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="5"> 5x
+            </label>
+            <span class="help-block">É obrigatório colocares um valor aqui...</span>
+          </div>
+
+          <div class="form-group">
+            <p class="exercise-form-header">Percentagem RM:</p>
+            <div class="input-group">
+              <span class="input-group-addon">%</span>
+              <input id="bs-percentage" type="number" class="form-control" placeholder="percentagem de RM" min=10 max=100 step=10 value=100>
+            </div>
+            <span class="help-block">É obrigatório colocares um valor aqui...</span>
+          </div>
+
+        </div>
+
+        <div id="bs-controls" class="exercise-controls">
+
+          <div class="secondary-action-controls hidden">
+            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('bs')"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Guardar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('bs')"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Cancelar</button>
+          </div>
+
+          <div class="primary-action-controls">
+            <button type="button" onclick="addNewStrengthPRFor('bs')" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Novo</button>
+            <% if @best_bs_pr %>
+            <button type="button" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Ver Registo (<%= @bs.length %>)</button>
+            <% end %>
+          </div>
+
+        </div>
+
+      </div>
+
+    </li>
+
+  </ul>
+
+</section>
+
+<%= render "./navfooter" %>

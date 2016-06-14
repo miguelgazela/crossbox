@@ -2,9 +2,9 @@ class HomeController < ApplicationController
 
   before_action :require_user, only: [:show]
   before_action :clear_gon, only: [:show]
-  
+
   def show
-  	
+
     @trainings = []
 
     @user_trainings = Training.where(user_id: current_user.id)

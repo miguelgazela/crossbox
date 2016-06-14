@@ -11,16 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151017131258) do
+ActiveRecord::Schema.define(version: 20160612143647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pr_entries", force: :cascade do |t|
+    t.integer  "exercise_id"
+    t.integer  "repetitions"
+    t.integer  "load_percentage"
+    t.integer  "value"
+    t.text     "notes"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "pr_entries", ["user_id"], name: "index_pr_entries_on_user_id", using: :btree
 
   create_table "trainings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "workout_id"
+    t.integer  "guests"
+    t.datetime "date"
   end
 
   add_index "trainings", ["user_id"], name: "index_trainings_on_user_id", using: :btree
@@ -33,12 +48,13 @@ ActiveRecord::Schema.define(version: 20151017131258) do
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "image"
     t.string   "url"
     t.string   "email"
     t.string   "password_digest"
+    t.integer  "trainings_count",  default: 0
   end
 
   create_table "workouts", force: :cascade do |t|
@@ -49,4 +65,5 @@ ActiveRecord::Schema.define(version: 20151017131258) do
     t.string   "max_participants", default: "13"
   end
 
+  add_foreign_key "pr_entries", "users"
 end

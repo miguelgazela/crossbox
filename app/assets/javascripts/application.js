@@ -851,4 +851,70 @@ function hideWorkoutDeleteConfirmationBox(button) {
   $confirmationBox.addClass("hidden");
 }
 
+function addNewStrengthPRFor(exerciseRef) {
+
+  $("#" + exerciseRef + "-controls .secondary-action-controls").removeClass('hidden');
+  $("#" + exerciseRef + "-form").removeClass('hidden');
+
+  $("#" + exerciseRef + "-controls .primary-action-controls").addClass('hidden');
+}
+
+function cancelNewStrengthPRFor(exerciseRef) {
+
+  $("#" + exerciseRef + "-controls .secondary-action-controls").addClass('hidden');
+  $("#" + exerciseRef + "-form").addClass('hidden');
+
+  // clear all values from the inputs here!
+
+  $("#" + exerciseRef + "-controls .primary-action-controls").removeClass('hidden');
+}
+
+function saveStrengthPRFor(exerciseRef) {
+
+  // validating the values
+
+  var value = $("#" + exerciseRef + "-value").val();
+
+  if (!value) {
+    return;
+  }
+
+  var numReps = $("#" + exerciseRef + "-reps input:checked").val();
+
+  if (!numReps) {
+    return;
+  }
+
+  var percentage = $("#" + exerciseRef + "-percentage").val();
+
+  if (!percentage) {
+    return;
+  }
+
+  var exerciseId;
+
+  if (exerciseRef == 'fs') {
+    exerciseId = 1;
+  } else if (exerciseRef == 'bs') {
+    exerciseId = 2;
+  }
+
+  var data = {value: value, numReps: numReps, percentage: percentage, exerciseId: exerciseId};
+
+  $.ajax({
+	  type: "POST",
+	  url: root_url + "/pr_entrys",
+	  data: data,
+	  success: function (response) {
+
+      console.log(response);
+
+      if (response.error_code == 200) {
+        window.location.href = ('/pr_entrys');
+      }
+
+	  }
+	});
+}
+
 $(document).ready(main);

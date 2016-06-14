@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :trainings
   has_many :workouts, through: :trainings
+  has_many :pr_entrys
 
   def self.from_omniauth(auth_hash)
     user = find_by_or_create(uid: auth_hash['uid'], provider: auth_hash['provider'])
@@ -16,6 +17,6 @@ class User < ActiveRecord::Base
     user.save!
     user
   end
-  
+
 
 end

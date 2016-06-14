@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :index]
 
+  resources :pr_entrys, only: [:index, :create]
+
   get 'sessions/create'
   get 'sessions/destroy'
 
