@@ -9,7 +9,11 @@
       <span class="navfooter-item">Perfil</span>
     </a>
     <!-- <a href="/personal_best"> -->
+    <% if current_user.role == 'admin' %>
+    <a href="/pr_entrys">
+    <% else %>
     <a href="/">
+    <% end %>
       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
       <span class="navfooter-item">Recordes</span>
     </a>
