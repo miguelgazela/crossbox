@@ -56,6 +56,19 @@ class PrEntrysController < ApplicationController
 
     end
 
+    @th = PrEntry.where(user_id: current_user.id, exercise_id: 5).order('created_at desc')
+    @best_th_pr = nil
+
+    max_value = 0
+    @th.each do |pr|
+
+      if pr.value > max_value
+        @best_th_pr = pr
+        max_value = pr.value
+      end
+
+    end
+
   end
 
   def create

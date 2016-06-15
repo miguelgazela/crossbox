@@ -901,6 +901,8 @@ function saveStrengthPRFor(exerciseRef, button) {
     exerciseId = 3;
   } else if (exerciseRef == 'so') {
     exerciseId = 4;
+  } else if (exerciseRef == 'th') {
+    exerciseId = 5;
   }
 
   var data = {value: value, numReps: numReps, percentage: percentage, exerciseId: exerciseId};

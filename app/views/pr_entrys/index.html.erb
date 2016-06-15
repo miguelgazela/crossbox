@@ -108,8 +108,8 @@
         <div id="fs-controls" class="exercise-controls">
 
           <div class="secondary-action-controls hidden">
-            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('fs', this)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Guardar</button>
-            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('fs')"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Cancelar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('fs', this)"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('fs')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</button>
           </div>
 
           <div class="primary-action-controls">
@@ -218,8 +218,8 @@
         <div id="bs-controls" class="exercise-controls">
 
           <div class="secondary-action-controls hidden">
-            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('bs', this)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Guardar</button>
-            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('bs')"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Cancelar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('bs', this)"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('bs')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</button>
           </div>
 
           <div class="primary-action-controls">
@@ -328,8 +328,8 @@
         <div id="hc-controls" class="exercise-controls">
 
           <div class="secondary-action-controls hidden">
-            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('hc', this)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Guardar</button>
-            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('hc')"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Cancelar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('hc', this)"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('hc')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</button>
           </div>
 
           <div class="primary-action-controls">
@@ -438,12 +438,122 @@
         <div id="so-controls" class="exercise-controls">
 
           <div class="secondary-action-controls hidden">
-            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('so', this)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Guardar</button>
-            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('so')"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Cancelar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('so', this)"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('so')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</button>
           </div>
 
           <div class="primary-action-controls">
             <button type="button" onclick="addNewStrengthPRFor('so')" class="btn btn-sm btn-default btn-block"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Novo</button>
+            <!-- <% if @best_hc_pr %>
+            <button type="button" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Ver Registo (<%= @hc.length %>)</button>
+            <% end %> -->
+          </div>
+
+        </div>
+
+      </div>
+
+    </li>
+
+    <li class="list-group-item exercise-list-item">
+
+      <h4 class="text-center exercise-item-title">Thruster</h4>
+
+      <%= image_tag("thruster", class:"img-responsive") %>
+
+      <div class="exercise-header">
+        <% if @best_th_pr %>
+        <p class="pr-info-primary">Melhor PR</p>
+        <p class="pr-info-secondary"><%= @best_th_pr.value %>kg - <%= @best_th_pr.repetitions %>x <%= @best_th_pr.load_percentage %>% - <%= @best_th_pr.created_at.strftime("%d/%m") %></p>
+        <% end %>
+        <p class="pr-info-primary hidden">PR de Junho</p>
+        <p class="pr-info-secondary hidden">60kg - 1x 100% - 11/06</p>
+      </div>
+
+      <hr>
+
+      <div>
+
+        <p class="text-center">Últimos resultados</p>
+
+        <div class="last-exercise-prs clearfix">
+
+          <% if @th.length > 0 %>
+
+            <% @th.first(5).each_with_index do |th_pr, index| %>
+
+            <div class="last-exercise-pr pull-left">
+
+              <p class="pr-info-secondary"><%= th_pr.created_at.strftime("%d/%m") %></p>
+              <p class="pr-info-primary"><%= th_pr.value %>kg</p>
+              <p class="pr-info-secondary"><%= th_pr.repetitions %>x <%= th_pr.load_percentage %>%</p>
+
+            </div>
+
+            <% end %>
+
+          <% else %>
+            <small>Ainda não tens nenhum PR, estás à espera de quê para pegar numa barra?</small>
+          <% end %>
+
+        </div>
+
+        <div id="th-form" class="exercise-pr-form hidden">
+
+          <hr>
+
+          <div>
+
+            <p class="text-center">Adicionar Novo PR</p>
+
+            <p class="exercise-form-header">Carga Total:</p>
+            <div class="input-group">
+              <span class="input-group-addon">Kg</span>
+              <input type="number" id="th-value" class="form-control" placeholder="carga total..." min=1 max=400 pattern="[0-9]*" inputmode="numeric">
+            </div>
+            <span class="help-block">É obrigatório colocares um valor aqui...</span>
+          </div>
+
+          <div id="th-reps">
+            <p class="exercise-form-header">Número de Repetições:</p>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="1" checked> 1x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="2"> 2x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="3"> 3x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="4"> 4x
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="inlineRadioOptions" value="5"> 5x
+            </label>
+            <span class="help-block">É obrigatório colocares um valor aqui...</span>
+          </div>
+
+          <div class="form-group">
+            <p class="exercise-form-header">Percentagem RM:</p>
+            <div class="input-group">
+              <span class="input-group-addon">%</span>
+              <input id="th-percentage" type="number" class="form-control" placeholder="percentagem de RM" min=10 max=100 step=10 value=100 pattern="[0-9]*" inputmode="numeric">
+            </div>
+            <span class="help-block">É obrigatório colocares um valor aqui...</span>
+          </div>
+
+        </div>
+
+        <div id="th-controls" class="exercise-controls">
+
+          <div class="secondary-action-controls hidden">
+            <button type="button" class="btn btn-sm btn-default" onclick="saveStrengthPRFor('th', this)"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Guardar</button>
+            <button type="button" class="btn btn-sm btn-default" onclick="cancelNewStrengthPRFor('th')"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</button>
+          </div>
+
+          <div class="primary-action-controls">
+            <button type="button" onclick="addNewStrengthPRFor('th')" class="btn btn-sm btn-default btn-block"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Novo</button>
             <!-- <% if @best_hc_pr %>
             <button type="button" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Ver Registo (<%= @hc.length %>)</button>
             <% end %> -->
