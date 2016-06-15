@@ -869,7 +869,7 @@ function cancelNewStrengthPRFor(exerciseRef) {
   $("#" + exerciseRef + "-controls .primary-action-controls").removeClass('hidden');
 }
 
-function saveStrengthPRFor(exerciseRef) {
+function saveStrengthPRFor(exerciseRef, button) {
 
   // validating the values
 
@@ -897,9 +897,15 @@ function saveStrengthPRFor(exerciseRef) {
     exerciseId = 1;
   } else if (exerciseRef == 'bs') {
     exerciseId = 2;
+  } else if (exerciseRef == 'hc') {
+    exerciseId = 3;
+  } else if (exerciseRef == 'so') {
+    exerciseId = 4;
   }
 
   var data = {value: value, numReps: numReps, percentage: percentage, exerciseId: exerciseId};
+
+  $(button).attr('disabled','disabled');
 
   $.ajax({
 	  type: "POST",
@@ -907,13 +913,16 @@ function saveStrengthPRFor(exerciseRef) {
 	  data: data,
 	  success: function (response) {
 
-      console.log(response);
-
       if (response.error_code == 200) {
         window.location.href = ('/pr_entrys');
+        return;
       }
 
-	  }
+      $(button).removeAttr('disabled');
+	  },
+    failure: function () {
+      $(button).removeAttr('disabled');
+    }
 	});
 }
 
