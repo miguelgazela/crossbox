@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.exercise-list-header {
+  padding: 5px 15px;
+  border-bottom: 0;
+}
+
 .exercise-list {
 
   .glyphicon.expander {

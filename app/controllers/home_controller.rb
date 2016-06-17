@@ -5,6 +5,8 @@ class HomeController < ApplicationController
 
   def show
 
+    @in_schedule = true
+
     @trainings = []
 
     @user_trainings = Training.where(user_id: current_user.id)

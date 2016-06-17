@@ -4,6 +4,8 @@ class PrEntrysController < ApplicationController
 
   def index
 
+    @in_prs = true
+
     @fs = PrEntry.where(user_id: current_user.id, exercise_id: 1).order('created_at desc')
     @best_fs_pr = nil
 
