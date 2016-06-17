@@ -6,7 +6,7 @@
 
   <ul class="list-group">
 
-    <li class="list-group-item foobar">
+    <li class="list-group-item text-center">
       Exercícios de Força
       <span class="glyphicon glyphicon-chevron-down expander pull-right hidden" aria-hidden="true"></span>
     </li>
@@ -15,9 +15,8 @@
 
   <ul class="list-group exercise-list">
 
-    <li class="list-group-item exercise-list-item">
-
-      <h4 class="text-center exercise-item-title">Front Squat</h4>
+    <li class="list-group-item" onclick="toggleExercisePR('fs', this)">Front Squat <span class="glyphicon glyphicon-chevron-down expander" aria-hidden="true"></span></li>
+    <li class="list-group-item exercise-list-item hidden" id="fs-prs">
 
       <%= image_tag("front_squat", class:"img-responsive") %>
 
@@ -125,9 +124,8 @@
 
     </li>
 
-    <li class="list-group-item exercise-list-item hidden">
-
-      <h4 class="text-center exercise-item-title">Back Squat</h4>
+    <li class="list-group-item" onclick="toggleExercisePR('bs', this)">Back Squat <span class="glyphicon glyphicon-chevron-down expander" aria-hidden="true"></span></li>
+    <li class="list-group-item exercise-list-item hidden" id="bs-prs">
 
       <%= image_tag("back_squat", class:"img-responsive") %>
 
@@ -235,9 +233,8 @@
 
     </li>
 
-    <li class="list-group-item exercise-list-item">
-
-      <h4 class="text-center exercise-item-title">Hang Clean</h4>
+    <li class="list-group-item" onclick="toggleExercisePR('hc', this)">Hang Clean <span class="glyphicon glyphicon-chevron-down expander" aria-hidden="true"></span></li>
+    <li class="list-group-item exercise-list-item hidden" id="hc-prs">
 
       <%= image_tag("hang_clean", class:"img-responsive") %>
 
@@ -345,7 +342,8 @@
 
     </li>
 
-    <li class="list-group-item exercise-list-item">
+    <li class="list-group-item" onclick="toggleExercisePR('so', this)">Shoulder Overhead <span class="glyphicon glyphicon-chevron-down expander" aria-hidden="true"></span></li>
+    <li class="list-group-item exercise-list-item hidden" id="so-prs">
 
       <h4 class="text-center exercise-item-title">Shoulder Overhead</h4>
 
@@ -455,9 +453,8 @@
 
     </li>
 
-    <li class="list-group-item exercise-list-item">
-
-      <h4 class="text-center exercise-item-title">Thruster</h4>
+    <li class="list-group-item" onclick="toggleExercisePR('th', this)">Thruster <span class="glyphicon glyphicon-chevron-down expander" aria-hidden="true"></span></li>
+    <li class="list-group-item exercise-list-item hidden" id="th-prs">
 
       <%= image_tag("thruster", class:"img-responsive") %>
 

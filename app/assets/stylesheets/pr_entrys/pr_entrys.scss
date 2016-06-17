@@ -4,6 +4,14 @@
 
 .exercise-list {
 
+  .glyphicon.expander {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #909090;
+  }
+
   .exercise-list-item {
 
     &:first-child {

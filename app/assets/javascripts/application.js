@@ -928,4 +928,63 @@ function saveStrengthPRFor(exerciseRef, button) {
 	});
 }
 
+function toggleExercisePR(exerciseRef, listItem) {
+
+  var $exercise = $("#"+exerciseRef+"-prs");
+  var $glyphicon = $($(listItem).find('.glyphicon')[0]);
+
+  console.log($glyphicon);
+
+  if ($exercise.hasClass('hidden')) {
+
+    $exercise.removeClass('hidden');
+
+    $glyphicon.removeClass('glyphicon-chevron-down');
+    $glyphicon.addClass('glyphicon-chevron-up');
+
+  } else {
+
+    $exercise.addClass('hidden');
+
+    $glyphicon.removeClass('glyphicon-chevron-up');
+    $glyphicon.addClass('glyphicon-chevron-down');
+  }
+
+  // $exercise.animate({
+  //   height: "toggle"
+  // }, 250, function () {
+
+  // });
+
+}
+
+
+
+// var $classHourList = $($day.next('.class-hour-list')[0]);
+// var numberWorkouts = $classHourList.find('.class-hour-list-item').length;
+//
+// if (numberWorkouts > 0) {
+//
+//   var $glyphicon = $($day.find('.glyphicon')[0]);
+//
+//   if ($glyphicon.hasClass('glyphicon-chevron-down')) {
+//
+//     $glyphicon.removeClass('glyphicon-chevron-down');
+//     $glyphicon.addClass('glyphicon-chevron-up');
+//
+//     $classHourList.find('.class-hour-list-item').each(function() {
+//       $(this).removeClass('hidden');
+//     });
+//
+//   } else {
+//
+//     $glyphicon.removeClass('glyphicon-chevron-up');
+//     $glyphicon.addClass('glyphicon-chevron-down');
+//
+//     $classHourList.find('.class-hour-list-item').each(function() {
+//       $(this).addClass('hidden');
+//     });
+
+
+
 $(document).ready(main);
