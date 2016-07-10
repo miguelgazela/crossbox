@@ -42,7 +42,11 @@
 
             <% else %>
 
-            <button type="button" class="btn btn-sm btn-default" onclick="enterWorkout(<%= @workout.id %>)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inscrever</button>
+            <% if !@busy %>
+              <button type="button" class="btn btn-sm btn-default" onclick="enterWorkout(<%= @workout.id %>)"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inscrever</button>
+            <% else %>
+              Já tens treino marcado neste dia!
+            <% end %>
 
             <% end %>
 

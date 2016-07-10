@@ -7,8 +7,24 @@ class WorkoutsController < ApplicationController
 	def show
 
 		@workout = Workout.find(params[:id])
-		@in_workout = Training.find_by(user_id: current_user.id, workout_id: params[:id])
 
+		@sameDayWorkouts = Workout.where('date > ? AND date < ?', @workout.date.beginning_of_day, @workout.date.end_of_day)
+
+		@sameDayWorkouts.each do |sameDayWorkout|
+
+			if sameDayWorkout.id != @workout.id
+
+				@in_this_workout = Training.find_by(user_id: current_user.id, workout_id: sameDayWorkout.id)
+
+				if @in_this_workout
+					@busy = 1
+					break
+				end
+				
+			end
+		end
+
+		@in_workout = Training.find_by(user_id: current_user.id, workout_id: params[:id])
 		@percentage = (((@workout.trainings.length * 1.0) / Integer(@workout.max_participants)) * 100).round
 
 	end

@@ -256,16 +256,33 @@ function fetchWeekWorkouts() {
 
         var workouts = response.payload.workouts;
 
+        // fetch templates for the days and workouts
+
         var classDayTmpl = $.templates("#class-day-template");
         var classHourTmpl = $.templates("#class-hour-template");
 
+        var trainingDays = [];
+
+        $(workouts).each(function () {
+
+          if (this.in_workout) {
+            var workoutDate = moment(this.workout.date, 'YYYY-MM-DDTHH:mm:ss.sss');
+            trainingDays.push(workoutDate);
+          }
+        });
+
+        // loop through every weekly workout available
+
         $(workouts).each(function() {
+
+          // get the date of the workout and the html dom element for that specific day
 
           var workoutDate = moment(this.workout.date, 'YYYY-MM-DDTHH:mm:ss.sss');
           var $workoutDay = $('[data-class-day="' + workoutDate.format('YYYY-MM-DD') + '"]');
 
           if ($workoutDay.length == 0) {
 
+            // this workout is from a day that hasn't been handled before, so
             // add the day for this workout
 
             var templateData = {
@@ -332,6 +349,20 @@ function fetchWeekWorkouts() {
             inWorkout: this.in_workout,
             inPast: workoutDate.isBefore(moment())
           };
+
+          for (var i = 0; i < trainingDays.length; i++) {
+
+            var busyDate = trainingDays[i];
+
+            if (busyDate.isSame(workoutDate, 'day')) {
+
+              if (busyDate.isSame(workoutDate, 'hour')) {
+                continue;
+              }
+
+              templateData['busy'] = 1;
+            }
+          }
 
           //    calculate number of free spots and percentage
 
@@ -506,9 +537,6 @@ function createWorkouts() {
 	});
 }
 
-
-
-
 function addWorkoutsToDay(workouts, day, daysToAdd) {
 
   for (var i = 0; i < workouts.length; i++) {
@@ -677,42 +705,6 @@ function setCalendarToToday() {
 
   // fetchWeekWorkouts();
 }
-
-// function backOneWeek() {
-//
-// 	var firstDayOfWeek = currentFirstDayOfWeek.clone();
-// 	firstDayOfWeek.subtract(1, 'w');
-//
-// 	changeWeek(firstDayOfWeek);
-// }
-
-// function forwardOneWeek() {
-//
-// 	var firstDayOfWeek = currentFirstDayOfWeek.clone();
-// 	firstDayOfWeek.add(1, 'w');
-//
-// 	changeWeek(firstDayOfWeek);
-// }
-
-// function changeWeek(firstDayOfWeek) {
-//
-//   currentFirstDayOfWeek = firstDayOfWeek.clone();
-//
-//   resetWeek();
-//
-//   fetchWeekWorkouts();
-// }
-
-// function resetWeek() {
-//
-//   $('.cal-day-hour').each(function () {
-//     $(this).find('.occupancy-rate').remove();
-//     $(this).find('.hour-completion').remove();
-//     $(this).removeClass('no-workout');
-//   });
-//
-// 	setWeekStartingAt(currentFirstDayOfWeek);
-// }
 
 function setWeekStartingAt(firstDay) {
 

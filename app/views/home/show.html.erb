@@ -72,7 +72,9 @@
 
       {{if !inPast}}
         {{if !inWorkout}}
-        <button type="button" class="btn btn-sm btn-default" onclick="enterWorkout({{:workoutID}})"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inscrever</button>
+          {{if !busy}}
+          <button type="button" class="btn btn-sm btn-default" onclick="enterWorkout({{:workoutID}})"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inscrever</button>
+          {{/if}}
         {{else}}
         <a class="btn btn-sm btn-default btn-forfeit" href="/workouts/{{:workoutID}}/state?a=leave&rh=1" role="button"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Desistir</a>
         {{/if}}
