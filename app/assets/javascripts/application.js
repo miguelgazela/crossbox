@@ -35,6 +35,10 @@ var main = function () {
 
   FastClick.attach(document.body);
 
+  if (!store.enabled) {
+    console.log('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.')
+  }
+
   var railsEnv = $('body').data('env');
 
   if (railsEnv == "development") {
@@ -437,6 +441,11 @@ function fetchWeekWorkouts() {
           $hoursList.append(html);
 
         });
+
+        // expand the first day
+
+        var $firstDay = $($(".class-day")[0]);
+        $firstDay.trigger('click');
       }
     }
   });
