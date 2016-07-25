@@ -4,41 +4,40 @@ Rails.application.routes.draw do
 
   get '/contacts' => 'home#contacts'
 
+  # sessions
+
   resources :sessions, only: [:create, :index]
-
-  resources :pr_entrys, only: [:index, :create]
-
-  get 'sessions/create'
   get 'sessions/destroy'
-
   get 'login' => 'sessions#new'
   get 'signout' => 'sessions#destroy', as: 'signout'
+  post '/signin' => 'sessions#signin'
   post 'users/yes/:id' => 'sessions#authorize'
   post 'users/no/:id' => 'sessions#cancel'
-
-  get 'users/:id/delete' => 'users#delete'
-
-  get 'users/top_month' => 'users#top_3_of_month'
-
-  post '/signin' => 'sessions#signin'
-
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/') # this redirects in case the user denied access for our application
 
-  get 'workouts_configurator' => 'workouts#configurator'
-  post 'workouts_configurator' => 'workouts#configurator_create'
+  # PRs
 
-  resources :workouts, only: [:show, :new, :create]
-
-  get 'week_workouts' => 'workouts#week_workouts'
-  get 'workouts/:id/state' => 'workouts#change_training_state'
+  resources :pr_entrys, only: [:index, :create]
   get 'personal_best' => 'workouts#personal_best'
+  get 'activity' => 'pr_entrys#activity'
 
-  get 'workouts/:id/delete' => 'workouts#delete_workout'
-
-  get 'profile' => 'users#profile'
+  # users
 
   resources :users
+
+  get 'users/:id/delete' => 'users#delete'
+  get 'users/top_month' => 'users#top_3_of_month'
+  get 'profile' => 'users#profile'
+
+  # workouts
+
+  resources :workouts, only: [:show, :new, :create]
+  get 'workouts_configurator' => 'workouts#configurator'
+  post 'workouts_configurator' => 'workouts#configurator_create'
+  get 'week_workouts' => 'workouts#week_workouts'
+  get 'workouts/:id/state' => 'workouts#change_training_state'
+  get 'workouts/:id/delete' => 'workouts#delete_workout'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

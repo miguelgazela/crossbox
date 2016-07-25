@@ -5,13 +5,10 @@ class UsersController < ApplicationController
 	def index
 
 		@total_trainings = 0
-
 		@users = User.all
 
 		@users.each do |user|
-
 			@total_trainings += user.trainings_count
-
 		end
 
 	end
