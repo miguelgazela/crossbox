@@ -95,8 +95,8 @@ class HomeController < ApplicationController
 
 		end
 
-    @events = Event.limit(50)
-    
+    @events = Event.limit(50).order('created_at desc')
+
 
   end
 
