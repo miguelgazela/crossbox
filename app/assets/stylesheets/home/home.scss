@@ -448,6 +448,15 @@ section h2 {
 
   .activity-event {
 
+    .activity-event-handrock {
+
+      &.rocked-on {
+        i {
+          color: $primary-color;
+        }
+      }
+    }
+
     padding: 10px 10px;
 
     .activity-event-user-thumbnail {

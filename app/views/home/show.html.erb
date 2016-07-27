@@ -82,7 +82,7 @@
 
             <% if event.title == 'WORKOUT' %>
               <p class="activity-event-info-primary"><span class="username"><%= event.training.user.name %> </span> acabou de se inscrever na aula das <%= event.workout.date.strftime('%H:%M') %> de <% if event.workout.date.strftime('%w') == '0' %> domingo<% elsif event.workout.date.strftime('%w') == '1' %> segunda-feira<% elsif event.workout.date.strftime('%w') == '2' %> terça-feira<% elsif event.workout.date.strftime('%w') == '3' %> quarta-feira<% elsif event.workout.date.strftime('%w') == '4' %> quinta-feira<% elsif event.workout.date.strftime('%w') == '5' %> sexta-feira<% elsif event.workout.date.strftime('%w') == '6' %> sábado<% end %>.</p>
-              <p class="activity-event-info-secondary"><%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
+              <p class="activity-event-info-secondary"><span class="activity-event-handrock" aria-hidden="true"><i class='fa fa-hand-rock-o'></i><span> 12 | <%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
             <% else %>
 
               <% if event.pr_entry.exercise_id == 1 %>
@@ -92,7 +92,7 @@
               <% elsif event.pr_entry.exercise_id == 3 %>
               <p class="activity-event-info-primary"><span class="username"><%= event.pr_entry.user.name %> </span> alcançou um Hang Clean limpinho com <%= event.pr_entry.value %>kg - <%= event.pr_entry.repetitions %>x <%= event.pr_entry.load_percentage %>%</p>
               <% end %>
-              <p class="activity-event-info-secondary"><%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
+              <p class="activity-event-info-secondary"><span class="activity-event-handrock rocked-on" aria-hidden="true"><i class='fa fa-hand-rock-o'></i></span> 6 | <%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
 
             <% end %>
 

@@ -103,6 +103,25 @@ var main = function () {
     startDate: "today"
   });
 
+  // detect long presses on the activity events
+
+  $('.activity-event').on('press', function(e) {
+
+    $handrock = $($(this).find('.activity-event-handrock'));
+    console.log($handrock);
+
+    if ($handrock.hasClass('rocked-on')) {
+
+      $handrock.removeClass('rocked-on');
+
+    } else {
+
+      $handrock.addClass('rocked-on');
+
+    }
+
+
+  });
 
   // configure the create new account form
 
