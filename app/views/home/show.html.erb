@@ -20,7 +20,7 @@
             <img src="<%= thumbnail %>" alt="" class="img-circle"/>
           <% end %>
           <% if result[:excess_users] > 0 %>
-            <span>+result[:excess_users]</span>
+            <span>+<%= result[:excess_users]%></span>
           <% end %>
         </div>
 
