@@ -95,6 +95,11 @@ class PrEntrysController < ApplicationController
 
     pr.save!
 
+    event = Event.new
+    event.pr_entry = pr
+    event.title = "PR"
+    event.save!
+
 		render json: response
 
   end

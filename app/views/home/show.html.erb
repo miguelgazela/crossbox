@@ -70,12 +70,33 @@
         <div class="media">
           <div class="media-left activity-event-user-thumbnail">
             <a href="#">
-              <img class="media-object" src="<%= event.user.image %>" alt="...">
+              <% if event.title == 'WORKOUT' %>
+              <img class="media-object" src="<%= event.training.user.image %>" alt="...">
+              <% else %>
+              <img class="media-object" src="<%= event.pr_entry.user.image %>" alt="...">
+              <% end %>
+
             </a>
           </div>
           <div class="media-body">
-            <p class="activity-event-info-primary"><span class="username"><%= event.user.name %> </span> acabou de se inscrever na aula das <%= event.workout.date.strftime('%H:%M') %> de <% if event.workout.date.strftime('%w') == '0' %> domingo<% elsif event.workout.date.strftime('%w') == '1' %> segunda-feira<% elsif event.workout.date.strftime('%w') == '2' %> terça-feira<% elsif event.workout.date.strftime('%w') == '3' %> quarta-feira<% elsif event.workout.date.strftime('%w') == '4' %> quinta-feira<% elsif event.workout.date.strftime('%w') == '5' %> sexta-feira<% elsif event.workout.date.strftime('%w') == '6' %> sábado<% end %>.</p>
-            <p class="activity-event-info-secondary"><%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
+
+            <% if event.title == 'WORKOUT' %>
+              <p class="activity-event-info-primary"><span class="username"><%= event.training.user.name %> </span> acabou de se inscrever na aula das <%= event.workout.date.strftime('%H:%M') %> de <% if event.workout.date.strftime('%w') == '0' %> domingo<% elsif event.workout.date.strftime('%w') == '1' %> segunda-feira<% elsif event.workout.date.strftime('%w') == '2' %> terça-feira<% elsif event.workout.date.strftime('%w') == '3' %> quarta-feira<% elsif event.workout.date.strftime('%w') == '4' %> quinta-feira<% elsif event.workout.date.strftime('%w') == '5' %> sexta-feira<% elsif event.workout.date.strftime('%w') == '6' %> sábado<% end %>.</p>
+              <p class="activity-event-info-secondary"><%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
+            <% else %>
+
+              <% if event.pr_entry.exercise_id == 1 %>
+              <p class="activity-event-info-primary"><span class="username"><%= event.pr_entry.user.name %> </span> hoje fez Front Squat com uns incríveis <%= event.pr_entry.value %>kg - <%= event.pr_entry.repetitions %>x <%= event.pr_entry.load_percentage %>%</p>
+              <% elsif event.pr_entry.exercise_id == 2 %>
+              <p class="activity-event-info-primary"><span class="username"><%= event.pr_entry.user.name %> </span> agachou e fez Back Squat com <%= event.pr_entry.value %>kg às costas - <%= event.pr_entry.repetitions %>x <%= event.pr_entry.load_percentage %>%</p>
+              <% elsif event.pr_entry.exercise_id == 3 %>
+              <p class="activity-event-info-primary"><span class="username"><%= event.pr_entry.user.name %> </span> alcançou um Hang Clean limpinho com <%= event.pr_entry.value %>kg - <%= event.pr_entry.repetitions %>x <%= event.pr_entry.load_percentage %>%</p>
+              <% end %>
+              <p class="activity-event-info-secondary"><%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
+
+            <% end %>
+
+
           </div>
         </div>
 
