@@ -1,8 +1,46 @@
 class WorkoutsController < ApplicationController
 
-	before_action :require_user, only: [:show, :week_workouts, :change_training_state]
+	before_action :require_user, only: [:index, :show, :week_workouts, :change_training_state]
 	before_action :require_account_management_rights, only: [:new, :create, :delete_workout]
 	before_action :clear_gon, only: [:show, :week_workouts, :new, :create]
+
+	def index
+
+		@in_schedule = true
+
+    @trainings = []
+
+    @user_trainings = Training.where(user_id: current_user.id)
+    @user_trainings.each do |training|
+
+      # ignores past trainings
+      # TODO: could avoid this using a filter on the predicate!
+
+      if training.workout.date >= Date.today
+
+        workout_trainings = training.workout.trainings.order(:id)
+
+        index = 0
+        while index < workout_trainings.length do
+
+          if workout_trainings[index].id == training.id
+
+            if index < Integer(training.workout.max_participants)
+              @trainings.push({:training => training, :state => "Inscrito/a"})
+            else
+              @trainings.push({:training => training, :state => "Em Espera"})
+            end
+
+          end
+
+          index += 1
+
+        end # /while
+      end # /if
+
+    end # /if
+
+	end
 
 	def show
 
@@ -20,7 +58,7 @@ class WorkoutsController < ApplicationController
 					@busy = 1
 					break
 				end
-				
+
 			end
 		end
 
@@ -53,6 +91,11 @@ class WorkoutsController < ApplicationController
 			training.guests = guests
 
 			training.save!
+
+			event = Event.new
+			event.training = training
+			event.title = "WORKOUT"
+			event.save!
 
 			if return_home
 				redirect_to root_path
@@ -99,6 +142,7 @@ class WorkoutsController < ApplicationController
 
 			if training
 				training.delete
+				training.event.delete
 			end
 
 			if return_home

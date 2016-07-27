@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   # workouts
 
   resources :workouts, only: [:show, :new, :create]
+  get 'workouts' => 'workouts#index'
   get 'workouts_configurator' => 'workouts#configurator'
   post 'workouts_configurator' => 'workouts#configurator_create'
   get 'week_workouts' => 'workouts#week_workouts'

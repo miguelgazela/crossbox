@@ -686,27 +686,6 @@ function cancelAddWorkouts() {
 	window.location.href = ('/');
 }
 
-function configSidebarCalendar() {
-
-	$('.sidebar-calendar').clndr({
-		template: cldnrTemplate,
-		clickEvents: {
-			click: function(target){
-
-				setWeekStartingAt(target.date);
-        currentFirstDayOfWeek = target.date;
-
-        resetWeek();
-
-        fetchWeekWorkouts();
-
-			},
-		},
-		weekOffset: 1,
-		daysOfTheWeek: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']
-	});
-}
-
 function setCalendarToToday() {
 
 	currentFirstDayOfWeek = moment();

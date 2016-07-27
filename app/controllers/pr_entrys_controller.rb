@@ -95,33 +95,13 @@ class PrEntrysController < ApplicationController
 
     pr.save!
 
-		# gon.adding_workouts = nil
-    #
-		# workout_plan = params[:days]
-		# counter = 0
-    #
-		# workout_plan.each do |key, value|
-    #
-		# 	value['workoutHours'].each do |key, workoutHour|
-    #
-		# 		workout_date = DateTime.parse(value['date'] + " " + workoutHour['hour'])
-    #
-		# 		workouts = Workout.where(:date => workout_date)
-    #
-		# 		if workouts.length == 0
-    #
-		# 			workout = Workout.new
-    #
-		# 			workout.date = workout_date
-		# 			workout.max_participants = workoutHour['maxParticipants']
-		# 			workout.save!
-    #
-		# 			counter += 1
-		# 		end
-		# 	end
-		# end
-
 		render json: response
+
+  end
+
+  def activity
+
+    @events = PrEntry.all.limit(50)
 
   end
 

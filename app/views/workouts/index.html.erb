@@ -1,0 +1,94 @@
+<%= render "./navbar" %>
+
+<section id="workout-loader" class="text-center">
+  <div class="loader"></div>
+</section>
+
+<section id="workout-section" class="hidden">
+
+  <h2>TREINOS</h2>
+
+  <ul class="list-group class-list" id="home-list-days"></ul>
+
+  <ul class="list-group">
+    <% if current_user.role == 'admin' || current_user.role == 'coach' %>
+    <li class="list-group-item">
+      <a role="button" class="btn btn-block btn-success" href="workouts_configurator"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar Aulas</a>
+    </li>
+    <% end %>
+  </ul>
+
+</section>
+
+<%= render "./navfooter" %>
+
+<script id="class-day-template" type="text/x-jsrender">
+
+<li class="list-group-item class-day" data-class-day="{{:workoutDate}}" data-workouts-available="0">
+
+  <div class="class-day-column class-day-column-date">
+    <p {{if workoutWeekDay == 'Hoje'}}class="class-day-column-date-today"{{/if}}>{{:workoutDay}}</p>
+    <p>{{:workoutMonth}}</p>
+  </div>
+
+  <div class="class-day-column class-day-column-description">
+    <p>{{:workoutWeekDay}}</p>
+    <p class="class-day-workouts-description">{{:workoutsAvailableDescription}}</p>
+  </div>
+
+  <span class="glyphicon glyphicon-chevron-down expander" aria-hidden="true"></span>
+
+</li>
+
+<ul class="list-group class-hour-list"></ul>
+
+</script>
+
+
+<script id="class-hour-template" type="text/x-jsrender">
+
+<li class="list-group-item class-hour-list-item {{:hiddenClass}}" data-class-hour="{{:workoutDateHour}}">
+
+  <div class="class-hour-column">
+    <p class="class-hour-time {{if inWorkout}}class-hour-time-active{{/if}}">{{:workoutHour}}</p>
+  </div>
+
+  <div class="class-hour-column class-hour-column-info">
+
+    <p class="class-hour-title {{if inWorkout}}class-hour-title-active{{/if}}">Treino das {{:workoutHour}}</p>
+
+    <div class="class-hour-elements">
+      <span>{{:availableSpots}} vagas</span>
+      {{for thumbnails}}
+        <img src="{{:src}}" alt="" class="img-circle"/>
+      {{/for}}
+      {{if excessUsers}}
+        <span>+{{:excessUsers}}</span>
+      {{/if}}
+    </div>
+
+    <div class="class-hour-controls">
+      <a class="btn btn-sm btn-default" href="/workouts/{{:workoutID}}" role="button"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver</a>
+
+      {{if !inPast}}
+        {{if !inWorkout}}
+          {{if !busy}}
+          <button type="button" class="btn btn-sm btn-default" onclick="enterWorkout({{:workoutID}})"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Inscrever</button>
+          {{/if}}
+        {{else}}
+        <a class="btn btn-sm btn-default btn-forfeit" href="/workouts/{{:workoutID}}/state?a=leave&rh=1" role="button"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span> Desistir</a>
+        {{/if}}
+      {{/if}}
+
+    </div>
+
+  </div>
+
+  <div class="class-hour-graphical-availability {{:availabilityClass}}" data-completion="{{:completion}}">
+    <div>{{:availableSpots}}</div>
+  </div>
+
+</li>
+
+
+</script>

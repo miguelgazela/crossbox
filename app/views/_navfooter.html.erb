@@ -1,21 +1,25 @@
 <nav class="navfooter">
   <ul class="navfooter-nav">
-    <a href="/" <% if @in_schedule %> class="active"<% end %>>
+
+    <a href="/" <% if @in_home %> class="active"<% end %>>
+      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+      <span class="navfooter-item">Recente</span>
+    </a>
+
+    <a href="/workouts" <% if @in_schedule %> class="active"<% end %>>
       <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
       <span class="navfooter-item">Aulas</span>
     </a>
-    <!-- <a href="">
-      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-      <span class="navfooter-item">Perfil</span>
-    </a> -->
-    <!-- <a href="/personal_best"> -->
+
     <a href="/pr_entrys" <% if @in_prs %> class="active"<% end %>>
       <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
       <span class="navfooter-item">Recordes</span>
     </a>
-    <!-- <a href="">
-      <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-      <span class="navfooter-item">Notificações</span>
-    </a> -->
+
+    <a href="/profile">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+      <span class="navfooter-item">Perfil</span>
+    </a>
+
   </ul>
 </nav>
