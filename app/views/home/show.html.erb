@@ -2,11 +2,11 @@
 
 <section>
 
-  <h2>PRÓXIMAS AULAS</h2>
+  <h2 class="text-center">PRÓXIMAS AULAS</h2>
 
   <ul class="list-group class-hour-list">
 
-  <% @results.first(6).each_with_index do |result, index| %>
+  <% @results.first(4).each_with_index do |result, index| %>
 
     <li class="list-group-item class-hour-list-item class-hour-minimal">
 
@@ -59,19 +59,24 @@
 </section>
 
 <section>
-  <h2>ACTIVIDADE RECENTE</h2>
+  <h2 class="text-center">ACTIVIDADE RECENTE</h2>
 
   <ul class="list-group list-activity">
 
     <% @events.each_with_index do |event, index| %>
 
       <li class="list-group-item activity-event">
-        <div class="pull-left activity-event-user-thumbnail">
-          <img src="<%= event.user.image %>" class="img-circle" alt="">
-        </div>
-        <div class="pull-left">
-          <p class="activity-event-info-primary"><span class="username"><%= event.user.name %> </span> acabou de se inscrever na aula das <%= event.workout.date.strftime('%H:%M') %> de <% if event.workout.date.strftime('%w') == '0' %> domingo<% elsif event.workout.date.strftime('%w') == '1' %> segunda-feira<% elsif event.workout.date.strftime('%w') == '2' %> terça-feira<% elsif event.workout.date.strftime('%w') == '3' %> quarta-feira<% elsif event.workout.date.strftime('%w') == '4' %> quinta-feira<% elsif event.workout.date.strftime('%w') == '5' %> sexta-feira<% elsif event.workout.date.strftime('%w') == '6' %> sábado<% end %>.</p>
-          <p class="activity-event-info-secondary"><%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
+
+        <div class="media">
+          <div class="media-left activity-event-user-thumbnail">
+            <a href="#">
+              <img class="media-object" src="<%= event.user.image %>" alt="...">
+            </a>
+          </div>
+          <div class="media-body">
+            <p class="activity-event-info-primary"><span class="username"><%= event.user.name %> </span> acabou de se inscrever na aula das <%= event.workout.date.strftime('%H:%M') %> de <% if event.workout.date.strftime('%w') == '0' %> domingo<% elsif event.workout.date.strftime('%w') == '1' %> segunda-feira<% elsif event.workout.date.strftime('%w') == '2' %> terça-feira<% elsif event.workout.date.strftime('%w') == '3' %> quarta-feira<% elsif event.workout.date.strftime('%w') == '4' %> quinta-feira<% elsif event.workout.date.strftime('%w') == '5' %> sexta-feira<% elsif event.workout.date.strftime('%w') == '6' %> sábado<% end %>.</p>
+            <p class="activity-event-info-secondary"><%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
+          </div>
         </div>
 
       </li>
