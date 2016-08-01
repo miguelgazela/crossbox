@@ -1,52 +1,41 @@
 <%= render "./navbar" %>
 
-<div class="container">
-  <div class="row">
-      
-    <div class="card">
+<section>
 
-      <h1 class="page-header">Pedidos de Inscrição</h1>
-      
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th></th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Data</th>
-            <th>Opções</th>
-          </tr>
-        </thead>
-        <tbody>
+  <h2>Pedidos de Inscrição</h2>
 
-          <% @new_accounts.each_with_index do |new_user, index| %>
-          
-          <tr>
-            <th scope="row"><%= index + 1 %></th>
-            <td><img class="media-object media-object-small" src="<%= new_user.image %>" alt="..."></td>
-            <td><%= new_user.name %></td>
-            <td><%= new_user.email %></td>
-            <td><%= new_user.created_at.strftime("%d/%m/%Y") %></td>
-            <td>
-              <form action="users/yes/<%= new_user.id %>" method="post">
-                <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                <button type="submit" class="btn btn-default btn-sm"> <%= fa_icon "check-circle" %> Confirmar</button>
-              </form>
-              <form action="users/no/<%= new_user.id %>" method="post">
-                <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
-                <button type="submit" class="btn btn-default btn-sm"><%= fa_icon "times-circle" %> Recusar</button>
-              </form>
-            </td>
-          </tr>
+  <ul class="list-group">
 
-          <% end %>
+  <% @new_accounts.each_with_index do |user, index| %>
 
-        </tbody>
-      </table>
+  <li class="list-group-item list-group-item-user">
+
+    <div class="list-group-item-column list-group-item-column-thumbnail">
+      <img src="<%= user.image %>" class="media-object media-object-small" alt="">
+    </div>
+
+    <div class="list-group-item-column list-group-item-column-info">
+      <p class="user-info-primary"><%= user.name %></p>
+      <p class="user-info-secondary"><%= user.email %></p>
+      <p class="user-info-secondary">Pediu acesso a <%= user.created_at.strftime("%d/%m/%Y")%></p>
+
+      <div class="user-options">
+        <form action="users/yes/<%= user.id %>" method="post">
+          <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+          <button type="submit" class="btn btn-success btn-sm"> <%= fa_icon "check-circle" %> Confirmar</button>
+        </form>
+        <form action="users/no/<%= user.id %>" method="post" style="margin-top: 5px">
+          <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
+          <button type="submit" class="btn btn-danger btn-sm"><%= fa_icon "times-circle" %> Recusar</button>
+        </form>
+      </div>
 
     </div>
 
-  </div>
+  </li>
 
-</div>
+  <% end %>
+
+  </ul>
+
+</section>

@@ -6,9 +6,15 @@
 
   <ul class="list-group">
 
+    <% if current_user.role == 'admin' || current_user.role == 'coach' %>
+    <li class="list-group-item">
+      <a class="btn btn-sm btn-default" href="/sessions">Pedidos de Inscrição</a>
+    </li>
+    <% else %>
     <li class="list-group-item">
       Brevemente!!
     </li>
+    <% end %>
 
   </ul>
 
