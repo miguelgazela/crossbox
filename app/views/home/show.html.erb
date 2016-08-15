@@ -81,8 +81,12 @@
           <div class="media-body">
 
             <% if event.title == 'WORKOUT' %>
-              <p class="activity-event-info-primary"><span class="username"><%= event.training.user.name %> </span> acabou de se inscrever na aula das <%= event.workout.date.strftime('%H:%M') %> de <% if event.workout.date.strftime('%w') == '0' %> domingo<% elsif event.workout.date.strftime('%w') == '1' %> segunda-feira<% elsif event.workout.date.strftime('%w') == '2' %> terça-feira<% elsif event.workout.date.strftime('%w') == '3' %> quarta-feira<% elsif event.workout.date.strftime('%w') == '4' %> quinta-feira<% elsif event.workout.date.strftime('%w') == '5' %> sexta-feira<% elsif event.workout.date.strftime('%w') == '6' %> sábado<% end %>.</p>
-              <p class="activity-event-info-secondary"><span class="activity-event-handrock" aria-hidden="true"><i class='fa fa-hand-rock-o'></i><span> 12 | <%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
+
+              <% if event.training.user %>
+                <p class="activity-event-info-primary"><span class="username"><%= event.training.user.name %> </span> acabou de se inscrever na aula das <%= event.workout.date.strftime('%H:%M') %> de <% if event.workout.date.strftime('%w') == '0' %> domingo<% elsif event.workout.date.strftime('%w') == '1' %> segunda-feira<% elsif event.workout.date.strftime('%w') == '2' %> terça-feira<% elsif event.workout.date.strftime('%w') == '3' %> quarta-feira<% elsif event.workout.date.strftime('%w') == '4' %> quinta-feira<% elsif event.workout.date.strftime('%w') == '5' %> sexta-feira<% elsif event.workout.date.strftime('%w') == '6' %> sábado<% end %>.</p>
+                <p class="activity-event-info-secondary"><span class="activity-event-handrock" aria-hidden="true"><i class='fa fa-hand-rock-o'></i><span> 12 | <%= distance_of_time_in_words(Time.now, event.created_at) %> ago</p>
+              <% end %>
+
             <% else %>
 
               <% if event.pr_entry.exercise_id == 1 %>
