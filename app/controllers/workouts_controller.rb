@@ -92,10 +92,10 @@ class WorkoutsController < ApplicationController
 
 			training.save!
 
-			event = Event.new
-			event.training = training
-			event.title = "WORKOUT"
-			event.save!
+			# event = Event.new
+			# event.training = training
+			# event.title = "WORKOUT"
+			# event.save!
 
 			if return_home
 				redirect_to root_path
@@ -142,7 +142,7 @@ class WorkoutsController < ApplicationController
 
 			if training
 				training.delete
-				training.event.delete
+				# training.event.delete
 			end
 
 			if return_home
