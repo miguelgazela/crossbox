@@ -142,7 +142,12 @@
         <div class="list-group-item-column workout-show-hour-index"><%= index + 1 %></div>
         <div class="list-group-item-column workout-show-hour-description">
           <img src="<%= training.user.image %>" alt="" class="img-circle" width="26px" height="26px"/>
-          <span class="workout-show-username"><%= training.user.name %> <% if current_user.id == 20 && training.user.id == 1 %> :) <% elsif current_user.id == 1 && training.user.id == 20 %> <3 <% end %> <% if training.guests > 0%><span class="label label-default">+<%= training.guests %><% end%></span></span>
+
+          <span class="workout-show-username"><%= training.user.name %>
+            <% if current_user.id == 20 && training.user.id == 1 %> <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <% elsif current_user.id == 1 && training.user.id == 20 %> <i class="fa fa-heart" aria-hidden="true"></i>
+            <% elsif current_user.id == 201 && training.user.id == 201 %> <i class="fa fa-diamond" aria-hidden="true"></i>
+            <% end %> <% if training.guests > 0%><span class="label label-default">+<%= training.guests %><% end%></span></span>
 
           <!-- <span class="training-time"><%= distance_of_time_in_words(Time.now, @workout.date, false, :locale => :en) %></span> -->
 
