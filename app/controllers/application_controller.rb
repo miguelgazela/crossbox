@@ -12,11 +12,11 @@ class ApplicationController < ActionController::Base
   helper_method :require_account_management_rights
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    redirect_to '/login'
   end
 
   def require_user
-  	redirect_to '/login' unless current_user
+  	redirect_to '/login'
   end
 
   def new_accounts_count
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_account_management_rights
-    redirect_to '/' unless current_user && (current_user.role == 'admin' || current_user.role == 'coach')
+    redirect_to '/login'
   end
 
   def clear_gon

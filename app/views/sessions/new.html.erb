@@ -1,6 +1,8 @@
 <%= stylesheet_link_tag "sessions", :media => "all" %>
 
-<div class="site-wrapper">
+<img src="<%= image_url("404.jpg") %>" class="img-responsive christmas" alt="">
+
+<!-- <div class="site-wrapper">
 
   <div class="site-wrapper-inner">
 
@@ -44,7 +46,7 @@
           </div>
 
           <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-            
+
             <form class="form" action="/signin" method="POST">
 
               <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
@@ -69,7 +71,7 @@
 
               <button type="submit" class="btn btn-success btn-sm btn-block">Entrar</button>
               <p style="margin-top:15px;margin-bottom:30px;">Não tens conta? Cria uma <a href="/users/new">aqui</a>.</p>
-              
+
             </form>
 
           </div>
@@ -88,4 +90,4 @@
 
   </div>
 
-</div>
+</div> -->

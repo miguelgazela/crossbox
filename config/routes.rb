@@ -1,44 +1,44 @@
 Rails.application.routes.draw do
 
-  root to: "home#show"
+  root to: "sessions#new"
 
-  get '/contacts' => 'home#contacts'
+  # get '/contacts' => 'home#contacts'
 
   # sessions
 
   resources :sessions, only: [:create, :index]
-  get 'sessions/destroy'
+  # get 'sessions/destroy'
   get 'login' => 'sessions#new'
-  get 'signout' => 'sessions#destroy', as: 'signout'
-  post '/signin' => 'sessions#signin'
-  post 'users/yes/:id' => 'sessions#authorize'
-  post 'users/no/:id' => 'sessions#cancel'
-  get 'auth/:provider/callback', to: 'sessions#create'
-  get 'auth/failure', to: redirect('/') # this redirects in case the user denied access for our application
+  # get 'signout' => 'sessions#destroy', as: 'signout'
+  # post '/signin' => 'sessions#signin'
+  # post 'users/yes/:id' => 'sessions#authorize'
+  # post 'users/no/:id' => 'sessions#cancel'
+  # get 'auth/:provider/callback', to: 'sessions#create'
+  # get 'auth/failure', to: redirect('/') # this redirects in case the user denied access for our application
 
   # PRs
 
   resources :pr_entrys, only: [:index, :create]
-  get 'personal_best' => 'workouts#personal_best'
-  get 'activity' => 'pr_entrys#activity'
+  # get 'personal_best' => 'workouts#personal_best'
+  # get 'activity' => 'pr_entrys#activity'
 
   # users
 
   resources :users
 
-  get 'users/:id/delete' => 'users#delete'
-  get 'users/top_month' => 'users#top_3_of_month'
-  get 'profile' => 'users#profile'
+  # get 'users/:id/delete' => 'users#delete'
+  # get 'users/top_month' => 'users#top_3_of_month'
+  # get 'profile' => 'users#profile'
 
   # workouts
 
   resources :workouts, only: [:show, :new, :create]
-  get 'workouts' => 'workouts#index'
-  get 'workouts_configurator' => 'workouts#configurator'
-  post 'workouts_configurator' => 'workouts#configurator_create'
-  get 'week_workouts' => 'workouts#week_workouts'
-  get 'workouts/:id/state' => 'workouts#change_training_state'
-  get 'workouts/:id/delete' => 'workouts#delete_workout'
+  # get 'workouts' => 'workouts#index'
+  # get 'workouts_configurator' => 'workouts#configurator'
+  # post 'workouts_configurator' => 'workouts#configurator_create'
+  # get 'week_workouts' => 'workouts#week_workouts'
+  # get 'workouts/:id/state' => 'workouts#change_training_state'
+  # get 'workouts/:id/delete' => 'workouts#delete_workout'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
